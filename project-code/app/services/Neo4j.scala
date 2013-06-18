@@ -18,12 +18,12 @@ object Neo4j {
   /**
    * Graph database
    */
-  var graphDb :GraphDatabaseService = start()
+  var graphDb :Option[GraphDatabaseService] = None
 
   /**
    * Server for webadmin
    */
-  var webadmin :WrappingNeoServerBootstrapper = startAdmin()
+  var webadmin :Option[WrappingNeoServerBootstrapper] = None
 
   /**
    * Starting neo4j database
@@ -41,11 +41,13 @@ object Neo4j {
    *
    * @return
    */
-  def startAdmin() :WrappingNeoServerBootstrapper = {
+  def startAdmin() : Option[WrappingNeoServerBootstrapper] = {
     Logger.debug("Starting webadmin")
-    val bootstrapper :WrappingNeoServerBootstrapper =  new WrappingNeoServerBootstrapper(graphDb.asInstanceOf[GraphDatabaseAPI])
-    bootstrapper.start()
-    bootstrapper
+    graphDb.map { db =>
+      val bootstrapper =  new WrappingNeoServerBootstrapper(db.asInstanceOf[GraphDatabaseAPI])
+      bootstrapper.start()
+      bootstrapper
+    }
   }
 
   /**
@@ -53,6 +55,8 @@ object Neo4j {
    */
   def initDb() {
     Logger.debug("init database")
+    graphDb = Some(start())
+    webadmin = startAdmin()
   }
 
   /**
@@ -60,9 +64,9 @@ object Neo4j {
    */
   def stop() {
     Logger.debug("Suhting done webadmin")
-    webadmin.stop()
+    webadmin.foreach(_.stop())
     Logger.debug("Suhting done neo4j")
-    graphDb.shutdown()
+    graphDb.foreach(_.shutdown())
   }
 
 }

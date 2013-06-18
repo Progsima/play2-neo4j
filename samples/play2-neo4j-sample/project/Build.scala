@@ -15,7 +15,9 @@ object ApplicationBuild extends Build {
 
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here      
+    // after having running publish-local in the plugin using SBT, the jar will be put in the ivy2 repo  
+    //   >> if so, uncomment the next line to set your local ivy2 repo as a new resolver
+    //   resolvers += Resolver.file("Local ivy2 Repository", file(Path.userHome.absolutePath+"/.ivy2/local"))(Resolver.ivyStylePatterns)
   )
 
 }
