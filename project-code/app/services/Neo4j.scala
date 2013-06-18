@@ -3,10 +3,14 @@ package services
 import play.api.Play
 import play.Logger
 import play.api.Play.current
+
 import org.neo4j.graphdb._
-import org.neo4j.graphdb.factory.GraphDatabaseFactory
+import org.neo4j.graphdb.factory.{GraphDatabaseFactory, GraphDatabaseSetting}
 import org.neo4j.kernel.GraphDatabaseAPI
+import org.neo4j.server.configuration.{Configurator, ServerConfigurator}
 import org.neo4j.server.WrappingNeoServerBootstrapper
+
+import org.neo4j.shell.ShellSettings
 
 /**
  * Neo4j database object.
@@ -18,7 +22,7 @@ object Neo4j {
   /**
    * Graph database
    */
-  var graphDb :Option[GraphDatabaseService] = None
+  var graphdb :Option[GraphDatabaseAPI] = None
 
   /**
    * Server for webadmin
@@ -30,10 +34,23 @@ object Neo4j {
    *
    * @return
    */
-  def start() :GraphDatabaseService = {
-    val DBPath :String = Play.configuration.getString("neo4j.path").getOrElse("neo4j");
-    Logger.debug("Neo4j database path is :" + DBPath);
-    new GraphDatabaseFactory().newEmbeddedDatabase(DBPath)
+  def start() = {
+    val DBPath :String = Play.configuration.getString("neo4j.path").getOrElse("neo4j")
+    Logger.debug("Neo4j database path is :" + DBPath)
+
+    val graphdb = (new GraphDatabaseFactory())
+                .newEmbeddedDatabaseBuilder( DBPath )
+                .setConfig( ShellSettings.remote_shell_enabled, GraphDatabaseSetting.TRUE )
+                .newGraphDatabase()
+                .asInstanceOf[GraphDatabaseAPI];
+
+    val config = new ServerConfigurator( graphdb );
+    // let the server endpoint be on a custom port
+    config.configuration().setProperty(Configurator.WEBSERVER_PORT_PROPERTY_KEY, 7575 );
+
+    val srv = new WrappingNeoServerBootstrapper( graphdb, config );
+    
+    (graphdb, srv)
   }
 
   /**
@@ -41,12 +58,10 @@ object Neo4j {
    *
    * @return
    */
-  def startAdmin() : Option[WrappingNeoServerBootstrapper] = {
+  def startAdmin() = {
     Logger.debug("Starting webadmin")
-    graphDb.map { db =>
-      val bootstrapper =  new WrappingNeoServerBootstrapper(db.asInstanceOf[GraphDatabaseAPI])
-      bootstrapper.start()
-      bootstrapper
+    webadmin.map { server =>
+      server.start()
     }
   }
 
@@ -55,8 +70,13 @@ object Neo4j {
    */
   def initDb() {
     Logger.debug("init database")
-    graphDb = Some(start())
-    webadmin = startAdmin()
+    
+    Some(start()).map{ case (x,y) => 
+      graphdb = Some(x)
+      webadmin = Some(y)
+    }
+    
+    startAdmin()
   }
 
   /**
@@ -66,7 +86,7 @@ object Neo4j {
     Logger.debug("Suhting done webadmin")
     webadmin.foreach(_.stop())
     Logger.debug("Suhting done neo4j")
-    graphDb.foreach(_.shutdown())
+    graphdb.foreach(_.shutdown())
   }
 
 }
