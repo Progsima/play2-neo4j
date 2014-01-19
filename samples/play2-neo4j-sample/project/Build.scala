@@ -11,7 +11,7 @@ object ApplicationBuild extends Build {
     "play2-neo4j" % "play2-neo4j_2.10" % "1.0-SNAPSHOT",
     "ch.qos.logback" % "logback-core" % "1.0.3" force(), // this should override the Play version
     "ch.qos.logback" % "logback-classic" % "1.0.3" force(),
-    "org.neo4j.app" % "neo4j-server" % "2.0.0-M03" classifier "static-web" classifier "" exclude("org.slf4j", "slf4j-jdk14")
+    "org.neo4j.app" % "neo4j-server" % "2.0.0" classifier "static-web" classifier "" exclude("org.slf4j", "slf4j-jdk14")
   )
 
 

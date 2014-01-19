@@ -4,13 +4,13 @@ import play.api.Play
 import play.Logger
 import play.api.Play.current
 
-import org.neo4j.graphdb._
-import org.neo4j.graphdb.factory.{GraphDatabaseFactory, GraphDatabaseSetting}
+import org.neo4j.graphdb.factory.GraphDatabaseFactory
 import org.neo4j.kernel.GraphDatabaseAPI
 import org.neo4j.server.configuration.{Configurator, ServerConfigurator}
 import org.neo4j.server.WrappingNeoServerBootstrapper
 
 import org.neo4j.shell.ShellSettings
+import org.neo4j.helpers.Settings
 
 /**
  * Neo4j database object.
@@ -40,7 +40,7 @@ object Neo4j {
 
     val graphdb = (new GraphDatabaseFactory())
                 .newEmbeddedDatabaseBuilder( DBPath )
-                .setConfig( ShellSettings.remote_shell_enabled, GraphDatabaseSetting.TRUE )
+                .setConfig( ShellSettings.remote_shell_enabled, Settings.TRUE )
                 .newGraphDatabase()
                 .asInstanceOf[GraphDatabaseAPI];
 
