@@ -14,14 +14,14 @@ object Application extends Controller {
   def transactional[B](f: (GraphDatabaseService, Transaction) => B):Option[B] = {
     //create the transaction => no exception here?
     val tx =  for {
-                db   <- Neo4j.graphdb 
+                db   <- Neo4j.graphdb
                 tx   <- Some(db.beginTx())
               } yield tx
 
     //execute the code => handling the exception wrapped in an Option
     val b = catching(classOf[Exception]) {
       for {
-        db  <- Neo4j.graphdb 
+        db  <- Neo4j.graphdb
         t   <- tx
         b   <- Some(f(db, t))
       } yield b
@@ -38,6 +38,7 @@ object Application extends Controller {
     val node = transactional { (db, t) =>
       val node = db.createNode()
       node.setProperty("test", "test")
+      t.success()
       node
     }
 
