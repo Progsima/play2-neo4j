@@ -2,10 +2,9 @@ package controllers
 
 import scala.util.control.Exception._
 
-import play.api._
 import play.api.mvc._
 
-import org.neo4j.graphdb.{GraphDatabaseService, Node, Transaction}
+import org.neo4j.graphdb.{GraphDatabaseService,Transaction}
 import services.Neo4j
 
 
