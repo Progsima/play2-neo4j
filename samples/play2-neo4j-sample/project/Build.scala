@@ -8,6 +8,7 @@ object ApplicationBuild extends Build {
   val appVersion      = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
+    // Default Neo4j plugin deps
     "play2-neo4j" % "play2-neo4j_2.10" % "1.0-SNAPSHOT",
     "ch.qos.logback" % "logback-core" % "1.0.3" force(), // this should override the Play version
     "ch.qos.logback" % "logback-classic" % "1.0.3" force(),
@@ -16,7 +17,7 @@ object ApplicationBuild extends Build {
 
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // after having running publish-local in the plugin using SBT, the jar will be put in the ivy2 repo  
+    // after having running publish-local in the plugin using SBT, the jar will be put in the ivy2 repo
     //   >> if so, uncomment the next line to set your local ivy2 repo as a new resolver
     // resolvers += Resolver.file("Local ivy2 Repository", file(Path.userHome.absolutePath+"/.ivy2/local"))(Resolver.ivyStylePatterns)
   )
