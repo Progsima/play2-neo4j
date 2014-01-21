@@ -36,6 +36,11 @@ class Neo4jService(rootUrl: String) {
     ("Content-Type", "application/json")
   )
 
+
+  def cypher(query :String) :Future[Either[Neo4jException,Seq[JsValue]]] = {
+    this.cypher(query, Map[String, String]())
+  }
+
   def cypher(query :String, params :Map[String, String]) :Future[Either[Neo4jException,Seq[JsValue]]] = {
     val result = this.cypher(Array((query, params)))
     for(response <- result) yield {

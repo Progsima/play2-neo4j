@@ -32,5 +32,14 @@ class Neo4jServiceSpec extends Specification {
         result.isRight must beTrue
       }
     }
+
+    "execute cypher select query" in {
+      running(FakeApplication()) {
+        val api = new Neo4jService("http://localhost:7575")
+        val result  = Helpers.await(api.cypher("MATCH (n) RETURN n LIMIT 100", Map()))
+        Logger.debug("Result is :" + result.right.toString)
+        result.isRight must beTrue
+      }
+    }
   }
 }
