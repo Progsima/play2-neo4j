@@ -30,7 +30,7 @@ object Neo4j {
   var webadmin :Option[WrappingNeoServerBootstrapper] = None
 
   /**
-   * Starting neo4j database
+   * Starting neo4j database.
    *
    * @return
    */
@@ -54,7 +54,7 @@ object Neo4j {
   }
 
   /**
-   * Starting webadmin server
+   * Starting webadmin server.
    *
    * @return
    */
@@ -66,7 +66,7 @@ object Neo4j {
   }
 
   /**
-   * Init the database with primary nodes
+   * Init the database with primary nodes.
    */
   def initDb() {
     Logger.debug("init database")
@@ -83,9 +83,9 @@ object Neo4j {
    * Stopping server & admin server
    */
   def stop() {
-    Logger.debug("Suhting done webadmin")
+    Logger.debug("Shutting down webadmin")
     webadmin.foreach(_.stop())
-    Logger.debug("Suhting done neo4j")
+    Logger.debug("Shutting down neo4j")
     graphdb.foreach(_.shutdown())
   }
 

@@ -5,7 +5,7 @@ import scala.util.control.Exception._
 import play.api.mvc._
 
 import org.neo4j.graphdb.{GraphDatabaseService,Transaction}
-import services.Neo4j
+import services._
 
 
 object Application extends Controller {
