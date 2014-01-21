@@ -79,8 +79,10 @@ class Neo4jService(rootUrl: String) {
       if( response.status == 200 ) {
         Logger.debug("Status code is 200 :" + response.body)
         val datas = response.json.\\("results").map { data =>
-          data.\\("data")
-        }
+          data.\\("data").map { row =>
+            row\\("row")
+          }
+        }.flatten
         Right(datas.toArray)
       }
       else {
