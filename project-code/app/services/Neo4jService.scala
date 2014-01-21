@@ -17,6 +17,11 @@ import play.api.libs.ws.Response
 import play.api.libs.json.JsObject
 import play.api.libs.json.JsArray
 import play.api.libs.concurrent.Execution.Implicits._
+import scala.concurrent.Future
+import scala._
+import play.api.libs.json.JsArray
+import play.api.libs.ws.Response
+import play.api.libs.json.JsObject
 
 /**
  * Neo4j helper for its REST API.
@@ -31,6 +36,15 @@ class Neo4jService(rootUrl: String) {
     ("Content-Type", "application/json")
   )
 
+  def cypher(query :String, params :Map[String, String]) :Future[Either[Neo4jException,Seq[JsValue]]] = {
+    val result = this.cypher(Array((query, params)))
+    for(response <- result) yield {
+      response match {
+        case Left(exception :Neo4jException) => Left(exception)
+        case Right(datas :Array[Seq[JsValue]]) => Right(datas.apply(0))
+      }
+    }
+  }
 
   def cypher(queries :Array[(String,Map[String, String])]) :Future[Either[Neo4jException,Array[Seq[JsValue]]]] = {
     val url = rootUrl + "/db/data/transaction/commit"
