@@ -1,6 +1,7 @@
 import org.specs2.mutable._
 
-import play.api.libs.json.JsValue
+import play.api.libs.json._
+import play.api.libs.functional.syntax._
 import play.api.test._
 import play.api.test.Helpers._
 import play.Logger
@@ -18,7 +19,7 @@ class Neo4jServiceSpec extends Specification {
     "execute multiple cypher create query" in {
       running(FakeApplication()) {
         val api = new Neo4jService("http://localhost:7575")
-        val queries = Array(("CREATE (n {props})", Map("name" -> "FRANCE", "pop" -> "100")), ("CREATE (n {props})", Map("name" -> "BELGIQUE", "pop" -> "10")))
+        val queries = Array(("CREATE (n {props})", Map("name" -> "FRANCE", "pop" -> 100)), ("CREATE (n {props})", Map("name" -> "BELGIQUE", "pop" -> 10)))
         val result  = Helpers.await(api.cypher(queries))
         Logger.debug("Result is :" + result.right.toString)
         result.isRight must beTrue
@@ -28,7 +29,7 @@ class Neo4jServiceSpec extends Specification {
     "execute single cypher create query" in {
       running(FakeApplication()) {
         val api = new Neo4jService("http://localhost:7575")
-        val result :Either[Neo4jException,Seq[JsValue]] = Helpers.await(api.cypher("CREATE (n {props})", Map("name" -> "ALLEMAGNE", "pop" -> "100")))
+        val result :Either[Neo4jException,Seq[JsValue]] = Helpers.await(api.cypher("CREATE (n {props})", Map("name" -> "ALLEMAGNE", "pop" -> 100)))
         Logger.debug("Result is :" + result.right.toString)
         result.isRight must beTrue
       }
@@ -39,13 +40,27 @@ class Neo4jServiceSpec extends Specification {
         val api = new Neo4jService("http://localhost:7575")
         val result :Either[Neo4jException,Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n) RETURN n LIMIT 100"))
 
+        case class Country(name: String, pop:Int)
+        implicit val countryReads  = (
+          (__ \ "name").read[String] and
+          (__ \ "pop").read[Int]
+        )(Country)
+
         val rsSize :Int = result match {
           case Left(x) => 0
           case Right(x) => {
+            x.map(
+              jsValue => {
+                Logger.debug("JsValue is " + jsValue.apply(0))
+                Logger.debug("Object is " + Json.fromJson[Country](jsValue.apply(0)))
+                Json.fromJson[Country](jsValue.apply(0))
+              }
+            )
+            Logger.debug("Value is " + x)
             x.size
           }
         }
-        rsSize must beGreaterThan(3)
+        rsSize must beGreaterThanOrEqualTo(3)
       }
     }
 
