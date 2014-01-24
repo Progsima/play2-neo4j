@@ -2,10 +2,8 @@ play2-neo4j
 ===========
 A dedicated Neo4J module for the Play Framework! 2.
 
-![Playframework](http://www.playframework.com/assets/images/logos/normal.png "Playframework")
-![Neo4j](http://www.neotechnology.com/wp-content/uploads/2013/04/neo4j_notag_whitebg.png "Neo4j")
-
-[![Build Status](https://travis-ci.org/cleverage/play2-elasticsearch.png?branch=master)](https://travis-ci.org/cleverage/play2-elasticsearch)
+![Playframework](http://www.playframework.com/assets/images/logos/normal.png "Playframework" =250x)
+![Neo4j](http://www.neotechnology.com/wp-content/uploads/2013/04/neo4j_notag_whitebg.png "Neo4j" =250x)
 
 Goals
 -----
