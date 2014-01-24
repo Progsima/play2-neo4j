@@ -5,7 +5,6 @@ import scala.util.control.Exception._
 import play.api.mvc._
 
 import org.neo4j.graphdb.{GraphDatabaseService,Transaction}
-import services._
 import com.logisima.play.neo4j.Neo4j
 
 

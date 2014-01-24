@@ -2,6 +2,8 @@ play2-neo4j
 ===========
 A dedicated Neo4J module for the Play Framework! 2.
 
+[![Build Status](https://travis-ci.org/sim51/play2-neo4j.png?branch=master)](https://travis-ci.org/sim51/play2-neo4j)
+
 Goals
 -----
 The very first intent of this plugin is to help developers bootstrapping a web application using Play 2, scala and Neo4J. So it's main focus won't (at first) be put on the communication layer, but on the application layer.
