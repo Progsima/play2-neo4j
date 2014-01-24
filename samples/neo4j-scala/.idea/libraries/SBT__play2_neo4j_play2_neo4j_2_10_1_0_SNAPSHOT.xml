@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SBT: play2-neo4j:play2-neo4j_2.10:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/local/play2-neo4j/play2-neo4j_2.10/1.0-SNAPSHOT/jars/play2-neo4j_2.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

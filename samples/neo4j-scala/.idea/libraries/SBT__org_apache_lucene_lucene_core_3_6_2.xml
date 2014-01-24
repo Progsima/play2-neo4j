@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SBT: org.apache.lucene:lucene-core:3.6.2">
+    <CLASSES>
+      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/cache/org.apache.lucene/lucene-core/jars/lucene-core-3.6.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

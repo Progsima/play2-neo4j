@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SBT: org.neo4j:neo4j-cypher-compiler-2.0:2.0.0">
+    <CLASSES>
+      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/cache/org.neo4j/neo4j-cypher-compiler-2.0/jars/neo4j-cypher-compiler-2.0-2.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

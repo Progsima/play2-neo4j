@@ -1,0 +1,5103 @@
+2014-01-21 23:46:11,504 - [INFO] - from play in pool-12-thread-2 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2014-01-21 23:46:17,289 - [DEBUG] - from application in play-internal-execution-context-1 
+Starting neo4j plugin
+
+2014-01-21 23:46:17,292 - [DEBUG] - from application in play-internal-execution-context-1 
+init database
+
+2014-01-21 23:46:17,293 - [DEBUG] - from application in play-internal-execution-context-1 
+Neo4j database path is :neo4j
+
+2014-01-21 23:46:18,509 - [DEBUG] - from application in play-internal-execution-context-1 
+Starting webadmin
+
+2014-01-21 23:56:39,950 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-21 23:56:39,957 - [DEBUG] - from application in main 
+init database
+
+2014-01-21 23:56:39,959 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-21 23:56:41,502 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-21 23:56:43,201 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-21 23:56:44,207 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{"results":[{"columns":[],"data":[]},{"columns":[],"data":[]}],"errors":[]}
+
+2014-01-21 23:56:44,222 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@3485198e))
+
+2014-01-21 23:56:44,242 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-21 23:56:44,242 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-21 23:56:44,257 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-21 23:56:44,454 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-21 23:56:44,455 - [DEBUG] - from application in main 
+init database
+
+2014-01-21 23:56:44,455 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-21 23:56:44,561 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-21 23:56:45,143 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-21 23:56:45,336 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{"results":[{"columns":[],"data":[]}],"errors":[]}
+
+2014-01-21 23:56:45,337 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-21 23:56:45,338 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-21 23:56:45,339 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-21 23:56:45,349 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-21 23:56:45,596 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-21 23:56:45,596 - [DEBUG] - from application in main 
+init database
+
+2014-01-21 23:56:45,597 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-21 23:56:45,697 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-21 23:56:46,094 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-21 23:56:47,039 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{"results":[{"columns":["n"],"data":[{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"test":"test"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"test":"test"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]}]}],"errors":[]}
+
+2014-01-21 23:56:47,048 - [DEBUG] - from application in main 
+Result is :[{"name":"FRANCE","pop":"100"}]
+
+2014-01-21 23:56:47,062 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-21 23:56:47,063 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-21 23:56:47,092 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 01:07:18,715 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 01:07:18,722 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 01:07:18,723 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 01:07:19,835 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 01:07:21,651 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 01:07:22,762 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{"results":[{"columns":[],"data":[]},{"columns":[],"data":[]}],"errors":[]}
+
+2014-01-22 01:07:22,780 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@1a7c30e3))
+
+2014-01-22 01:07:22,805 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 01:07:22,806 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 01:07:22,823 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 01:07:23,056 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 01:07:23,057 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 01:07:23,057 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 01:07:23,175 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 01:07:23,834 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 01:07:24,029 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{"results":[{"columns":[],"data":[]}],"errors":[]}
+
+2014-01-22 01:07:24,031 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 01:07:24,033 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 01:07:24,034 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 01:07:24,045 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 01:07:24,389 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 01:07:24,389 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 01:07:24,389 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 01:07:24,505 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 01:07:24,953 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 01:07:25,990 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{"results":[{"columns":["n"],"data":[{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"test":"test"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"test":"test"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]}]}],"errors":[]}
+
+2014-01-22 01:07:26,014 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 01:07:26,015 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 01:07:26,027 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:14:15,815 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:14:15,823 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:14:15,824 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:14:17,008 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:14:18,904 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 22:14:20,063 - [DEBUG] - from application in play-akka.actor.default-dispatcher-7 
+Status code is 200 :{"results":[{"columns":[],"data":[]},{"columns":[],"data":[]}],"errors":[]}
+
+2014-01-22 22:14:20,080 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@4f87b194))
+
+2014-01-22 22:14:20,105 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:14:20,106 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:14:20,123 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:14:20,394 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:14:20,394 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:14:20,394 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:14:20,511 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:14:21,130 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 22:14:21,341 - [DEBUG] - from application in play-akka.actor.default-dispatcher-7 
+Status code is 200 :{"results":[{"columns":[],"data":[]}],"errors":[]}
+
+2014-01-22 22:14:21,342 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 22:14:21,343 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:14:21,343 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:14:21,353 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:14:21,568 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:14:21,569 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:14:21,569 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:14:21,699 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:14:22,178 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 22:14:23,247 - [DEBUG] - from application in play-akka.actor.default-dispatcher-7 
+Status code is 200 :{"results":[{"columns":["n"],"data":[{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"test":"test"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"test":"test"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]}]}],"errors":[]}
+
+2014-01-22 22:14:23,425 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:14:23,425 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:14:23,966 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:18:52,195 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:18:52,203 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:18:52,204 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:18:53,273 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:18:55,086 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 22:18:56,147 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Status code is 200 :{"results":[{"columns":[],"data":[]},{"columns":[],"data":[]}],"errors":[]}
+
+2014-01-22 22:18:56,164 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@4238db08))
+
+2014-01-22 22:18:56,187 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:18:56,187 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:18:56,203 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:18:56,501 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:18:56,502 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:18:56,502 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:18:56,633 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:18:57,251 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 22:18:57,446 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Status code is 200 :{"results":[{"columns":[],"data":[]}],"errors":[]}
+
+2014-01-22 22:18:57,447 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 22:18:57,448 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:18:57,448 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:18:57,459 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:18:57,709 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:18:57,709 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:18:57,709 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:18:57,814 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:18:58,239 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 22:18:59,243 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Status code is 200 :{"results":[{"columns":["n"],"data":[{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"test":"test"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"test":"test"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]}]}],"errors":[]}
+
+2014-01-22 22:18:59,282 - [DEBUG] - from application in main 
+JsValue is [{"name":"FRANCE","pop":"100"}]
+
+2014-01-22 22:18:59,369 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:18:59,369 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:18:59,379 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:20:33,303 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:20:33,310 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:20:33,311 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:20:34,366 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:20:36,163 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 22:20:37,222 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{"results":[{"columns":[],"data":[]},{"columns":[],"data":[]}],"errors":[]}
+
+2014-01-22 22:20:37,239 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@8025f63))
+
+2014-01-22 22:20:37,264 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:20:37,264 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:20:37,277 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:20:37,618 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:20:37,618 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:20:37,619 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:20:37,737 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:20:38,381 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 22:20:38,573 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{"results":[{"columns":[],"data":[]}],"errors":[]}
+
+2014-01-22 22:20:38,574 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 22:20:38,575 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:20:38,575 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:20:38,583 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:20:38,904 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:20:38,904 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:20:38,904 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:20:39,025 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:20:39,456 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 22:20:40,462 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{"results":[{"columns":["n"],"data":[{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"test":"test"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"test":"test"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]},{"row":[{"name":"FRANCE","pop":"100"}]},{"row":[{"name":"BELGIQUE","pop":"10"}]},{"row":[{"name":"ALLEMAGNE","pop":"100"}]}]}],"errors":[]}
+
+2014-01-22 22:20:40,506 - [DEBUG] - from application in main 
+JsValue is [{"name":"FRANCE","pop":"100"}]
+
+2014-01-22 22:20:40,593 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:20:40,593 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:20:40,606 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:24:10,739 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:24:10,747 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:24:10,748 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:24:11,824 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:24:13,620 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 22:24:14,677 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:24:14,679 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@525ff97c))
+
+2014-01-22 22:24:14,699 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:24:14,699 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:24:14,715 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:24:15,025 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:24:15,025 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:24:15,026 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:24:15,156 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:24:15,772 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 22:24:15,975 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:24:15,976 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 22:24:15,977 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:24:15,977 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:24:15,989 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:24:16,206 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:24:16,206 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:24:16,207 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:24:16,310 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:24:16,739 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 22:24:17,777 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:24:17,832 - [DEBUG] - from application in main 
+JsValue is [{"name":"FRANCE","pop":"100"}]
+
+2014-01-22 22:24:17,955 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:24:17,955 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:24:17,967 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:34:03,351 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:34:03,358 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:34:03,359 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:34:04,357 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:34:06,046 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 22:34:07,028 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:34:07,031 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@379fea04))
+
+2014-01-22 22:34:07,053 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:34:07,053 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:34:07,070 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:34:07,355 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:34:07,356 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:34:07,356 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:34:07,475 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:34:08,049 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 22:34:08,235 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:34:08,236 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 22:34:08,237 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:34:08,237 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:34:08,246 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:34:08,545 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:34:08,545 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:34:08,545 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:34:08,647 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:34:09,060 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 22:34:10,011 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:34:10,045 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 22:34:10,125 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:34:10,126 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:34:10,138 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:39:59,507 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:39:59,514 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:39:59,515 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:40:00,514 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:40:02,137 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 22:40:03,093 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:40:03,095 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Row is ListBuffer()
+
+2014-01-22 22:40:03,095 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Row is ListBuffer()
+
+2014-01-22 22:40:03,096 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@435636b0))
+
+2014-01-22 22:40:03,114 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:40:03,114 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:40:03,128 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:40:03,376 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:40:03,376 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:40:03,376 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:40:03,492 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:40:04,062 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 22:40:04,252 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:40:04,254 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Row is ListBuffer()
+
+2014-01-22 22:40:04,255 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 22:40:04,255 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:40:04,255 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:40:04,265 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:40:04,564 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:40:04,564 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:40:04,564 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:40:04,680 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:40:05,114 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 22:40:06,076 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:40:06,083 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 22:40:06,111 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 22:40:06,188 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:40:06,189 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:40:06,199 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:42:19,129 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:42:19,136 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:42:19,137 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:42:20,160 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:42:21,823 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 22:42:22,882 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:42:22,884 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Row is ListBuffer()
+
+2014-01-22 22:42:22,884 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Row is ListBuffer()
+
+2014-01-22 22:42:22,885 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@289bdc87))
+
+2014-01-22 22:42:22,904 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:42:22,904 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:42:22,920 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:42:23,149 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:42:23,149 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:42:23,149 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:42:23,260 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:42:23,827 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 22:42:24,019 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:42:24,019 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Row is ListBuffer()
+
+2014-01-22 22:42:24,020 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 22:42:24,020 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:42:24,021 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:42:24,029 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:42:24,232 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:42:24,232 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:42:24,232 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:42:24,333 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:42:24,743 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n, n.name LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 22:42:25,728 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n", "n.name" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      }, null ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      }, null ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      }, "FRANCE" ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      }, "BELGIQUE" ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      }, "ALLEMAGNE" ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:42:25,736 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"test":"test"},null], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"test":"test"},null], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"], [{"name":"FRANCE","pop":"100"},"FRANCE"], [{"name":"BELGIQUE","pop":"10"},"BELGIQUE"], [{"name":"ALLEMAGNE","pop":"100"},"ALLEMAGNE"])
+
+2014-01-22 22:42:25,771 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 22:42:25,852 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:42:25,852 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:42:25,865 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:46:59,628 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:46:59,635 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:46:59,636 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:47:00,644 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:47:02,295 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 22:47:03,276 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:47:03,278 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Row is ListBuffer()
+
+2014-01-22 22:47:03,278 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Row is ListBuffer()
+
+2014-01-22 22:47:03,279 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@43563bfb))
+
+2014-01-22 22:47:03,298 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:47:03,298 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:47:03,315 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:47:03,517 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:47:03,517 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:47:03,517 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:47:03,640 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:47:04,218 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 22:47:04,410 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:47:04,410 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Row is ListBuffer()
+
+2014-01-22 22:47:04,411 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 22:47:04,412 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:47:04,412 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:47:04,424 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:47:04,711 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:47:04,711 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:47:04,712 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:47:04,842 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:47:05,240 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 22:47:06,223 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:47:06,235 - [DEBUG] - from application in play-akka.actor.default-dispatcher-2 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 22:47:06,279 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 22:47:06,375 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:47:06,375 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:47:06,402 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:57:57,519 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:57:57,526 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:57:57,527 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:57:58,545 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:58:00,308 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 22:58:01,333 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:58:01,335 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 22:58:01,336 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 22:58:01,337 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@5927c602))
+
+2014-01-22 22:58:01,356 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:58:01,356 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:58:01,371 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:58:01,710 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:58:01,711 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:58:01,711 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:58:01,841 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:58:02,460 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 22:58:02,654 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:58:02,655 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 22:58:02,655 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 22:58:02,656 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:58:02,656 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:58:02,667 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 22:58:02,931 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 22:58:02,931 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 22:58:02,931 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 22:58:03,039 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 22:58:03,461 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 22:58:04,424 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 22:58:04,434 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 22:58:04,495 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 22:58:04,621 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 22:58:04,622 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 22:58:04,638 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:31:01,959 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:31:01,966 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:31:01,967 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:31:02,950 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:31:04,624 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 23:31:05,644 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:31:05,646 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 23:31:05,646 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 23:31:05,647 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@1077a833))
+
+2014-01-22 23:31:05,665 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:31:05,665 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:31:05,682 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:31:05,946 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:31:05,947 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:31:05,947 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:31:06,078 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:31:06,653 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 23:31:06,845 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:31:06,846 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 23:31:06,846 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 23:31:06,847 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:31:06,847 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:31:06,860 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:31:07,118 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:31:07,118 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:31:07,118 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:31:07,220 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:31:07,608 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 23:31:08,589 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:31:08,603 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 23:31:08,666 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 23:31:08,674 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:31:08,674 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:31:08,684 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:32:28,616 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:32:28,622 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:32:28,623 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:32:29,618 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:32:31,238 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 23:32:32,223 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:32:32,225 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 23:32:32,225 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 23:32:32,226 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@43563bfb))
+
+2014-01-22 23:32:32,245 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:32:32,246 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:32:32,262 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:32:32,545 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:32:32,546 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:32:32,546 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:32:32,665 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:32:33,232 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 23:32:33,421 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:32:33,422 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 23:32:33,422 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 23:32:33,423 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:32:33,423 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:32:33,432 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:32:33,767 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:32:33,767 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:32:33,767 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:32:33,886 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:32:34,294 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 23:32:35,294 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:32:35,304 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 23:32:35,362 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:32:35,362 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:32:35,376 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:33:40,913 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:33:40,920 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:33:40,921 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:33:41,925 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:33:43,575 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 23:33:44,557 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:33:44,559 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer()
+
+2014-01-22 23:33:44,559 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer()
+
+2014-01-22 23:33:44,560 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@212e964d))
+
+2014-01-22 23:33:44,579 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:33:44,579 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:33:44,594 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:33:44,849 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:33:44,850 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:33:44,850 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:33:44,983 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:33:45,550 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 23:33:45,731 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:33:45,731 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer()
+
+2014-01-22 23:33:45,732 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 23:33:45,732 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:33:45,732 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:33:45,742 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:33:45,980 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:33:45,980 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:33:45,980 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:33:46,097 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:33:46,498 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 23:33:47,470 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "test" : "test"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:33:47,481 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"test":"test"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 23:33:47,530 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 23:33:47,538 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:33:47,539 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:33:47,552 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:34:51,239 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:34:51,246 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:34:51,247 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:34:52,668 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:34:54,333 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 23:34:55,320 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:34:55,322 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Row is ListBuffer()
+
+2014-01-22 23:34:55,322 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Row is ListBuffer()
+
+2014-01-22 23:34:55,323 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@783e908b))
+
+2014-01-22 23:34:55,343 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:34:55,343 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:34:55,371 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:34:55,636 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:34:55,636 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:34:55,636 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:34:55,747 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:34:56,312 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 23:34:56,494 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:34:56,494 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Row is ListBuffer()
+
+2014-01-22 23:34:56,495 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 23:34:56,495 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:34:56,495 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:34:56,504 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:34:56,725 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:34:56,725 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:34:56,726 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:34:56,819 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:34:57,237 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 23:34:57,481 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:34:57,483 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 23:34:57,528 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 23:34:57,536 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:34:57,536 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:34:57,550 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:35:55,677 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:35:55,684 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:35:55,685 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:35:56,682 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:35:58,272 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 23:35:59,265 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:35:59,267 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Row is ListBuffer()
+
+2014-01-22 23:35:59,268 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Row is ListBuffer()
+
+2014-01-22 23:35:59,269 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@15be26dd))
+
+2014-01-22 23:35:59,289 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:35:59,289 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:35:59,305 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:35:59,585 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:35:59,585 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:35:59,585 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:35:59,693 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:36:00,270 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 23:36:00,462 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:36:00,463 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Row is ListBuffer()
+
+2014-01-22 23:36:00,463 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 23:36:00,464 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:36:00,464 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:36:00,473 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:36:00,777 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:36:00,777 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:36:00,777 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:36:00,877 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:36:01,289 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 23:36:01,541 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:36:01,543 - [DEBUG] - from application in play-akka.actor.default-dispatcher-6 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 23:36:01,587 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 23:36:01,593 - [DEBUG] - from application in main 
+JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-22 23:36:01,593 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-22 23:36:01,594 - [DEBUG] - from application in main 
+JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-22 23:36:01,594 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-22 23:36:01,594 - [DEBUG] - from application in main 
+JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-22 23:36:01,595 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 23:36:01,595 - [DEBUG] - from application in main 
+JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-22 23:36:01,595 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-22 23:36:01,595 - [DEBUG] - from application in main 
+JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-22 23:36:01,596 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-22 23:36:01,596 - [DEBUG] - from application in main 
+JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-22 23:36:01,596 - [DEBUG] - from application in main 
+Value is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 23:36:01,605 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:36:01,606 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:36:01,620 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:37:27,355 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:37:27,362 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:37:27,363 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:39:31,174 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:39:31,181 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:39:31,182 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:39:32,310 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:39:33,931 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":"100"}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":"10"}}}]}
+
+2014-01-22 23:39:34,918 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:39:34,920 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 23:39:34,920 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 23:39:34,921 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@2195d9e0))
+
+2014-01-22 23:39:34,939 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:39:34,939 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:39:34,954 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:39:35,189 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:39:35,189 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:39:35,189 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:39:35,298 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:39:35,885 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-22 23:39:36,073 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:39:36,074 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-22 23:39:36,074 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-22 23:39:36,075 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:39:36,075 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:39:36,084 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-22 23:39:36,303 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-22 23:39:36,303 - [DEBUG] - from application in main 
+init database
+
+2014-01-22 23:39:36,303 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-22 23:39:36,395 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-22 23:39:36,788 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-22 23:39:37,055 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-22 23:39:37,057 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 23:39:37,105 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 23:39:37,111 - [DEBUG] - from application in main 
+JsSuccess(Country(FRANCE,100),)
+
+2014-01-22 23:39:37,112 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-22 23:39:37,112 - [DEBUG] - from application in main 
+JsSuccess(Country(BELGIQUE,10),)
+
+2014-01-22 23:39:37,112 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-22 23:39:37,113 - [DEBUG] - from application in main 
+JsSuccess(Country(ALLEMAGNE,100),)
+
+2014-01-22 23:39:37,113 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 23:39:37,113 - [DEBUG] - from application in main 
+JsSuccess(Country(FRANCE,100),)
+
+2014-01-22 23:39:37,113 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-22 23:39:37,114 - [DEBUG] - from application in main 
+JsSuccess(Country(BELGIQUE,10),)
+
+2014-01-22 23:39:37,114 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-22 23:39:37,114 - [DEBUG] - from application in main 
+JsSuccess(Country(ALLEMAGNE,100),)
+
+2014-01-22 23:39:37,114 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-22 23:39:37,114 - [DEBUG] - from application in main 
+JsSuccess(Country(FRANCE,100),)
+
+2014-01-22 23:39:37,115 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-22 23:39:37,115 - [DEBUG] - from application in main 
+JsSuccess(Country(BELGIQUE,10),)
+
+2014-01-22 23:39:37,115 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-22 23:39:37,115 - [DEBUG] - from application in main 
+JsSuccess(Country(ALLEMAGNE,100),)
+
+2014-01-22 23:39:37,116 - [DEBUG] - from application in main 
+Value is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-22 23:39:37,124 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-22 23:39:37,125 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-22 23:39:37,136 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:37:04,796 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:37:04,804 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:37:04,805 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:37:05,812 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:37:07,486 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":100}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":10}}}]}
+
+2014-01-23 00:37:08,483 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:37:08,485 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer()
+
+2014-01-23 00:37:08,485 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer()
+
+2014-01-23 00:37:08,486 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@6d6a640e))
+
+2014-01-23 00:37:08,505 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:37:08,505 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:37:08,524 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:37:08,860 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:37:08,861 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:37:08,861 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:37:08,982 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:37:09,557 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-23 00:37:09,746 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:37:09,747 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer()
+
+2014-01-23 00:37:09,747 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-23 00:37:09,748 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:37:09,748 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:37:09,756 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:37:10,046 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:37:10,046 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:37:10,046 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:37:10,147 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:37:10,563 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-23 00:37:10,833 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : 100
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : 10
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:37:10,836 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":100}], [{"name":"BELGIQUE","pop":10}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-23 00:37:10,885 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-23 00:37:10,893 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-23 00:37:10,894 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-23 00:37:10,894 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-23 00:37:10,895 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-23 00:37:10,895 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-23 00:37:10,895 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-23 00:37:10,896 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-23 00:37:10,896 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-23 00:37:10,896 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":100}
+
+2014-01-23 00:37:10,898 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":10}
+
+2014-01-23 00:37:10,898 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-23 00:37:10,899 - [DEBUG] - from application in main 
+Value is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":100}], [{"name":"BELGIQUE","pop":10}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-23 00:37:10,907 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:37:10,907 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:37:10,923 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:37:42,697 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:37:42,704 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:37:42,705 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:37:43,699 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:37:45,327 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":100}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":10}}}]}
+
+2014-01-23 00:37:46,310 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:37:46,312 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer()
+
+2014-01-23 00:37:46,312 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer()
+
+2014-01-23 00:37:46,313 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@1e2f41bf))
+
+2014-01-23 00:37:46,330 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:37:46,331 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:37:46,344 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:37:46,591 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:37:46,591 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:37:46,591 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:37:46,695 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:37:47,290 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-23 00:37:47,478 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:37:47,478 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer()
+
+2014-01-23 00:37:47,479 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-23 00:37:47,479 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:37:47,480 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:37:47,488 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:37:47,704 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:37:47,704 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:37:47,705 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:37:47,802 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:37:48,214 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-23 00:37:48,481 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : "10"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : 100
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : 10
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : 100
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : 10
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:37:48,485 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Row is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":100}], [{"name":"BELGIQUE","pop":10}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":100}], [{"name":"BELGIQUE","pop":10}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-23 00:37:48,532 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-23 00:37:48,540 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,541 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-23 00:37:48,541 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,542 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-23 00:37:48,542 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,542 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-23 00:37:48,543 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,543 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-23 00:37:48,543 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,544 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-23 00:37:48,544 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,544 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":"100"}
+
+2014-01-23 00:37:48,545 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,545 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":"10"}
+
+2014-01-23 00:37:48,545 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,545 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-23 00:37:48,546 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,546 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":100}
+
+2014-01-23 00:37:48,547 - [DEBUG] - from application in main 
+Object is JsSuccess(Country(FRANCE,100),)
+
+2014-01-23 00:37:48,547 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":10}
+
+2014-01-23 00:37:48,548 - [DEBUG] - from application in main 
+Object is JsSuccess(Country(BELGIQUE,10),)
+
+2014-01-23 00:37:48,548 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-23 00:37:48,548 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,548 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":100}
+
+2014-01-23 00:37:48,549 - [DEBUG] - from application in main 
+Object is JsSuccess(Country(FRANCE,100),)
+
+2014-01-23 00:37:48,549 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":10}
+
+2014-01-23 00:37:48,549 - [DEBUG] - from application in main 
+Object is JsSuccess(Country(BELGIQUE,10),)
+
+2014-01-23 00:37:48,549 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-23 00:37:48,549 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:37:48,550 - [DEBUG] - from application in main 
+Value is ListBuffer([{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":"100"}], [{"name":"BELGIQUE","pop":"10"}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":100}], [{"name":"BELGIQUE","pop":10}], [{"name":"ALLEMAGNE","pop":"100"}], [{"name":"FRANCE","pop":100}], [{"name":"BELGIQUE","pop":10}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-23 00:37:48,558 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:37:48,558 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:37:48,571 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:38:05,245 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:38:05,252 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:38:05,253 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:38:06,875 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:38:08,504 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":100}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":10}}}]}
+
+2014-01-23 00:38:09,477 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:38:09,478 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Row is ListBuffer()
+
+2014-01-23 00:38:09,479 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Row is ListBuffer()
+
+2014-01-23 00:38:09,479 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@5577a1eb))
+
+2014-01-23 00:38:09,498 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:38:09,498 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:38:09,525 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:38:09,757 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:38:09,757 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:38:09,758 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:38:09,865 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:38:10,444 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":"100"}}}]}
+
+2014-01-23 00:38:10,633 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:38:10,634 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Row is ListBuffer()
+
+2014-01-23 00:38:10,634 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-23 00:38:10,635 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:38:10,635 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:38:10,646 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:38:10,854 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:38:10,854 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:38:10,854 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:38:10,954 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:38:11,331 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-23 00:38:11,609 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : 100
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : 10
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : "100"
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:38:11,611 - [DEBUG] - from application in play-akka.actor.default-dispatcher-3 
+Row is ListBuffer([{"name":"FRANCE","pop":100}], [{"name":"BELGIQUE","pop":10}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-23 00:38:11,650 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":100}
+
+2014-01-23 00:38:11,655 - [DEBUG] - from application in main 
+Object is JsSuccess(Country(FRANCE,100),)
+
+2014-01-23 00:38:11,655 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":10}
+
+2014-01-23 00:38:11,655 - [DEBUG] - from application in main 
+Object is JsSuccess(Country(BELGIQUE,10),)
+
+2014-01-23 00:38:11,656 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":"100"}
+
+2014-01-23 00:38:11,658 - [DEBUG] - from application in main 
+Object is JsError(List((/pop,List(ValidationError(error.expected.jsnumber,WrappedArray())))))
+
+2014-01-23 00:38:11,658 - [DEBUG] - from application in main 
+Value is ListBuffer([{"name":"FRANCE","pop":100}], [{"name":"BELGIQUE","pop":10}], [{"name":"ALLEMAGNE","pop":"100"}])
+
+2014-01-23 00:38:11,670 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:38:11,670 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:38:11,683 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:39:03,098 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:39:03,105 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:39:03,106 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:39:04,602 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:39:06,318 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"FRANCE","pop":100}}},{"statement":"CREATE (n {props})","parameters":{"props":{"name":"BELGIQUE","pop":10}}}]}
+
+2014-01-23 00:39:07,308 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  }, {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:39:07,310 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-23 00:39:07,310 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-23 00:39:07,311 - [DEBUG] - from application in main 
+Result is :RightProjection(Right([Lscala.collection.Seq;@13bdc357))
+
+2014-01-23 00:39:07,331 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:39:07,331 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:39:07,363 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:39:07,804 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:39:07,804 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:39:07,805 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:39:07,917 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:39:08,483 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"CREATE (n {props})","parameters":{"props":{"name":"ALLEMAGNE","pop":100}}}]}
+
+2014-01-23 00:39:08,671 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ ],
+    "data" : [ ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:39:08,672 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer()
+
+2014-01-23 00:39:08,672 - [DEBUG] - from application in main 
+Result is :RightProjection(Right(ListBuffer()))
+
+2014-01-23 00:39:08,673 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:39:08,673 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:39:08,683 - [DEBUG] - from application in main 
+Shutting down neo4j
+
+2014-01-23 00:39:08,883 - [DEBUG] - from application in main 
+Starting neo4j plugin
+
+2014-01-23 00:39:08,883 - [DEBUG] - from application in main 
+init database
+
+2014-01-23 00:39:08,884 - [DEBUG] - from application in main 
+Neo4j database path is :neo4j
+
+2014-01-23 00:39:08,975 - [DEBUG] - from application in main 
+Starting webadmin
+
+2014-01-23 00:39:09,372 - [DEBUG] - from application in main 
+Calling API endpoint http://localhost:7575/db/data/transaction/commit with body {"statements":[{"statement":"MATCH (n) RETURN n LIMIT 100","parameters":{"props":{}}}]}
+
+2014-01-23 00:39:09,627 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Status code is 200 :{
+  "results" : [ {
+    "columns" : [ "n" ],
+    "data" : [ {
+      "row" : [ {
+        "name" : "FRANCE",
+        "pop" : 100
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "BELGIQUE",
+        "pop" : 10
+      } ]
+    }, {
+      "row" : [ {
+        "name" : "ALLEMAGNE",
+        "pop" : 100
+      } ]
+    } ]
+  } ],
+  "errors" : [ ]
+}
+
+2014-01-23 00:39:09,629 - [DEBUG] - from application in play-akka.actor.default-dispatcher-5 
+Row is ListBuffer([{"name":"FRANCE","pop":100}], [{"name":"BELGIQUE","pop":10}], [{"name":"ALLEMAGNE","pop":100}])
+
+2014-01-23 00:39:09,674 - [DEBUG] - from application in main 
+JsValue is {"name":"FRANCE","pop":100}
+
+2014-01-23 00:39:09,681 - [DEBUG] - from application in main 
+Object is JsSuccess(Country(FRANCE,100),)
+
+2014-01-23 00:39:09,681 - [DEBUG] - from application in main 
+JsValue is {"name":"BELGIQUE","pop":10}
+
+2014-01-23 00:39:09,681 - [DEBUG] - from application in main 
+Object is JsSuccess(Country(BELGIQUE,10),)
+
+2014-01-23 00:39:09,682 - [DEBUG] - from application in main 
+JsValue is {"name":"ALLEMAGNE","pop":100}
+
+2014-01-23 00:39:09,682 - [DEBUG] - from application in main 
+Object is JsSuccess(Country(ALLEMAGNE,100),)
+
+2014-01-23 00:39:09,682 - [DEBUG] - from application in main 
+Value is ListBuffer([{"name":"FRANCE","pop":100}], [{"name":"BELGIQUE","pop":10}], [{"name":"ALLEMAGNE","pop":100}])
+
+2014-01-23 00:39:09,690 - [DEBUG] - from application in main 
+Stopping neo4j plugin
+
+2014-01-23 00:39:09,691 - [DEBUG] - from application in main 
+Shutting down webadmin
+
+2014-01-23 00:39:09,700 - [DEBUG] - from application in main 
+Shutting down neo4j
+

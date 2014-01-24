@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SBT: org.rrd4j:rrd4j:2.0.7">
+    <CLASSES>
+      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/cache/org.rrd4j/rrd4j/jars/rrd4j-2.0.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

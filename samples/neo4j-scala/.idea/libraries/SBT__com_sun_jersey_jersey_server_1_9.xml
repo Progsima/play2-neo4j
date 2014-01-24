@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SBT: com.sun.jersey:jersey-server:1.9">
+    <CLASSES>
+      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/cache/com.sun.jersey/jersey-server/bundles/jersey-server-1.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
