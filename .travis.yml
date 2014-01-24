@@ -6,4 +6,4 @@ before_script:
       - unzip -q play-${PLAY_VERSION}.zip
 script:
     - cd samples/neo4j-scala
-    - ../play-${PLAY_VERSION}/play test
+    - ../../play-${PLAY_VERSION}/play test
