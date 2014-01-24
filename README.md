@@ -19,7 +19,7 @@ Getting Started
 The simplest way to get started with this module is to:
 
 - clone the repo
-- build the module in *project-code* using SBT
+- build the module in *module* using SBT
 - use the Play2 application in *samples* as a template
 
-The sample will by default create a node when using the (http://localhost:9000/)[http://localhost:9000/] URL. Also, a 2.0.M03 Neo4J instance will run on the 7575 port with its web admin interface available on [http://localhost:7575/webadmin](http://localhost:7575/webadmin)
+The sample will by default create a node when using the (http://localhost:9000/)[http://localhost:9000/] URL. Also, a 2.0 Neo4J instance will run on the 7575 port with its web admin interface available on [http://localhost:7575/browser](http://localhost:7575/browser)
