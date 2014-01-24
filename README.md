@@ -2,6 +2,11 @@ play2-neo4j
 ===========
 A dedicated Neo4J module for the Play Framework! 2.
 
+![Playframework](http://www.playframework.com/assets/images/logos/normal.png "Playframework")
+![Neo4j](http://www.neotechnology.com/wp-content/uploads/2013/04/neo4j_notag_whitebg.png "Neo4j")
+
+[![Build Status](https://travis-ci.org/cleverage/play2-elasticsearch.png?branch=master)](https://travis-ci.org/cleverage/play2-elasticsearch)
+
 Goals
 -----
 The very first intent of this plugin is to help developers bootstrapping a web application using Play 2, scala and Neo4J. So it's main focus won't (at first) be put on the communication layer, but on the application layer.
