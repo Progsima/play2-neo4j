@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="SBT: org.neo4j.3rdparty.javax.ws.rs:jsr311-api:1.1.2.r612">
-    <CLASSES>
-      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/cache/org.neo4j.3rdparty.javax.ws.rs/jsr311-api/jars/jsr311-api-1.1.2.r612.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

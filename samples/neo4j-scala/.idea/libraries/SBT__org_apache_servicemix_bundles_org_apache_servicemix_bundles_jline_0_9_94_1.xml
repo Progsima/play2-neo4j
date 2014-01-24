@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="SBT: org.apache.servicemix.bundles:org.apache.servicemix.bundles.jline:0.9.94_1">
-    <CLASSES>
-      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/cache/org.apache.servicemix.bundles/org.apache.servicemix.bundles.jline/bundles/org.apache.servicemix.bundles.jline-0.9.94_1.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

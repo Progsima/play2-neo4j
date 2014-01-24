@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="SBT: com.sun.jersey.contribs:jersey-multipart:1.9">
-    <CLASSES>
-      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/cache/com.sun.jersey.contribs/jersey-multipart/jars/jersey-multipart-1.9.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

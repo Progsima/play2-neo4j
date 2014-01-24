@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="SBT: commons-lang:commons-lang:2.4">
-    <CLASSES>
-      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/cache/commons-lang/commons-lang/jars/commons-lang-2.4.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

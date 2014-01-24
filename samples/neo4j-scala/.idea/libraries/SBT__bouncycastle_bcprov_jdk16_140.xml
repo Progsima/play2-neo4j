@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="SBT: bouncycastle:bcprov-jdk16:140">
-    <CLASSES>
-      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/cache/bouncycastle/bcprov-jdk16/jars/bcprov-jdk16-140.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="SBT: ch.qos.logback:logback-classic:1.0.3">
-    <CLASSES>
-      <root url="jar:///usr/local/play/play2/play-2.2.1/repository/cache/ch.qos.logback/logback-classic/jars/logback-classic-1.0.3.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
