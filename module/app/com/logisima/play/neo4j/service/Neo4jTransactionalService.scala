@@ -14,7 +14,7 @@ import play.api.libs.json.JsObject
 import com.logisima.play.neo4j.exception.Neo4jException
 
 /**
- * Neo4j helper for its REST API.
+ * Neo4j service that handle transaction REST API endpoint.
  *
  * @author : bsimard
  */
