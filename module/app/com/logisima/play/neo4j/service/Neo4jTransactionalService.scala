@@ -29,7 +29,8 @@ class Neo4jTransactionalService(rootUrl: String) {
   )
 
   /**
-   * Play JSON format for read/write Map[String Any] that represent cypher params
+   * Play JSON format for read/write Map[String Any] that represent cypher params.
+   * @see anmorcypher source code : https://github.com/AnormCypher/AnormCypher/blob/master/src/main/scala/org/anormcypher/Neo4jREST.scala
    */
   implicit val mapFormat = new Format[Map[String, Any]] {
     def read(xs: Seq[(String, JsValue)]): Map[String, Any] = (xs map {

@@ -39,7 +39,7 @@ object Neo4j {
   /**
    * Neo4j server url
    */
-  private var neo4jUrl: String = "http://localhost:" + Play.configuration.getInt("neo4j.embedded.port").getOrElse(7575)
+  var serverUrl: String = "http://localhost:" + Play.configuration.getInt("neo4j.embedded.port").getOrElse(7575)
 
   /**
    * Starting neo4j database.
@@ -104,7 +104,7 @@ object Neo4j {
 
       // Configure for a distant neo4j server
       case Some(url: String) => {
-        neo4jUrl = url
+        serverUrl = url
       }
 
       // Configure and start an embedded server

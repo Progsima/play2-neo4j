@@ -1,6 +1,8 @@
 package com.logisima.play.neo4j.evolution
 
 import play.api.libs.Codecs
+import play.api.libs.json._
+import play.api.libs.functional.syntax._
 
 /**
  * A cypher evolution.
@@ -20,4 +22,3 @@ case class Evolution(revision: Int, cypher_up: String = "", cypher_down: String 
   val hash = Codecs.sha1(cypher_down.trim + cypher_up.trim)
 
 }
-

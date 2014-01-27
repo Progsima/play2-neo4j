@@ -1,6 +1,7 @@
 package com.logisima.play.neo4j.utils
 
 import java.io.File
+import play.Logger
 
 /**
  * Utils class for files.
@@ -10,6 +11,7 @@ import java.io.File
 object FileUtils {
 
   def getFile(path :String) :Option[File] = {
+    Logger.debug("Try to get file :" + path)
     val file = new File(path)
      file.exists() match {
       case true => Some(file)
