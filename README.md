@@ -46,3 +46,6 @@ Also, you can configure the neo4j embedded database by creating **conf/neo4j.pro
 You can use this module with an existant neo4j database.
 To do that, you only have to specify the url of your neo4j instance into **application.conf** like that : `neo4j.url="http://localhost:7474"`
 
+### Database evolution
+
+
