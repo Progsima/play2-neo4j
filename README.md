@@ -53,6 +53,7 @@ Like play for JDBC, this module take care of the state of your graph. This modul
 #### Evolution Script
 
 All yours evolution script must be under the folder **conf/evolutions/neo4j**. And don't forget, cypher extension script is **.cql**
+
 So you will have *1_up.cql*, *1_down.cql*, *2_up.cql*, *2_down.cql* ...
 
 Have you see ? Yes this feature is not really clone of the play one. Here we don't use the same file to put together up & down script. We have two distinct files, simply named X_up.cql & X_down.cql (where X is the number of your evolution script).
