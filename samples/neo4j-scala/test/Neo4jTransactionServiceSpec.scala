@@ -21,7 +21,7 @@ class Neo4jTransactionServiceSpec extends Specification {
     "execute multiple cypher create query" in {
       running(FakeApplication()) {
         val api = new Neo4jTransactionalService(Neo4j.serverUrl)
-        val queries = Array(("CREATE (n {props})", Map("name" -> "FRANCE", "pop" -> 100)), ("CREATE (n {props})", Map("name" -> "BELGIQUE", "pop" -> 10)))
+        val queries = Array(("CREATE (n:Pays {props})", Map("name" -> "FRANCE", "pop" -> 100)), ("CREATE (n:Pays {props})", Map("name" -> "BELGIQUE", "pop" -> 10)))
         val result = Helpers.await(api.cypher(queries))
         Logger.debug("Result is :" + result.right.toString)
         result.isRight must beTrue
@@ -31,7 +31,7 @@ class Neo4jTransactionServiceSpec extends Specification {
     "execute single cypher create query" in {
       running(FakeApplication()) {
         val api = new Neo4jTransactionalService(Neo4j.serverUrl)
-        val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("CREATE (n {props})", Map("name" -> "ALLEMAGNE", "pop" -> 100)))
+        val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("CREATE (n:Pays {props})", Map("name" -> "ALLEMAGNE", "pop" -> 100)))
         Logger.debug("Result is :" + result.right.toString)
         result.isRight must beTrue
       }
@@ -40,7 +40,7 @@ class Neo4jTransactionServiceSpec extends Specification {
     "execute cypher select query without params" in {
       running(FakeApplication()) {
         val api = new Neo4jTransactionalService(Neo4j.serverUrl)
-        val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n) RETURN n LIMIT 100"))
+        val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n:Pays) RETURN n LIMIT 100"))
 
         case class Country(name: String, pop: Int)
         implicit val countryReads = (
@@ -62,7 +62,7 @@ class Neo4jTransactionServiceSpec extends Specification {
             x.size
           }
         }
-        rsSize must beGreaterThanOrEqualTo(3)
+        rsSize must beEqualTo(3)
       }
     }
 
