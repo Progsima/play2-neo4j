@@ -46,6 +46,25 @@ Also, you can configure the neo4j embedded database by creating **conf/neo4j.pro
 You can use this module with an existant neo4j database.
 To do that, you only have to specify the url of your neo4j instance into **application.conf** like that : `neo4j.url="http://localhost:7474"`
 
-### Database evolution
+### Database evolutions
 
+Like play for JDBC, this module take care of the state of your graph. This module reproduce the play! feature but for Neo4j with some cypger script. 
 
+#### Evolution Script
+
+All yours evolution script must be under the folder **conf/evolutions/neo4j**. And don't forget, cypher extension script is **.cql**
+So you will have *1_up.cql*, *1_down.cql*, *2_up.cql*, *2_down.cql* ...
+
+Have you see ? Yes this feature is not really clone of the play one. Here we don't use the same file to put together up & down script. We have two distinct files, simply named X_up.cql & X_down.cql (where X is the number of your evolution script).
+
+#### Configure
+
+This feature has three modes :
+
+* **auto** : evolution are apply without asking the user, it's totaly transparent. This mode was made for testing purphose
+* **enable** : like play feature, an error page with the script that must be apply, will be display to the user when an evolution is needed.
+* **disable** : the feature is disabled. This is the default configuration
+
+To configure it, you simply have to add this key into your application.conf :
+
+    neo4j.evolution="auto"

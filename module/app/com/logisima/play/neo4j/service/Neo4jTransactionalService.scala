@@ -115,7 +115,14 @@ class Neo4jTransactionalService(rootUrl: String) {
     for(response <- result) yield {
       response match {
         case Left(exception :Neo4jException) => Left(exception)
-        case Right(datas :Array[Seq[JsValue]]) => Right(datas.apply(0))
+        case Right(datas :Array[Seq[JsValue]]) => {
+          if(datas.size > 0) {
+            Right(datas.apply(0))
+          }
+          else {
+            Right(Seq.apply())
+          }
+        }
       }
     }
   }

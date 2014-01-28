@@ -2,7 +2,7 @@ import com.logisima.play.neo4j.evolution.{EvolutionFeatureMode, CypherScriptType
 import com.logisima.play.neo4j.exception.Neo4jException
 import com.logisima.play.neo4j.Neo4j
 import com.logisima.play.neo4j.service.{Neo4jTransactionalService, Neo4jEvolutionService}
-import com.logisima.play.neo4j.utils.FileUtils
+import com.logisima.play.neo4j.utils.{Neo4jUtils, FileUtils}
 import java.io.File
 import org.specs2.mutable._
 
@@ -47,6 +47,9 @@ class Neo4jEvolutionServiceSpec extends Specification {
 
     "execute update" in {
       running(FakeApplication()) {
+        // delete the entire database
+        Neo4jUtils.reset()
+
         val evolution: Neo4jEvolutionService = new Neo4jEvolutionService(Neo4j.serverUrl)
         evolution.checkEvolutionState(EvolutionFeatureMode.auto)
 
