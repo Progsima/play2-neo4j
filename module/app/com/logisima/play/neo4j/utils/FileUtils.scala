@@ -11,7 +11,7 @@ import play.Logger
 object FileUtils {
 
   def getFile(path :String) :Option[File] = {
-    Logger.debug("Try to get file :" + path)
+    Logger.debug("[FileUtils]: Try to get file :" + path)
     val file = new File(path)
      file.exists() match {
       case true => Some(file)

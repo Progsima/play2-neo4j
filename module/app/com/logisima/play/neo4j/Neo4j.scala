@@ -48,7 +48,7 @@ object Neo4j {
    */
   private def startDb() = {
     val DBPath: String = Play.configuration.getString("neo4j.embedded.path").getOrElse("neo4j")
-    Logger.debug("Neo4j database path is : " + DBPath)
+    Logger.debug("[Neo4j]: Database path is : " + DBPath)
 
     // Create the neo4j database
     val graphdb = FileUtils.getFile(neo4jPropertiesPath) match {
@@ -87,7 +87,7 @@ object Neo4j {
    * @return
    */
   private def startAdmin() = {
-    Logger.debug("Starting webadmin")
+    Logger.debug("[Neo4j]: Starting webadmin")
     webadmin.map {
       server =>
         server.start()
@@ -98,7 +98,7 @@ object Neo4j {
    * Start the database with primary nodes.
    */
   def start() {
-    Logger.debug("init database")
+    Logger.debug("[Neo4j]: Init database")
 
     Play.configuration.getString("neo4j.url") match {
 
@@ -123,9 +123,9 @@ object Neo4j {
    * Stopping server & admin server
    */
   def stop() {
-    Logger.debug("Shutting down webadmin")
+    Logger.debug("[Neo4j]: Shutting down webadmin")
     webadmin.foreach(_.stop())
-    Logger.debug("Shutting down neo4j")
+    Logger.debug("[Neo4j]: Shutting down neo4j")
     graphdb.foreach(_.shutdown())
   }
 

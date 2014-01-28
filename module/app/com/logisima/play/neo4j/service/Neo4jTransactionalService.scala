@@ -143,7 +143,7 @@ class Neo4jTransactionalService(rootUrl: String) {
       }
     }
     val body = Json.obj("statements" -> statements)
-    Logger.debug("Calling API endpoint " + url + " with body " + body)
+    Logger.debug("[Transaction]: Calling API endpoint " + url + " with body " + body)
 
     val result :Future[Response] = WS.url(url)
       .withHeaders(stdHeaders: _*)
@@ -152,11 +152,11 @@ class Neo4jTransactionalService(rootUrl: String) {
       )
     for(response <- result) yield {
       if( response.status == 200 ) {
-        Logger.debug("Status code is 200 :" + Json.prettyPrint(response.json))
+        Logger.debug("[Transaction]: Status code is 200 :" + Json.prettyPrint(response.json))
         val datas = response.json.\\("results").map { data =>
           data.\\("data").map {
             row => {
-              Logger.debug("Row is " + row\\("row").toString)
+              Logger.debug("[Transaction]: Row is " + row\\("row").toString)
               row\\("row")
             }
           }

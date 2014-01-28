@@ -1,4 +1,4 @@
-import com.logisima.play.neo4j.evolution.{ScriptType, Evolution}
+import com.logisima.play.neo4j.evolution.{EvolutionFeatureMode, CypherScriptType, Evolution}
 import com.logisima.play.neo4j.exception.Neo4jException
 import com.logisima.play.neo4j.Neo4j
 import com.logisima.play.neo4j.service.{Neo4jTransactionalService, Neo4jEvolutionService}
@@ -9,7 +9,7 @@ import org.specs2.mutable._
 import play.api.libs.json.JsValue
 import play.api.test._
 import play.api.test.Helpers._
-import play.Play
+import play.{Logger, Play}
 import scala.io.Source
 
 /**
@@ -48,7 +48,7 @@ class Neo4jEvolutionServiceSpec extends Specification {
     "execute update" in {
       running(FakeApplication()) {
         val evolution: Neo4jEvolutionService = new Neo4jEvolutionService(Neo4j.serverUrl)
-        evolution.checkEvolutionState()
+        evolution.checkEvolutionState(EvolutionFeatureMode.auto)
 
         val api = new Neo4jTransactionalService(Neo4j.serverUrl)
         val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n:Country) RETURN n LIMIT 100"))
