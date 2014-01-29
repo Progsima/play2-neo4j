@@ -5,13 +5,12 @@ import play.api.libs.json.Json._
 import play.api.libs.json._
 import play.Logger
 import scala.Predef._
-import play.api.libs.concurrent.Execution.Implicits._
 import scala.concurrent.Future
 import scala._
 import play.api.libs.json.JsArray
 import play.api.libs.ws.Response
 import play.api.libs.json.JsObject
-import com.logisima.play.neo4j.exception.Neo4jException
+import com.logisima.play.neo4j.exception.{Neo4jError, Neo4jException}
 
 /**
  * Neo4j service that handle transaction REST API endpoint.
@@ -95,28 +94,30 @@ class Neo4jTransactionalService(rootUrl: String) {
 
   /**
    * Execute a unique cypher query without params.
+   * This method return a list of json that represent datas, or a neo4jExeption.
    *
    * @param query the cypher query
    * @return
    */
-  def cypher(query :String) :Future[Either[Neo4jException,Seq[JsValue]]] = {
+  def cypher(query: String): Future[Either[Neo4jException, Seq[JsValue]]] = {
     this.cypher(query, Map[String, Any]())
   }
 
   /**
    * Execute a unique cypher with its params (It's better to user params for perfomance).
+   * This method return a list of json that represent datas, or a neo4jExeption.
    *
    * @param query
    * @param params
    * @return
    */
-  def cypher(query :String, params :Map[String, Any]) :Future[Either[Neo4jException,Seq[JsValue]]] = {
+  def cypher(query: String, params: Map[String, Any]): Future[Either[Neo4jException, Seq[JsValue]]] = {
     val result = this.cypher(Array((query, params)))
-    for(response <- result) yield {
+    for (response <- result) yield {
       response match {
-        case Left(exception :Neo4jException) => Left(exception)
-        case Right(datas :Array[Seq[JsValue]]) => {
-          if(datas.size > 0) {
+        case Left(exception: Neo4jException) => Left(exception)
+        case Right(datas: Array[Seq[JsValue]]) => {
+          if (datas.size > 0) {
             Right(datas.apply(0))
           }
           else {
@@ -129,56 +130,85 @@ class Neo4jTransactionalService(rootUrl: String) {
 
   /**
    * Execute a list of cypher query (with theirs params) in a the same neo4j transaction.
+   * This method return a list of json that represent datas, or a neo4jExeption.
    *
    * @param queries
    * @return
    */
-  def cypher(queries :Array[(String,Map[String, Any])]) :Future[Either[Neo4jException,Array[Seq[JsValue]]]] = {
-    val url = rootUrl + "/db/data/transaction/commit"
-    val statements = queries.foldLeft(JsArray()) { (json, query) =>
-      query match {
-        case (cypher :String, params :Map[String, Any]) => {
-          json.append(
-            Json.obj(
-              "statement" -> cypher,
-              "parameters" -> Json.obj(
-                "props" -> Json.toJson(params)
-              )
-            )
-          )
+  def cypher(queries: Array[(String, Map[String, Any])]): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
+    // here we parse the response
+    for (response <- constructAndSend(queries)) yield {
+
+      // Status is OK, let's look inside the JSON
+      if (response.status == 200 | response.status == 201) {
+        Logger.debug("[Transaction]: Status code is 200/201 :" + Json.prettyPrint(response.json))
+
+        // first checking errors !
+        val errors: Seq[Neo4jError] = response.json.\\("errors").map {
+          error =>
+            val code: Option[String] = (error \ ("code")).asOpt[String]
+            val message: Option[String] = (error \ ("message")).asOpt[String]
+            new Neo4jError(code.getOrElse(""), message.getOrElse(""))
+        }
+        if (errors.size == 0) {
+          val datas = response.json.\\("results").map {
+            data =>
+              data.\\("data").map {
+                row => {
+                  Logger.debug("[Transaction]: Row is " + row \\ ("row").toString)
+                  row \\ ("row")
+                }
+              }
+          }.flatten
+          Right(datas.toArray)
+        }
+        else {
+          Left(new Neo4jException(errors))
         }
       }
+      // Status is not 200 (or 201) : this shouldn't happen with transaction endpoint...
+      else {
+        Logger.debug("[Transaction]: Status code is " + response.status + ":" + response.body)
+        Left(
+          new Neo4jException(Seq.apply(new Neo4jError("http.client", "Status code is " + response.status))
+          )
+        )
+      }
+    }
+  }
+
+  /**
+   * Helper that create the query and send it to neo4j.
+   *
+   * @param queries
+   * @return
+   */
+  private def constructAndSend(queries: Array[(String, Map[String, Any])]): Future[Response] = {
+    val url = rootUrl + "/db/data/transaction/commit"
+    // let's construct the JSON body of the query
+    val statements = queries.foldLeft(JsArray()) {
+      (json, query) =>
+        query match {
+          case (cypher: String, params: Map[String, Any]) => {
+            json.append(
+              Json.obj(
+                "statement" -> cypher,
+                "parameters" -> Json.obj(
+                  "props" -> Json.toJson(params)
+                )
+              )
+            )
+          }
+        }
     }
     val body = Json.obj("statements" -> statements)
     Logger.debug("[Transaction]: Calling API endpoint " + url + " with body " + body)
 
-    val result :Future[Response] = WS.url(url)
+    WS.url(url)
       .withHeaders(stdHeaders: _*)
       .post(
         body
       )
-    for(response <- result) yield {
-      if( response.status == 200 ) {
-        Logger.debug("[Transaction]: Status code is 200 :" + Json.prettyPrint(response.json))
-        val datas = response.json.\\("results").map { data =>
-          data.\\("data").map {
-            row => {
-              Logger.debug("[Transaction]: Row is " + row\\("row").toString)
-              row\\("row")
-            }
-          }
-        }.flatten
-        Right(datas.toArray)
-      }
-      else {
-        Logger.debug("Status code is not 200 :" + response.body)
-         Left(
-           new Neo4jException(
-             response.json.\\("errors").toString()
-           )
-         )
-      }
-    }
   }
 
 }

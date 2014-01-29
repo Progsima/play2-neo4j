@@ -36,15 +36,22 @@ Also, a 2.0 Neo4J instance will run on the 7575 port with its web admin interfac
 By default (ie. without configuration), this module start an embedded database that is available at [http://localhost:7575](http://localhost:7575), and Neo4j'data are stored into a folder name **neo4j** at root of your play! project.
 But with configuration in your play! **application.conf** file, you can specify :
 
-* the folder where data are stored by adding the key **neo4j.embedded.path** : `neo4j.embedded.path="data"`
-* the port of Neo4j server by adding the **neo4j.embedded.port** : `neo4j.embedded.port=7575`
+* the folder where data are stored by adding the key **neo4j.embedded.path** : 
+
+    neo4j.embedded.path="data"
+
+* the port of Neo4j server by adding the **neo4j.embedded.port** : 
+
+    neo4j.embedded.port=7575
 
 Also, you can configure the neo4j embedded database by creating **conf/neo4j.properties** file. To know what to put in this file, check the [neo4j documentation](http://docs.neo4j.org/chunked/milestone/server-configuration.html)
 
 #### Distant Neo4j server
 
 You can use this module with an existant neo4j database.
-To do that, you only have to specify the url of your neo4j instance into **application.conf** like that : `neo4j.url="http://localhost:7474"`
+To do that, you only have to specify the url of your neo4j instance into **application.conf** like that : 
+
+    neo4j.url="http://localhost:7474"
 
 ### Database evolutions
 

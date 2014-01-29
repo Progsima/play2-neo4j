@@ -1,11 +1,9 @@
 package com.logisima.play.neo4j.exception
 
 /**
- * Class that handle neo4j exception.
+ * Classes that handle neo4j exception.
  *
  * @author : bsimard
- *
- * @param message
  */
-// TODO: replace this an array of messages
-class Neo4jException(message :String){}
+class Neo4jError(code:String, message:String)
+class Neo4jException(messages :Seq[Neo4jError]){}
