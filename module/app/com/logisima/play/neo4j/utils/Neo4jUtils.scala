@@ -16,7 +16,7 @@ object Neo4jUtils {
    * This function was design for test.
    */
   def reset(){
-    val query :String = "MATCH n-[r?]-() DELETE n,r"
+    val query :String = "MATCH (n) OPTIONAL MATCH n-[r]-() DELETE n,r"
     val api = new Neo4jTransactionalService(Neo4j.serverUrl)
     Await result(api.cypher(query), Duration.Inf)
   }

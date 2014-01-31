@@ -52,12 +52,15 @@ class Neo4jTransactionServiceSpec extends Specification {
         // populate the database by runnig evolution script
         new Neo4jEvolutionService(Neo4j.serverUrl).checkEvolutionState(EvolutionFeatureMode.auto)
 
+
         val api = new Neo4jTransactionalService(Neo4j.serverUrl)
         val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n:Country) RETURN n LIMIT 100"))
 
-
         case class Country(name: String, pop: Int)
-        implicit val countryReads = Json.reads[Country]
+        implicit val countryReads = (
+          (__ \ "name").read[String] and
+            (__ \ "pop").read[Int]
+          )(Country)
 
         val rsSize: Int = result match {
           case Left(x) => 0

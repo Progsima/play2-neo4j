@@ -11,6 +11,7 @@ import play.api.libs.json.JsArray
 import play.api.libs.ws.Response
 import play.api.libs.json.JsObject
 import com.logisima.play.neo4j.exception.{Neo4jError, Neo4jException}
+import play.api.libs.concurrent.Execution.Implicits._
 
 /**
  * Neo4j service that handle transaction REST API endpoint.
@@ -93,17 +94,6 @@ class Neo4jTransactionalService(rootUrl: String) {
   }
 
   /**
-   * Execute a unique cypher query without params.
-   * This method return a list of json that represent datas, or a neo4jExeption.
-   *
-   * @param query the cypher query
-   * @return
-   */
-  def cypher(query: String): Future[Either[Neo4jException, Seq[JsValue]]] = {
-    this.cypher(query, Map[String, Any]())
-  }
-
-  /**
    * Execute a unique cypher with its params (It's better to user params for perfomance).
    * This method return a list of json that represent datas, or a neo4jExeption.
    *
@@ -111,7 +101,7 @@ class Neo4jTransactionalService(rootUrl: String) {
    * @param params
    * @return
    */
-  def cypher(query: String, params: Map[String, Any]): Future[Either[Neo4jException, Seq[JsValue]]] = {
+  def cypher(query: String, params: Map[String, Any] = Map[String, Any]()): Future[Either[Neo4jException, Seq[JsValue]]] = {
     val result = this.cypher(Array((query, params)))
     for (response <- result) yield {
       response match {
@@ -140,17 +130,23 @@ class Neo4jTransactionalService(rootUrl: String) {
     for (response <- constructAndSend(queries)) yield {
 
       // Status is OK, let's look inside the JSON
-      if (response.status == 200 | response.status == 201) {
-        Logger.debug("[Transaction]: Status code is 200/201 :" + Json.prettyPrint(response.json))
+      if (response.status == 200 || response.status == 201) {
+        Logger.debug("[Transaction]: Status code is 200/201 :")
 
         // first checking errors !
-        val errors: Seq[Neo4jError] = response.json.\\("errors").map {
-          error =>
-            val code: Option[String] = (error \ ("code")).asOpt[String]
-            val message: Option[String] = (error \ ("message")).asOpt[String]
-            new Neo4jError(code.getOrElse(""), message.getOrElse(""))
+        Logger.debug("[Transaction]: JSON errors size is " + response.json.\\("errors").size + "[" + response.json.\\("errors") + "]")
+        var errors: Seq[Neo4jError] = Seq.apply()
+        if (response.json.\("errors").toString != "[]") {
+          errors = response.json.\\("errors").map {
+            error =>
+              val code: Option[String] = (error \ ("code")).asOpt[String]
+              val message: Option[String] = (error \ ("message")).asOpt[String]
+              new Neo4jError(code.getOrElse(""), message.getOrElse(""))
+          }
         }
+        Logger.debug("[Transaction]: Errors size is " + errors.size)
         if (errors.size == 0) {
+          Logger.debug("[Transaction]: error is " + errors.size)
           val datas = response.json.\\("results").map {
             data =>
               data.\\("data").map {
