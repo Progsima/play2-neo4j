@@ -139,8 +139,10 @@ class Neo4jTransactionalService(rootUrl: String) {
         if (response.json.\("errors").toString != "[]") {
           errors = response.json.\\("errors").map {
             error =>
-              val code: Option[String] = (error \ ("code")).asOpt[String]
-              val message: Option[String] = (error \ ("message")).asOpt[String]
+              Logger.debug("" + error(0))
+              val code: Option[String] = (error(0) \ ("code")).asOpt[String]
+              val message: Option[String] = (error(0) \ ("message")).asOpt[String]
+              Logger.debug("[Transaction]: Neo4jError is " + code + " " + message)
               new Neo4jError(code.getOrElse(""), message.getOrElse(""))
           }
         }

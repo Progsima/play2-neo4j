@@ -5,5 +5,5 @@ package com.logisima.play.neo4j.exception
  *
  * @author : bsimard
  */
-class Neo4jError(code:String, message:String)
-class Neo4jException(messages :Seq[Neo4jError])
+case class Neo4jError(code:String, message:String)
+case class Neo4jException(errors :Seq[Neo4jError])

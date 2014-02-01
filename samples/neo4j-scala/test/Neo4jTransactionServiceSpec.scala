@@ -1,5 +1,5 @@
 import com.logisima.play.neo4j.evolution.EvolutionFeatureMode
-import com.logisima.play.neo4j.exception.Neo4jException
+import com.logisima.play.neo4j.exception.{Neo4jError, Neo4jException}
 import com.logisima.play.neo4j.Neo4j
 import com.logisima.play.neo4j.service.{Neo4jEvolutionService, Neo4jTransactionalService}
 import com.logisima.play.neo4j.utils.Neo4jUtils
@@ -77,6 +77,22 @@ class Neo4jTransactionServiceSpec extends Specification {
           }
         }
         rsSize must beEqualTo(6)
+      }
+    }
+
+    "return error on bad cypher query" in {
+      running(FakeApplication()) {
+        val api = new Neo4jTransactionalService(Neo4j.serverUrl)
+        val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n) RETURN M LIMIT 100"))
+
+        // ok this is an error
+        result.isLeft must beTrue
+
+        // check value of errors
+        result.left.get.errors.apply(0).code must beEqualTo("Neo.ClientError.Statement.InvalidSyntax")
+        result.left.get.errors.apply(0).message must beEqualTo("M not defined (line 1, column 18)\n\"MATCH (n) RETURN M LIMIT 100\"\n                  ^")
+
+
       }
     }
 
