@@ -10,7 +10,7 @@ class Neo4jInvalidRevision(script :String) extends PlayException.RichDescription
   "Your Neo4j database needs evolution!",
   "An cypher script need to be run on your database.") {
 
-    def subTitle = "This cypher script must be run:"
+    def subTitle = "Evolutions script must be run:"
     def content = script
 
     private val javascript = """

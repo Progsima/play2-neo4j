@@ -100,11 +100,10 @@ class Neo4jTransactionServiceSpec extends Specification {
       running(FakeApplication()) {
         val api = new Neo4jTransactionalService(Neo4j.serverUrl)
         val transId = Helpers.await(api.beginTx()) match {
-          case Left(e) => {
-            Logger.debug("Begin transaction error " + e.errors(0))
+          case Some(transId) => transId
+          case _ => {
             -1
           }
-          case Right(transId) => transId
         }
         transId must beGreaterThanOrEqualTo(0)
       }
@@ -114,10 +113,7 @@ class Neo4jTransactionServiceSpec extends Specification {
       running(FakeApplication()) {
         val api = new Neo4jTransactionalService(Neo4j.serverUrl)
         Helpers.await(api.beginTx()) match {
-          case Left(e) => {
-            failure("Error when opening a transaction")
-          }
-          case Right(transId) => {
+          case Some(transId) => {
             Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Neo4j", "Type" -> "Graph"), transId))
             Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "CouchDb", "Type" -> "Document"),transId))
             Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Postgres", "Type" -> "Relational"), transId))
@@ -131,6 +127,9 @@ class Neo4jTransactionServiceSpec extends Specification {
               }
             }
           }
+          case _ => {
+            failure("Error when opening a transaction")
+          }
         }
 
       }
@@ -143,10 +142,7 @@ class Neo4jTransactionServiceSpec extends Specification {
 
         val api = new Neo4jTransactionalService(Neo4j.serverUrl)
         Helpers.await(api.beginTx()) match {
-          case Left(e) => {
-            failure("Error when opening a transaction")
-          }
-          case Right(transId) => {
+          case Some(transId) => {
             Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Neo4j", "Type" -> "Graph"), transId))
             Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "CouchDb", "Type" -> "Document"),transId))
             Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Postgres", "Type" -> "Relational"), transId))
@@ -159,6 +155,9 @@ class Neo4jTransactionServiceSpec extends Specification {
                 result.size must beEqualTo(0)
               }
             }
+          }
+          case _ => {
+            failure("Error when opening a transaction")
           }
         }
 

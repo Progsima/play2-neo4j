@@ -12,8 +12,6 @@ import play.api.libs.ws.Response
 import play.api.libs.json.JsObject
 import play.api.libs.concurrent.Execution.Implicits._
 import com.logisima.play.neo4j.exception.{Neo4jError, Neo4jException}
-import java.lang.String
-import scala.Predef.String
 
 /**
  * Neo4j service that handle transaction REST API endpoint.
@@ -27,7 +25,8 @@ class Neo4jTransactionalService(rootUrl: String) {
    */
   val stdHeaders = Seq(
     ("Accept", "application/json"),
-    ("Content-Type", "application/json")
+    ("Content-Type", "application/json"),
+    ("X-Stream" -> "true")
   )
 
   /**
@@ -95,6 +94,31 @@ class Neo4jTransactionalService(rootUrl: String) {
       }.toSeq: _*)
   }
 
+  // cypher query with transaction & map
+  def cypher(query: String, params: Map[String, Any], transactionId :Int) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+    doSingleCypherQuery(query, params, Some(transactionId))
+  }
+  // cypher query with transaction & without map
+  def cypher(query: String, transactionId :Int) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+    doSingleCypherQuery(query, Map[String, Any](), Some(transactionId))
+  }
+  // cypher query without transaction & map
+  def cypher(query: String) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+    doSingleCypherQuery(query, Map[String, Any](), None)
+  }
+  // cypher query without transaction & with map
+  def cypher(query: String,  params: Map[String, Any]) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+    doSingleCypherQuery(query, params, None)
+  }
+  // cypher queries within a transaction
+  def cypher(queries: Array[(String, Map[String, Any])], transactionId :Int): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
+    doCypherQuery(queries, Some(transactionId))
+  }
+  // cypher queries without transaction
+  def cypher(queries: Array[(String, Map[String, Any])]): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
+    doCypherQuery(queries, None)
+  }
+
   /**
    * Execute a unique cypher with its params (It's better to user params for perfomance).
    * This method return a list of json that represent datas, or a neo4jExeption.
@@ -118,22 +142,6 @@ class Neo4jTransactionalService(rootUrl: String) {
         }
       }
     }
-  }
-  // cypher query with transaction & map
-  def cypher(query: String, params: Map[String, Any], transactionId :Int) :Future[Either[Neo4jException, Seq[JsValue]]] = {
-    doSingleCypherQuery(query, params, Some(transactionId))
-  }
-  // cypher query with transaction & without map
-  def cypher(query: String, transactionId :Int) :Future[Either[Neo4jException, Seq[JsValue]]] = {
-    doSingleCypherQuery(query, Map[String, Any](), Some(transactionId))
-  }
-  // cypher query without transaction & map
-  def cypher(query: String) :Future[Either[Neo4jException, Seq[JsValue]]] = {
-    doSingleCypherQuery(query, Map[String, Any](), None)
-  }
-  // cypher query without transaction & with map
-  def cypher(query: String,  params: Map[String, Any]) :Future[Either[Neo4jException, Seq[JsValue]]] = {
-    doSingleCypherQuery(query, params, None)
   }
 
   /**
@@ -179,12 +187,6 @@ class Neo4jTransactionalService(rootUrl: String) {
       }
     }
   }
-  def cypher(queries: Array[(String, Map[String, Any])], transactionId :Int): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
-    doCypherQuery(queries, Some(transactionId))
-  }
-  def cypher(queries: Array[(String, Map[String, Any])]): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
-    doCypherQuery(queries, None)
-  }
 
   /**
    * Helper that create the query and send it to neo4j.
@@ -228,9 +230,9 @@ class Neo4jTransactionalService(rootUrl: String) {
   /**
    * Begin a transaction.
    *
-   * @return
+   * @return is an option of Int. If an error ocurred, this function return None, not an exception with an Either...
    */
-  def beginTx() :Future[Either[Neo4jException,Int]] = {
+  def beginTx() :Future[Option[Int]] = {
     val url = rootUrl + "/db/data/transaction/"
     val transactionLocation = """(.*)/db/data/transaction/(\d+)""".r
     val result = WS.url(url)
@@ -239,16 +241,19 @@ class Neo4jTransactionalService(rootUrl: String) {
 
     for (response <- result) yield {
       parseErrors(response.json) match {
-        case Some(e) => Left(e)
+        case Some(e) => {
+          Logger.error(e.toString)
+          None
+        }
         case None => {
           response.header("Location") match {
             case Some(location :String) => {
               location match {
-                case transactionLocation(url :String, transId :String) => Right(transId.toInt)
-                case _ => Left(new Neo4jException(Seq.apply(new Neo4jError("Bad response header","Transaction's ID cannot be found in location header"))))
+                case transactionLocation(url :String, transId :String) => Some(transId.toInt)
+                case _ => None
               }
             }
-            case _ => Left(new Neo4jException(Seq.apply(new Neo4jError("Bad response header","Transaction's ID cannot be found in headers"))))
+            case _ => None
           }
         }
       }

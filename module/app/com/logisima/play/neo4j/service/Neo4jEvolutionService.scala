@@ -7,7 +7,7 @@ import java.io.File
 import scala.io.Source
 import com.logisima.play.neo4j.evolution.{Neo4jInvalidRevision, EvolutionFeatureMode, CypherScriptType, Evolution}
 import com.logisima.play.neo4j.evolution.CypherScriptType.CypherScriptType
-import com.logisima.play.neo4j.exception.Neo4jException
+import com.logisima.play.neo4j.exception.{Neo4jRuntimeException, Neo4jException}
 import play.api.libs.json.{Json, JsValue}
 import com.logisima.play.neo4j.Neo4j
 import scala.concurrent.{Await, Future}
@@ -94,7 +94,7 @@ class Neo4jEvolutionService(rootUrl: String) {
    *
    * @param script
    */
-  def applyScript(script: String): Either[Neo4jException, Array[Seq[JsValue]]] = {
+  def applyScript(script: String)  = {
     // create list of queries for the evolution
     val queries: Seq[String] = statements(script)
     // here we add/remove the evolution node into database
@@ -102,7 +102,12 @@ class Neo4jEvolutionService(rootUrl: String) {
       query =>
         (query, Map[String, Any]())
     }.toArray
-    Await result(new Neo4jTransactionalService(Neo4j.serverUrl).cypher(params), 2 seconds)
+    (Await result(new Neo4jTransactionalService(Neo4j.serverUrl).cypher(params), 2 seconds)) match {
+      case Left(exception :Neo4jException) => {
+        throw new Neo4jRuntimeException("Evolution script failed", exception.toString)
+      }
+      case _ =>
+    }
   }
 
   /**
@@ -113,7 +118,7 @@ class Neo4jEvolutionService(rootUrl: String) {
    */
   def statements(cql: String): Seq[String] = {
     // Regex matches on semicolons that neither precede nor follow other semicolons
-    cql.split("(?<!;);(?!;)").map(_.trim.replace(";;", ";")).filter(_ != "")
+    cql.replaceAll("^//.*$", "").split("(?<!;);(?!;)").map(_.trim.replace(";;", ";")).filter(_ != "")
   }
 
   /**
@@ -133,38 +138,40 @@ class Neo4jEvolutionService(rootUrl: String) {
 
     if (downEvolution.size > 0 | upEvolution.size > 0) {
 
-      // compose down script
-      val downScript: String = downEvolution.foldLeft("") {
-        (script, evolution) => script + evolution.cypher_down + "\n"
-      }
-      //compose up script
-      val upScript: String = upEvolution.foldLeft("") {
-        (script, evolution) => script + evolution.cypher_up + "\n"
-      }
-
-      // let's do script to update evolution
-      val playEvolutionScript: String = appEvol.foldLeft("MATCH (n:Play_Evolutions) DELETE n;") {
-        (script, evolution) =>
-          script + "\n" +
-            cypherEvolutionQuery(
-              evolution.revision,
-              // here we escape quote for up & down script and replace ; to ;; for the statement function
-              evolution.cypher_down.replace("\"", "\\\"") replace(";", ";;"),
-              evolution.cypher_up.replace("\"", "\\\"").replace(";", ";;")
-            )
-      }
-
       // render / action of the check
       mode match {
         case EvolutionFeatureMode.auto => {
-          // let's go to send all script to neo4j
-          val allScript = downScript + upScript + playEvolutionScript
-          val result = applyScript(allScript)
+          // let's go to send all up script one by one to neo4j.
+          // each apply is a transaction, so a script can handle schema modification
+          downEvolution.map {
+            evolution  =>
+              applyScript(evolution.cypher_down)
+              applyScript("MATCH (n:Play_Evolutions) WHERE n.revision=" + evolution.revision + " DELETE n;")
+          }
+          upEvolution.map {
+            evolution  =>
+              applyScript(evolution.cypher_up)
+              applyScript(
+                  cypherEvolutionQuery(
+                    evolution.revision,
+                    // here we escape quote for up & down script and replace ; to ;; for the statement function
+                    evolution.cypher_down.replace("\"", "\\\"") replace(";", ";;"),
+                    evolution.cypher_up.replace("\"", "\\\"").replace(";", ";;")
+                  )
+              )
+          }
+
         }
         case _ => {
           // we throw an exception to ask the user
-          val allScript = downScript + upScript
-          throw new Neo4jInvalidRevision(allScript)
+          val down = downEvolution.foldLeft("Down \n\n") {
+            (message, evolution) => message + evolution.cypher_down + "\n\n"
+          }
+          val up  = upEvolution.foldLeft("Up \n\n") {
+            (message, evolution) => message + evolution.cypher_up + "\n\n"
+          }
+          val message =
+          throw new Neo4jInvalidRevision(down + up)
         }
       }
 
