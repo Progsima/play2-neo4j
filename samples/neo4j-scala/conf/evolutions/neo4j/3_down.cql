@@ -1,0 +1,1 @@
+DROP CONSTRAINT ON (content:Content_Type) ASSERT content.name IS UNIQUE;
