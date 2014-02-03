@@ -9,6 +9,7 @@ import play.api.libs.json._
 import play.api.libs.functional.syntax._
 import play.api.test._
 import play.api.test.Helpers._
+
 import play.Logger
 
 /**
@@ -92,6 +93,74 @@ class Neo4jTransactionServiceSpec extends Specification {
         result.left.get.errors.apply(0).code must beEqualTo("Neo.ClientError.Statement.InvalidSyntax")
         result.left.get.errors.apply(0).message must beEqualTo("M not defined (line 1, column 18)\n\"MATCH (n) RETURN M LIMIT 100\"\n                  ^")
 
+      }
+    }
+
+    "can start a transaction" in {
+      running(FakeApplication()) {
+        val api = new Neo4jTransactionalService(Neo4j.serverUrl)
+        val transId = Helpers.await(api.beginTx()) match {
+          case Left(e) => {
+            Logger.debug("Begin transaction error " + e.errors(0))
+            -1
+          }
+          case Right(transId) => transId
+        }
+        transId must beGreaterThanOrEqualTo(0)
+      }
+    }
+
+    "can start a transaction & commit" in {
+      running(FakeApplication()) {
+        val api = new Neo4jTransactionalService(Neo4j.serverUrl)
+        Helpers.await(api.beginTx()) match {
+          case Left(e) => {
+            failure("Error when opening a transaction")
+          }
+          case Right(transId) => {
+            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Neo4j", "Type" -> "Graph"), transId))
+            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "CouchDb", "Type" -> "Document"),transId))
+            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Postgres", "Type" -> "Relational"), transId))
+            Helpers.await(api.commit(transId))
+
+            val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n:DB) RETURN n"))
+            result match {
+              case Left(e) => failure(e.errors(0).message)
+              case Right(result) => {
+                result.size must beEqualTo(3)
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+    "can start a transaction & rollback" in {
+      running(FakeApplication()) {
+        // delete the entire database
+        Neo4jUtils.reset()
+
+        val api = new Neo4jTransactionalService(Neo4j.serverUrl)
+        Helpers.await(api.beginTx()) match {
+          case Left(e) => {
+            failure("Error when opening a transaction")
+          }
+          case Right(transId) => {
+            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Neo4j", "Type" -> "Graph"), transId))
+            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "CouchDb", "Type" -> "Document"),transId))
+            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Postgres", "Type" -> "Relational"), transId))
+            Helpers.await(api.rollBack(transId))
+
+            val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n:DB) RETURN n"))
+            result match {
+              case Left(e) => failure(e.errors(0).message)
+              case Right(result) => {
+                result.size must beEqualTo(0)
+              }
+            }
+          }
+        }
 
       }
     }

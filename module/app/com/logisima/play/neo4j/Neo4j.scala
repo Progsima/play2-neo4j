@@ -89,8 +89,7 @@ object Neo4j {
   private def startAdmin() = {
     Logger.debug("[Neo4j]: Starting webadmin")
     webadmin.map {
-      server =>
-        server.start()
+      server => server.start()
     }
   }
 
