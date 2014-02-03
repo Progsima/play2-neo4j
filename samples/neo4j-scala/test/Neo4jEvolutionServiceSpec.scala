@@ -26,7 +26,7 @@ class Neo4jEvolutionServiceSpec extends Specification {
         val evolution :Neo4jEvolutionService = new Neo4jEvolutionService(Neo4j.serverUrl)
         val evolutions :Seq[Evolution] = evolution.applicationEvolutions()
 
-        evolutions.size must beEqualTo(2)
+        evolutions.size must beEqualTo(3)
       }
     }
 
