@@ -23,7 +23,7 @@ class Neo4jPlugin(app: play.api.Application) extends Plugin  with HandleWebComma
     val evolutionMode :EvolutionFeatureMode = EvolutionFeatureMode.withName(Play.configuration.getString("neo4j.evolution").getOrElse("disable"))
     Logger.debug("[Neo4jPlugin]: Evolution mode is " + evolutionMode.toString)
     if(evolutionMode != EvolutionFeatureMode.disable) {
-      new Neo4jEvolutionService(Neo4j.serverUrl).checkEvolutionState(evolutionMode)
+      Neo4jEvolutionService.checkEvolutionState(evolutionMode)
     }
   }
 
@@ -50,7 +50,7 @@ class Neo4jPlugin(app: play.api.Application) extends Plugin  with HandleWebComma
     request.path match {
       case applyEvolutions() => {
         Some {
-          new Neo4jEvolutionService(Neo4j.serverUrl).checkEvolutionState(EvolutionFeatureMode.auto)
+          Neo4jEvolutionService.checkEvolutionState(EvolutionFeatureMode.auto)
           sbtLink.forceReload()
           play.api.mvc.Results.Redirect(redirectUrl)
         }

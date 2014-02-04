@@ -13,6 +13,10 @@ import org.neo4j.shell.ShellSettings
 import org.neo4j.helpers.Settings
 import com.logisima.play.neo4j.utils.FileUtils
 import java.io.File
+import com.logisima.play.neo4j.service.Neo4jTransactionalService
+import scala.concurrent.Future
+import com.logisima.play.neo4j.exception.Neo4jException
+import play.api.libs.json.JsValue
 
 /**
  * Neo4j database object.
@@ -127,5 +131,97 @@ object Neo4j {
     Logger.debug("[Neo4j]: Shutting down neo4j")
     graphdb.foreach(_.shutdown())
   }
+
+  /**
+   * Start a transaction, and return its id.
+   *
+   * @return
+   */
+  def beginTx() :Future[Option[Int]] = {
+     new Neo4jTransactionalService(this.serverUrl).beginTx()
+  }
+
+  /**
+   * Commit a transaction by its id.
+   *
+   * @return
+   */
+  def commit(transId :Int) :Future[Option[Neo4jException]] = {
+    new Neo4jTransactionalService(this.serverUrl).commit(transId)
+  }
+
+  /**
+   * Rollback a transaction by its id.
+   *
+   * @param transId
+   * @return
+   */
+  def rollback(transId :Int) :Future[Option[Neo4jException]] = {
+    new Neo4jTransactionalService(this.serverUrl).rollBack(transId)
+  }
+
+  /**
+   * Execute a single cypher query and commit it.
+   *
+   * @param query
+   * @return
+   */
+  def cypher(query: String) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+    new Neo4jTransactionalService(this.serverUrl).doSingleCypherQuery(query, Map[String, Any](), None)
+  }
+
+  /**
+   * Execute a single cypher query with params and commit it.
+   *
+   * @param query
+   * @param params
+   * @return
+   */
+  def cypher(query: String,  params: Map[String, Any]) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+    new Neo4jTransactionalService(this.serverUrl).doSingleCypherQuery(query, params, None)
+  }
+
+  /**
+   * Exceute a set of cypher query with params into the same transaction, and commit it.
+   *
+   * @param queries
+   * @return
+   */
+  def cypher(queries: Array[(String, Map[String, Any])]): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
+    new Neo4jTransactionalService(this.serverUrl).doCypherQuery(queries, None)
+  }
+
+  /**
+   * Execute a single cypher query into the specified transaction.
+   *
+   * @param query
+   * @param transactionId
+   * @return
+   */
+  def cypher(query: String, transactionId :Int) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+    new Neo4jTransactionalService(this.serverUrl).doSingleCypherQuery(query, Map[String, Any](), Some(transactionId))
+  }
+
+  /**
+   * Execute a single cypher query with params into the specified transaction.
+   *
+   * @param query
+   * @param params
+   * @return
+   */
+  def cypher(query: String, params: Map[String, Any], transactionId :Int) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+    new Neo4jTransactionalService(this.serverUrl).doSingleCypherQuery(query, params, Some(transactionId))
+  }
+
+  /**
+   * Exceute a set of cypher query with params into the specified transaction.
+   *
+   * @param queries
+   * @return
+   */
+  def cypher(queries: Array[(String, Map[String, Any])], transactionId :Int): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
+    new Neo4jTransactionalService(this.serverUrl).doCypherQuery(queries, Some(transactionId))
+  }
+
 
 }

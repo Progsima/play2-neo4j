@@ -94,31 +94,6 @@ class Neo4jTransactionalService(rootUrl: String) {
       }.toSeq: _*)
   }
 
-  // cypher query with transaction & map
-  def cypher(query: String, params: Map[String, Any], transactionId :Int) :Future[Either[Neo4jException, Seq[JsValue]]] = {
-    doSingleCypherQuery(query, params, Some(transactionId))
-  }
-  // cypher query with transaction & without map
-  def cypher(query: String, transactionId :Int) :Future[Either[Neo4jException, Seq[JsValue]]] = {
-    doSingleCypherQuery(query, Map[String, Any](), Some(transactionId))
-  }
-  // cypher query without transaction & map
-  def cypher(query: String) :Future[Either[Neo4jException, Seq[JsValue]]] = {
-    doSingleCypherQuery(query, Map[String, Any](), None)
-  }
-  // cypher query without transaction & with map
-  def cypher(query: String,  params: Map[String, Any]) :Future[Either[Neo4jException, Seq[JsValue]]] = {
-    doSingleCypherQuery(query, params, None)
-  }
-  // cypher queries within a transaction
-  def cypher(queries: Array[(String, Map[String, Any])], transactionId :Int): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
-    doCypherQuery(queries, Some(transactionId))
-  }
-  // cypher queries without transaction
-  def cypher(queries: Array[(String, Map[String, Any])]): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
-    doCypherQuery(queries, None)
-  }
-
   /**
    * Execute a unique cypher with its params (It's better to user params for perfomance).
    * This method return a list of json that represent datas, or a neo4jExeption.
@@ -127,7 +102,7 @@ class Neo4jTransactionalService(rootUrl: String) {
    * @param params
    * @return
    */
-  private def doSingleCypherQuery(query: String, params: Map[String, Any] = Map[String, Any](), transactionId :Option[Int] = None) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+  def doSingleCypherQuery(query: String, params: Map[String, Any] = Map[String, Any](), transactionId :Option[Int] = None) :Future[Either[Neo4jException, Seq[JsValue]]] = {
     val result = this.doCypherQuery(Array((query, params)), transactionId)
     for (response <- result) yield {
       response match {
@@ -152,7 +127,7 @@ class Neo4jTransactionalService(rootUrl: String) {
    * @param transactionId
    * @return
    */
-  private def doCypherQuery(queries: Array[(String, Map[String, Any])],  transactionId: Option[Int]): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
+  def doCypherQuery(queries: Array[(String, Map[String, Any])],  transactionId: Option[Int]): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
     // here we parse the response
     for (response <- constructAndSend(queries, transactionId)) yield {
 

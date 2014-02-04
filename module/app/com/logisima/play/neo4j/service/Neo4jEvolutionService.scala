@@ -20,7 +20,7 @@ import com.logisima.play.neo4j.evolution.EvolutionFeatureMode.EvolutionFeatureMo
  *
  * @author : bsimard
  */
-class Neo4jEvolutionService(rootUrl: String) {
+object Neo4jEvolutionService {
 
   /**
    * String interpolation to construct evolution script relative path.
@@ -47,7 +47,7 @@ class Neo4jEvolutionService(rootUrl: String) {
   def neo4jEvolutions(): Seq[Evolution] = {
 
     val query: String = "MATCH (n:Play_Evolutions) RETURN n ORDER BY n.revision"
-    val result: Future[Either[Neo4jException, Seq[JsValue]]] = new Neo4jTransactionalService(Neo4j.serverUrl).cypher(query)
+    val result: Future[Either[Neo4jException, Seq[JsValue]]] = Neo4j.cypher(query)
 
     val response = Await result(result, 2 seconds)
     Logger.debug("[Evolution]: Neo4j evolutions is " + response)
@@ -102,7 +102,7 @@ class Neo4jEvolutionService(rootUrl: String) {
       query =>
         (query, Map[String, Any]())
     }.toArray
-    (Await result(new Neo4jTransactionalService(Neo4j.serverUrl).cypher(params), 2 seconds)) match {
+    (Await result(Neo4j.cypher(params), 2 seconds)) match {
       case Left(exception :Neo4jException) => {
         throw new Neo4jRuntimeException("Evolution script failed", exception.toString)
       }

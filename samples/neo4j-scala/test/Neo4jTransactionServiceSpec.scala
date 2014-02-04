@@ -26,9 +26,8 @@ class Neo4jTransactionServiceSpec extends Specification {
         // delete the entire database
         Neo4jUtils.reset()
 
-        val api = new Neo4jTransactionalService(Neo4j.serverUrl)
         val queries = Array(("CREATE (n:Pays {props})", Map("name" -> "FRANCE", "pop" -> 100)), ("CREATE (n:Pays {props})", Map("name" -> "BELGIQUE", "pop" -> 10)))
-        val result = Helpers.await(api.cypher(queries))
+        val result = Helpers.await(Neo4j.cypher(queries))
         Logger.debug("Result is :" + result.right.toString)
         result.isRight must beTrue
       }
@@ -39,8 +38,7 @@ class Neo4jTransactionServiceSpec extends Specification {
         // delete the entire database
         Neo4jUtils.reset()
 
-        val api = new Neo4jTransactionalService(Neo4j.serverUrl)
-        val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("CREATE (n:Pays {props})", Map("name" -> "ALLEMAGNE", "pop" -> 100)))
+        val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(Neo4j.cypher("CREATE (n:Pays {props})", Map("name" -> "ALLEMAGNE", "pop" -> 100)))
         Logger.debug("Result is :" + result.right.toString)
         result.isRight must beTrue
       }
@@ -50,12 +48,8 @@ class Neo4jTransactionServiceSpec extends Specification {
       running(FakeApplication()) {
         // delete the entire database
         Neo4jUtils.reset()
-        // populate the database by runnig evolution script
-        new Neo4jEvolutionService(Neo4j.serverUrl).checkEvolutionState(EvolutionFeatureMode.auto)
-
-
-        val api = new Neo4jTransactionalService(Neo4j.serverUrl)
-        val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n:Country) RETURN n LIMIT 100"))
+        // populate the database by running evolution script
+        Neo4jEvolutionService.checkEvolutionState(EvolutionFeatureMode.auto)
 
         case class Country(name: String, pop: Int)
         implicit val countryReads = (
@@ -63,7 +57,7 @@ class Neo4jTransactionServiceSpec extends Specification {
             (__ \ "pop").read[Int]
           )(Country)
 
-        val rsSize: Int = result match {
+        val rsSize: Int = Helpers.await(Neo4j.cypher("MATCH (n:Country) RETURN n LIMIT 100")) match {
           case Left(x) => 0
           case Right(x) => {
             x.map(
@@ -83,8 +77,7 @@ class Neo4jTransactionServiceSpec extends Specification {
 
     "return error on bad cypher query" in {
       running(FakeApplication()) {
-        val api = new Neo4jTransactionalService(Neo4j.serverUrl)
-        val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n) RETURN M LIMIT 100"))
+        val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(Neo4j.cypher("MATCH (n) RETURN M LIMIT 100"))
 
         // ok this is an error
         result.isLeft must beTrue
@@ -111,15 +104,14 @@ class Neo4jTransactionServiceSpec extends Specification {
 
     "can start a transaction & commit" in {
       running(FakeApplication()) {
-        val api = new Neo4jTransactionalService(Neo4j.serverUrl)
-        Helpers.await(api.beginTx()) match {
+        Helpers.await(Neo4j.beginTx()) match {
           case Some(transId) => {
-            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Neo4j", "Type" -> "Graph"), transId))
-            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "CouchDb", "Type" -> "Document"),transId))
-            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Postgres", "Type" -> "Relational"), transId))
-            Helpers.await(api.commit(transId))
+            Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "Neo4j", "Type" -> "Graph"), transId))
+            Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "CouchDb", "Type" -> "Document"),transId))
+            Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "Postgres", "Type" -> "Relational"), transId))
+            Helpers.await(Neo4j.commit(transId))
 
-            val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n:DB) RETURN n"))
+            val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(Neo4j.cypher("MATCH (n:DB) RETURN n"))
             result match {
               case Left(e) => failure(e.errors(0).message)
               case Right(result) => {
@@ -140,15 +132,14 @@ class Neo4jTransactionServiceSpec extends Specification {
         // delete the entire database
         Neo4jUtils.reset()
 
-        val api = new Neo4jTransactionalService(Neo4j.serverUrl)
-        Helpers.await(api.beginTx()) match {
+        Helpers.await(Neo4j.beginTx()) match {
           case Some(transId) => {
-            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Neo4j", "Type" -> "Graph"), transId))
-            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "CouchDb", "Type" -> "Document"),transId))
-            Helpers.await(api.cypher("CREATE (n:DB {props})", Map("name" -> "Postgres", "Type" -> "Relational"), transId))
-            Helpers.await(api.rollBack(transId))
+            Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "Neo4j", "Type" -> "Graph"), transId))
+            Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "CouchDb", "Type" -> "Document"),transId))
+            Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "Postgres", "Type" -> "Relational"), transId))
+            Helpers.await(Neo4j.rollback(transId))
 
-            val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(api.cypher("MATCH (n:DB) RETURN n"))
+            val result: Either[Neo4jException, Seq[JsValue]] = Helpers.await(Neo4j.cypher("MATCH (n:DB) RETURN n"))
             result match {
               case Left(e) => failure(e.errors(0).message)
               case Right(result) => {
