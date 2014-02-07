@@ -43,7 +43,7 @@ object Application extends Controller {
 
     node match {
       case None => InternalServerError("Unable to create the node")
-      case Some(x) => Ok(views.html.index(s"Node just created : ${x.getId()}"))
+      case Some(x) => Ok("toto")
     }
   }
 

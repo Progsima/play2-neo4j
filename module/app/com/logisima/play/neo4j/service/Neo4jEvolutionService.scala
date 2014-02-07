@@ -1,19 +1,20 @@
 package com.logisima.play.neo4j.service
 
-import play.api.libs.Collections
-import play.{Logger, Play}
-import com.logisima.play.neo4j.utils.FileUtils
-import java.io.File
-import scala.io.Source
-import com.logisima.play.neo4j.evolution.{Neo4jInvalidRevision, EvolutionFeatureMode, CypherScriptType, Evolution}
+import com.logisima.play.neo4j.evolution._
 import com.logisima.play.neo4j.evolution.CypherScriptType.CypherScriptType
-import com.logisima.play.neo4j.exception.{Neo4jRuntimeException, Neo4jException}
-import play.api.libs.json.{Json, JsValue}
-import com.logisima.play.neo4j.Neo4j
-import scala.concurrent.{Await, Future}
-import scala.concurrent.duration._
-import scala.Some
 import com.logisima.play.neo4j.evolution.EvolutionFeatureMode.EvolutionFeatureMode
+import com.logisima.play.neo4j.utils.FileUtils
+import com.logisima.play.neo4j.Neo4j
+import play.{Logger, Play}
+import play.api.libs.Collections
+import play.api.libs.concurrent.Execution.Implicits._
+import play.api.libs.json._
+import java.io.File
+import scala.concurrent._
+import scala.concurrent.duration.Duration
+import scala.io.Source
+import scala.Some
+import com.logisima.play.neo4j.exception.Neo4jInvalidRevision
 
 /**
  * Neo4j service that handle evolution script.
@@ -44,25 +45,19 @@ object Neo4jEvolutionService {
    *
    * @return
    */
-  def neo4jEvolutions(): Seq[Evolution] = {
+  def neo4jEvolutions(): Future[Seq[Evolution]] = {
 
     val query: String = "MATCH (n:Play_Evolutions) RETURN n ORDER BY n.revision"
-    val result: Future[Either[Neo4jException, Seq[JsValue]]] = Neo4j.cypher(query)
+    val result: Future[Seq[JsValue]] = Neo4j.cypher(query)
 
-    val response = Await result(result, 2 seconds)
-    Logger.debug("[Evolution]: Neo4j evolutions is " + response)
-
-    response match {
-      case Left(x) => Seq.apply()
-      case Right(datas: Seq[JsValue]) => {
-        implicit val evolutionsReads = Json.reads[Evolution]
-        datas.map(
-          jsValue => {
-            jsValue(0).validate[Evolution].asOpt.get
-          }
-        )
-      }
-      case _ => Seq.apply()
+    for(datas <- result) yield {
+      Logger.debug("[Evolution]: Neo4j evolutions is " + datas)
+      implicit val evolutionsReads = Json.reads[Evolution]
+      datas.map(
+        jsValue => {
+          jsValue(0).validate[Evolution].asOpt.get
+        }
+      )
     }
   }
 
@@ -102,12 +97,7 @@ object Neo4jEvolutionService {
       query =>
         (query, Map[String, Any]())
     }.toArray
-    (Await result(Neo4j.cypher(params), 2 seconds)) match {
-      case Left(exception :Neo4jException) => {
-        throw new Neo4jRuntimeException("Evolution script failed", exception.toString)
-      }
-      case _ =>
-    }
+    (Await result(Neo4j.cypher(params), Duration.Inf))
   }
 
   /**
@@ -129,7 +119,7 @@ object Neo4jEvolutionService {
    */
   def checkEvolutionState(mode: EvolutionFeatureMode) = {
     val appEvol = applicationEvolutions()
-    val neo4jEvol = neo4jEvolutions()
+    val neo4jEvol = Await result(neo4jEvolutions(),  Duration.Inf)
 
     val downEvolution: Seq[Evolution] = neo4jEvol.diff(appEvol)
     val upEvolution: Seq[Evolution] = appEvol.diff(neo4jEvol)

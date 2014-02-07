@@ -1,4 +1,4 @@
-package com.logisima.play.neo4j.evolution
+package com.logisima.play.neo4j.exception
 
 import play.api.PlayException
 

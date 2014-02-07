@@ -1,17 +1,15 @@
 package com.logisima.play.neo4j.service
 
+import com.logisima.play.neo4j.exception.Neo4jException
+import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.ws.WS
-import play.api.libs.json.Json._
 import play.api.libs.json._
+import play.api.libs.json.Json._
+import play.api.libs.ws.Response
 import play.Logger
 import scala.Predef._
 import scala.concurrent.Future
 import scala._
-import play.api.libs.json.JsArray
-import play.api.libs.ws.Response
-import play.api.libs.json.JsObject
-import play.api.libs.concurrent.Execution.Implicits._
-import com.logisima.play.neo4j.exception.{Neo4jError, Neo4jException}
 
 /**
  * Neo4j service that handle transaction REST API endpoint.
@@ -102,19 +100,14 @@ class Neo4jTransactionalService(rootUrl: String) {
    * @param params
    * @return
    */
-  def doSingleCypherQuery(query: String, params: Map[String, Any] = Map[String, Any](), transactionId :Option[Int] = None) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+  def doSingleCypherQuery(query: String, params: Map[String, Any] = Map[String, Any](), transactionId: Option[Int] = None): Future[Seq[JsValue]] = {
     val result = this.doCypherQuery(Array((query, params)), transactionId)
-    for (response <- result) yield {
-      response match {
-        case Left(exception: Neo4jException) => Left(exception)
-        case Right(datas: Array[Seq[JsValue]]) => {
-          if (datas.size > 0) {
-            Right(datas.apply(0))
-          }
-          else {
-            Right(Seq.apply())
-          }
-        }
+    for (datas <- result) yield {
+      if (datas.size > 0) {
+        datas.apply(0)
+      }
+      else {
+        Seq.apply()
       }
     }
   }
@@ -127,7 +120,7 @@ class Neo4jTransactionalService(rootUrl: String) {
    * @param transactionId
    * @return
    */
-  def doCypherQuery(queries: Array[(String, Map[String, Any])],  transactionId: Option[Int]): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
+  def doCypherQuery(queries: Array[(String, Map[String, Any])], transactionId: Option[Int]): Future[Array[Seq[JsValue]]] = {
     // here we parse the response
     for (response <- constructAndSend(queries, transactionId)) yield {
 
@@ -137,28 +130,26 @@ class Neo4jTransactionalService(rootUrl: String) {
 
         // Checking errors
         parseErrors(response.json) match {
-          case Some(exception :Neo4jException) => Left(exception)
+          case Some(exception: Neo4jException) => throw exception
           case _ => {
             val datas = response.json.\\("results").map {
               data =>
-                data.\\("data").map {
-                  row => {
-                    Logger.debug("[Transaction]: Row is " + row \\ ("row").toString)
-                    row \\ ("row")
-                  }
+                data.\\("data").filter(
+                    row => ((row\\("row")).size > 0)
+                  ).map {
+                    row => {
+                      Logger.debug("[Transaction]: Row is " + row \\ ("row").toString)
+                      row \\ ("row")
+                    }
                 }
             }.flatten
-            Right(datas.toArray)
+            datas.toArray
           }
         }
       }
       // Status is not 200 (or 201) : this shouldn't happen with transaction endpoint...
       else {
-        Logger.debug("[Transaction]: Status code is " + response.status + ":" + response.body)
-        Left(
-          new Neo4jException(Seq.apply(new Neo4jError("http.client", "Status code is " + response.status))
-          )
-        )
+        throw new Neo4jException("Neo4j REST Transactional API error", "Transaction cypher status code is " + response.status)
       }
     }
   }
@@ -172,7 +163,7 @@ class Neo4jTransactionalService(rootUrl: String) {
    */
   private def constructAndSend(queries: Array[(String, Map[String, Any])], transactionId: Option[Int]): Future[Response] = {
     val url = transactionId match {
-      case Some(id :Int) => rootUrl + "/db/data/transaction/" + id
+      case Some(id: Int) => rootUrl + "/db/data/transaction/" + id
       case _ => rootUrl + "/db/data/transaction/commit"
     }
 
@@ -205,9 +196,9 @@ class Neo4jTransactionalService(rootUrl: String) {
   /**
    * Begin a transaction.
    *
-   * @return is an option of Int. If an error ocurred, this function return None, not an exception with an Either...
+   * @return A future response with the identifier of the transaction
    */
-  def beginTx() :Future[Option[Int]] = {
+  def beginTx(): Future[Int] = {
     val url = rootUrl + "/db/data/transaction/"
     val transactionLocation = """(.*)/db/data/transaction/(\d+)""".r
     val result = WS.url(url)
@@ -216,19 +207,16 @@ class Neo4jTransactionalService(rootUrl: String) {
 
     for (response <- result) yield {
       parseErrors(response.json) match {
-        case Some(e) => {
-          Logger.error(e.toString)
-          None
-        }
+        case Some(e) => throw e
         case None => {
           response.header("Location") match {
-            case Some(location :String) => {
+            case Some(location: String) => {
               location match {
-                case transactionLocation(url :String, transId :String) => Some(transId.toInt)
-                case _ => None
+                case transactionLocation(url: String, transId: String) => transId.toInt
+                case _ => throw new Neo4jException("Neo4j REST Transactional API error", "Location header is not parsable")
               }
             }
-            case _ => None
+            case _ => throw new Neo4jException("Neo4j REST Transactional API error", "Location header is not present")
           }
         }
       }
@@ -241,15 +229,17 @@ class Neo4jTransactionalService(rootUrl: String) {
    * @param transId
    * @return
    */
-  def commit(transId :Int) :Future[Option[Neo4jException]] = {
-    val url = rootUrl + "/db/data/transaction/" + transId  + "/commit"
-    val transactionLocation = """(.*)/db/data/transaction/(\d+)/commit""".r
+  def commit(transId: Int) :Future[Boolean] = {
+    val url = rootUrl + "/db/data/transaction/" + transId + "/commit"
     val result = WS.url(url)
       .withHeaders(stdHeaders: _*)
       .post("")
 
     for (response <- result) yield {
-      parseErrors(response.json)
+      parseErrors(response.json) match {
+        case Some(e: Neo4jException) => throw e
+        case _ => true
+      }
     }
   }
 
@@ -258,14 +248,17 @@ class Neo4jTransactionalService(rootUrl: String) {
    *
    * @param transId
    */
-  def rollBack(transId :Int) :Future[Option[Neo4jException]] = {
+  def rollBack(transId: Int) :Future[Boolean] =  {
     val url = rootUrl + "/db/data/transaction/" + transId
     val result = WS.url(url)
       .withHeaders(stdHeaders: _*)
       .delete()
 
     for (response <- result) yield {
-      parseErrors(response.json)
+      parseErrors(response.json) match {
+        case Some(e: Neo4jException) => throw e
+        case _ => true
+      }
     }
   }
 
@@ -275,8 +268,8 @@ class Neo4jTransactionalService(rootUrl: String) {
    * @param response
    * @return
    */
-  private def parseErrors(response :JsValue) :Option[Neo4jException] = {
-    var errors: Seq[Neo4jError] = Seq.apply()
+  private def parseErrors(response: JsValue): Option[Neo4jException] = {
+    var errors: Seq[String] = Seq.apply()
     if (response.\("errors").toString != "[]") {
       errors = response.\\("errors").map {
         error =>
@@ -284,9 +277,16 @@ class Neo4jTransactionalService(rootUrl: String) {
           val code: Option[String] = (error(0) \ ("code")).asOpt[String]
           val message: Option[String] = (error(0) \ ("message")).asOpt[String]
           Logger.debug("[Transaction]: Neo4jError is " + code + " " + message)
-          new Neo4jError(code.getOrElse(""), message.getOrElse(""))
+          code.getOrElse("") + " : " + message.getOrElse("")
       }
-      Option.apply(new Neo4jException(errors))
+      Option.apply(
+        new Neo4jException(
+          "Neo4j REST Transactional API error",
+          errors.foldLeft("") {
+            (message, exception) => message + exception + "\n\n"
+          }
+        )
+      )
     }
     else {
       Option.empty

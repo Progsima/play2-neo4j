@@ -137,7 +137,7 @@ object Neo4j {
    *
    * @return
    */
-  def beginTx() :Future[Option[Int]] = {
+  def beginTx() :Future[Int] = {
      new Neo4jTransactionalService(this.serverUrl).beginTx()
   }
 
@@ -146,7 +146,7 @@ object Neo4j {
    *
    * @return
    */
-  def commit(transId :Int) :Future[Option[Neo4jException]] = {
+  def commit(transId :Int) :Future[Boolean] = {
     new Neo4jTransactionalService(this.serverUrl).commit(transId)
   }
 
@@ -156,7 +156,7 @@ object Neo4j {
    * @param transId
    * @return
    */
-  def rollback(transId :Int) :Future[Option[Neo4jException]] = {
+  def rollback(transId :Int) :Future[Boolean] = {
     new Neo4jTransactionalService(this.serverUrl).rollBack(transId)
   }
 
@@ -166,7 +166,7 @@ object Neo4j {
    * @param query
    * @return
    */
-  def cypher(query: String) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+  def cypher(query: String) :Future[Seq[JsValue]] = {
     new Neo4jTransactionalService(this.serverUrl).doSingleCypherQuery(query, Map[String, Any](), None)
   }
 
@@ -177,7 +177,7 @@ object Neo4j {
    * @param params
    * @return
    */
-  def cypher(query: String,  params: Map[String, Any]) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+  def cypher(query: String,  params: Map[String, Any]) :Future[Seq[JsValue]] = {
     new Neo4jTransactionalService(this.serverUrl).doSingleCypherQuery(query, params, None)
   }
 
@@ -187,7 +187,7 @@ object Neo4j {
    * @param queries
    * @return
    */
-  def cypher(queries: Array[(String, Map[String, Any])]): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
+  def cypher(queries: Array[(String, Map[String, Any])]): Future[Array[Seq[JsValue]]] = {
     new Neo4jTransactionalService(this.serverUrl).doCypherQuery(queries, None)
   }
 
@@ -198,7 +198,7 @@ object Neo4j {
    * @param transactionId
    * @return
    */
-  def cypher(query: String, transactionId :Int) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+  def cypher(query: String, transactionId :Int) :Future[Seq[JsValue]] = {
     new Neo4jTransactionalService(this.serverUrl).doSingleCypherQuery(query, Map[String, Any](), Some(transactionId))
   }
 
@@ -209,7 +209,7 @@ object Neo4j {
    * @param params
    * @return
    */
-  def cypher(query: String, params: Map[String, Any], transactionId :Int) :Future[Either[Neo4jException, Seq[JsValue]]] = {
+  def cypher(query: String, params: Map[String, Any], transactionId :Int) :Future[Seq[JsValue]] = {
     new Neo4jTransactionalService(this.serverUrl).doSingleCypherQuery(query, params, Some(transactionId))
   }
 
@@ -219,9 +219,8 @@ object Neo4j {
    * @param queries
    * @return
    */
-  def cypher(queries: Array[(String, Map[String, Any])], transactionId :Int): Future[Either[Neo4jException, Array[Seq[JsValue]]]] = {
+  def cypher(queries: Array[(String, Map[String, Any])], transactionId :Int): Future[Array[Seq[JsValue]]] = {
     new Neo4jTransactionalService(this.serverUrl).doCypherQuery(queries, Some(transactionId))
   }
-
 
 }

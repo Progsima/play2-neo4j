@@ -1,22 +1,9 @@
 package com.logisima.play.neo4j.exception
 
+import play.api.PlayException
+
+
 /**
- * Classes that handle neo4j exception.
- *
- * @author : bsimard
+ * Generic Neo4j exception for unexpected error cases.
  */
-case class Neo4jError(code:String, message:String) {
-
-  override def toString :String  = {
-    "[" + code + "] " + message
-  }
-}
-
-case class Neo4jException(errors :Seq[Neo4jError]) {
-
-  override def toString :String = {
-    errors.foldLeft("") {
-      (text, error) => error.toString + "\n"
-    }
-  }
-}
+case class Neo4jException(code :String, message :String) extends PlayException(code, message)

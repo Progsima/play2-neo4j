@@ -50,15 +50,7 @@ class Neo4jEvolutionServiceSpec extends Specification {
 
         Neo4jEvolutionService.checkEvolutionState(EvolutionFeatureMode.auto)
 
-        val rsSize: Int =  Helpers.await(Neo4j.cypher("MATCH (n:Country) RETURN n LIMIT 100")) match {
-          case Left(x) => 0
-          case Right(x) => x.map(
-            jsValue => {
-              jsValue(0)
-            })
-            x.size
-        }
-        rsSize must beGreaterThan(0)
+        Helpers.await(Neo4j.cypher("MATCH (n:Country) RETURN n LIMIT 100")).size must beGreaterThan(0)
       }
     }
   }
