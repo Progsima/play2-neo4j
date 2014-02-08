@@ -12,9 +12,11 @@ import play.api.mvc._
  */
 object ContentTypes extends Controller {
 
-  implicit val contentTypeReads = Json.reads[ContentType]
-  implicit val contentTypeWrites = Json.writes[ContentType]
-
+  /**
+   * List all content type in the plateform.
+   *
+   * @return
+   */
   def list = Action.async {
     ContentType.list().map(
       seqContentType =>
@@ -22,6 +24,12 @@ object ContentTypes extends Controller {
     )
   }
 
+  /**
+   * Get details of the specified content type (ny its name).
+   *
+   * @param name
+   * @return
+   */
   def get(name :String) = Action.async {
     ContentType.get(name).map(
       optionContentType => optionContentType match {
@@ -33,14 +41,31 @@ object ContentTypes extends Controller {
     )
   }
 
+  /**
+   * Create a content type.
+   *
+   * @return
+   */
   def create = Action {  implicit request =>
     Ok
   }
 
+  /**
+   * Update the specified content type.
+   *
+   * @param name
+   * @return
+   */
   def update(name :String) = Action { implicit request =>
     Ok
   }
 
+  /**
+   * Delete the specified content type.
+   *
+   * @param name
+   * @return
+   */
   def delete(name :String) = Action.async {
     ContentType.delete(name).map(
       isOk => {
