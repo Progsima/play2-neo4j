@@ -126,24 +126,19 @@ class Neo4jTransactionalService(rootUrl: String) {
 
       // Status is OK, let's look inside the JSON
       if (response.status == 200 || response.status == 201) {
-        Logger.debug("[Transaction]: Status code is 200/201 :")
+        Logger.debug("[Transaction]: Status code is 200/201 " + Json.prettyPrint(response.json))
 
         // Checking errors
         parseErrors(response.json) match {
           case Some(exception: Neo4jException) => throw exception
           case _ => {
-            response.json.\\("results").map {
-              data =>
-                // we remove empty data
-                val datas = data.\\("data").filter(row => ((row\\("row")).size > 0))
-                val rows = datas.map {
-                  row =>
-                    (row \\ ("row")).map {
-                      json => json(0)
-                    }
+            val results = response.json.\("results").as[JsArray].value
+            results.map {
+              result :JsValue => {
+                result.\("data").\\("row").map {
+                  datas => datas.as[JsArray].apply(0)
                 }
-                val results = rows.flatten
-                results
+              }
             }.toArray
           }
         }

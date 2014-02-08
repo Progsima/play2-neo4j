@@ -33,7 +33,24 @@ class Neo4jTransactionServiceSpec extends Specification {
         )
         val result = Helpers.await(Neo4j.cypher(queries))
         Logger.debug("Result is :" + result)
-        result.size must beEqualTo(0)
+        result.size must beEqualTo(3)
+      }
+    }
+
+    "execute multiple cypher select query" in {
+      running(FakeApplication()) {
+
+        val queries = Array(
+          ("MATCH (n:Country) RETURN n LIMIT 100", Map[String, Any]()),
+          ("MATCH (n:Country) RETURN n LIMIT 100", Map[String, Any]()),
+          ("MATCH (n:Country) RETURN n LIMIT 100", Map[String, Any]())
+        )
+        val result = Helpers.await(Neo4j.cypher(queries))
+        Logger.debug("Result is :" + result)
+        result.size must beEqualTo(3)
+        result(0).size must beEqualTo(6)
+        result(1).size must beEqualTo(6)
+        result(2).size must beEqualTo(6)
       }
     }
 
