@@ -31,8 +31,8 @@ class Neo4jTransactionalService(rootUrl: String) {
    * Play JSON format for read/write Map[String Any] that represent cypher params.
    * @see anmorcypher source code : https://github.com/AnormCypher/AnormCypher/blob/master/src/main/scala/org/anormcypher/Neo4jREST.scala
    */
-  implicit val mapFormat = new Format[Map[String, Any]] {
-    def read(xs: Seq[(String, JsValue)]): Map[String, Any] = (xs map {
+  implicit val mapFormat = new Format[Map[String, _]] {
+    def read(xs: Seq[(String, JsValue)]): Map[String, _] = (xs map {
       case (k, JsBoolean(b)) => k -> b
       case (k, JsNumber(n)) => k -> n
       case (k, JsString(s)) => k -> s
@@ -51,7 +51,7 @@ class Neo4jTransactionalService(rootUrl: String) {
       case x => JsError(s"json not of type Map[String, Any]: $x")
     }
 
-    def writes(map: Map[String, Any]) =
+    def writes(map: Map[String, _]) =
       Json.obj(map.map {
         case (key, value) => {
           val ret: (String, JsValueWrapper) = value match {
@@ -100,7 +100,7 @@ class Neo4jTransactionalService(rootUrl: String) {
    * @param params
    * @return
    */
-  def doSingleCypherQuery(query: String, params: Map[String, Any] = Map[String, Any](), transactionId: Option[Int] = None): Future[Seq[JsValue]] = {
+  def doSingleCypherQuery(query: String, params: Map[String, _] = Map[String, Any](), transactionId: Option[Int] = None): Future[Seq[JsValue]] = {
     val result = this.doCypherQuery(Array((query, params)), transactionId)
     for (datas <- result) yield {
       if (datas.size > 0) {
@@ -120,7 +120,7 @@ class Neo4jTransactionalService(rootUrl: String) {
    * @param transactionId
    * @return
    */
-  def doCypherQuery(queries: Array[(String, Map[String, Any])], transactionId: Option[Int]): Future[Array[Seq[JsValue]]] = {
+  def doCypherQuery(queries: Array[(String, Map[String, _])], transactionId: Option[Int]): Future[Array[Seq[JsValue]]] = {
     // here we parse the response
     for (response <- constructAndSend(queries, transactionId)) yield {
 
@@ -132,18 +132,19 @@ class Neo4jTransactionalService(rootUrl: String) {
         parseErrors(response.json) match {
           case Some(exception: Neo4jException) => throw exception
           case _ => {
-            val datas = response.json.\\("results").map {
+            response.json.\\("results").map {
               data =>
-                data.\\("data").filter(
-                    row => ((row\\("row")).size > 0)
-                  ).map {
-                    row => {
-                      Logger.debug("[Transaction]: Row is " + row \\ ("row").toString)
-                      row \\ ("row")
+                // we remove empty data
+                val datas = data.\\("data").filter(row => ((row\\("row")).size > 0))
+                val rows = datas.map {
+                  row =>
+                    (row \\ ("row")).map {
+                      json => json(0)
                     }
                 }
-            }.flatten
-            datas.toArray
+                val results = rows.flatten
+                results
+            }.toArray
           }
         }
       }
@@ -161,7 +162,7 @@ class Neo4jTransactionalService(rootUrl: String) {
    * @param transactionId : if None => /commit
    * @return
    */
-  private def constructAndSend(queries: Array[(String, Map[String, Any])], transactionId: Option[Int]): Future[Response] = {
+  private def constructAndSend(queries: Array[(String, Map[String, _])], transactionId: Option[Int]): Future[Response] = {
     val url = transactionId match {
       case Some(id: Int) => rootUrl + "/db/data/transaction/" + id
       case _ => rootUrl + "/db/data/transaction/commit"
@@ -175,9 +176,7 @@ class Neo4jTransactionalService(rootUrl: String) {
             json.append(
               Json.obj(
                 "statement" -> cypher,
-                "parameters" -> Json.obj(
-                  "props" -> Json.toJson(params)
-                )
+                "parameters" -> Json.toJson(params)
               )
             )
           }

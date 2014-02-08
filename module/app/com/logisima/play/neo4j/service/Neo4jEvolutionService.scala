@@ -55,7 +55,7 @@ object Neo4jEvolutionService {
       implicit val evolutionsReads = Json.reads[Evolution]
       datas.map(
         jsValue => {
-          jsValue(0).validate[Evolution].asOpt.get
+          jsValue.validate[Evolution].asOpt.get
         }
       )
     }

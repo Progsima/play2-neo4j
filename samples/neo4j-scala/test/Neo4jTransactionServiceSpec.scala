@@ -26,7 +26,11 @@ class Neo4jTransactionServiceSpec extends Specification {
         // delete the entire database
         Neo4jUtils.reset()
 
-        val queries = Array(("CREATE (n:Pays {props})", Map("name" -> "FRANCE", "pop" -> 100)), ("CREATE (n:Pays {props})", Map("name" -> "BELGIQUE", "pop" -> 10)))
+        val queries = Array(
+          ("CREATE (n:Pays {name: {name}, pop:{pop}})", Map("name" -> "FRANCE", "pop" -> 100)),
+          ("CREATE (n:Pays {name: {name}, pop:{pop}})", Map("name" -> "BELGIQUE", "pop" -> 10)),
+          ("CREATE (n:test {name: {name}})", Map("name" -> "toto"))
+        )
         val result = Helpers.await(Neo4j.cypher(queries))
         Logger.debug("Result is :" + result)
         result.size must beEqualTo(0)
@@ -38,7 +42,7 @@ class Neo4jTransactionServiceSpec extends Specification {
         // delete the entire database
         Neo4jUtils.reset()
 
-        val result = Helpers.await(Neo4j.cypher("CREATE (n:Pays {props})", Map("name" -> "ALLEMAGNE", "pop" -> 100)))
+        val result = Helpers.await(Neo4j.cypher("CREATE (n:Pays {props})", Map("props" -> Map("name" -> "ALLEMAGNE", "pop" -> 100))))
         Logger.debug("Result is :" + result.toString)
         result.size must beEqualTo(0)
       }
@@ -74,9 +78,9 @@ class Neo4jTransactionServiceSpec extends Specification {
       running(FakeApplication()) {
         val transId = Helpers.await(Neo4j.beginTx())
 
-        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "Neo4j", "Type" -> "Graph"), transId))
-        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "CouchDb", "Type" -> "Document"),transId))
-        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "Postgres", "Type" -> "Relational"), transId))
+        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("props" -> Map("name" -> "Neo4j", "Type" -> "Graph")), transId))
+        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("props" -> Map("name" -> "CouchDb", "Type" -> "Document")),transId))
+        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("props" -> Map("name" -> "Postgres", "Type" -> "Relational")), transId))
         Helpers.await(Neo4j.commit(transId))
 
         val result: Seq[JsValue] = Helpers.await(Neo4j.cypher("MATCH (n:DB) RETURN n"))
@@ -90,9 +94,9 @@ class Neo4jTransactionServiceSpec extends Specification {
         Neo4jUtils.reset()
 
         val transId = Helpers.await(Neo4j.beginTx())
-        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "Neo4j", "Type" -> "Graph"), transId))
-        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "CouchDb", "Type" -> "Document"),transId))
-        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("name" -> "Postgres", "Type" -> "Relational"), transId))
+        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("props" -> Map("name" -> "Neo4j", "Type" -> "Graph")), transId))
+        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("props" -> Map("name" -> "CouchDb", "Type" -> "Document")),transId))
+        Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("props" -> Map("name" -> "Postgres", "Type" -> "Relational")), transId))
         Helpers.await(Neo4j.rollback(transId))
 
         val result = Helpers.await(Neo4j.cypher("MATCH (n:DB) RETURN n"))

@@ -4,6 +4,11 @@
 
 # Home page
 GET     /                           controllers.Application.index
+GET     /types                       controllers.ContentTypes.list
+PUT     /types                       controllers.ContentTypes.create
+GET     /types/:name                 controllers.ContentTypes.get(name :String)
+POST    /types/:name                 controllers.ContentTypes.update(name :String)
+DELETE  /types/:name                 controllers.ContentTypes.delete(name :String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

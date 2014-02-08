@@ -177,7 +177,7 @@ object Neo4j {
    * @param params
    * @return
    */
-  def cypher(query: String,  params: Map[String, Any]) :Future[Seq[JsValue]] = {
+  def cypher(query: String,  params: Map[String, _]) :Future[Seq[JsValue]] = {
     new Neo4jTransactionalService(this.serverUrl).doSingleCypherQuery(query, params, None)
   }
 
@@ -187,7 +187,7 @@ object Neo4j {
    * @param queries
    * @return
    */
-  def cypher(queries: Array[(String, Map[String, Any])]): Future[Array[Seq[JsValue]]] = {
+  def cypher(queries: Array[(String, Map[String, _])]): Future[Array[Seq[JsValue]]] = {
     new Neo4jTransactionalService(this.serverUrl).doCypherQuery(queries, None)
   }
 
@@ -209,7 +209,7 @@ object Neo4j {
    * @param params
    * @return
    */
-  def cypher(query: String, params: Map[String, Any], transactionId :Int) :Future[Seq[JsValue]] = {
+  def cypher(query: String, params: Map[String, _], transactionId :Int) :Future[Seq[JsValue]] = {
     new Neo4jTransactionalService(this.serverUrl).doSingleCypherQuery(query, params, Some(transactionId))
   }
 
