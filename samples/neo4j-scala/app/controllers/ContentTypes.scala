@@ -18,7 +18,7 @@ object ContentTypes extends Controller {
   def list = Action.async {
     ContentType.list().map(
       seqContentType =>
-        Ok(seqContentType.toString)
+        Ok(Json.toJson(seqContentType)).as("application/json")
     )
   }
 
@@ -26,7 +26,7 @@ object ContentTypes extends Controller {
     ContentType.get(name).map(
       optionContentType => optionContentType match {
         case Some(contentType) =>
-          Ok(contentType.toString)
+          Ok(Json.toJson(contentType)).as("application/json")
         case _ =>
           NotFound
       }
