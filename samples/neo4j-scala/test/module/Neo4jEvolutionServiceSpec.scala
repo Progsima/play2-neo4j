@@ -1,15 +1,15 @@
-import com.logisima.play.neo4j.evolution.{EvolutionFeatureMode, CypherScriptType, Evolution}
-import com.logisima.play.neo4j.exception.Neo4jException
+package module
+
+import com.logisima.play.neo4j.evolution.{EvolutionFeatureMode, Evolution}
 import com.logisima.play.neo4j.Neo4j
-import com.logisima.play.neo4j.service.{Neo4jTransactionalService, Neo4jEvolutionService}
+import com.logisima.play.neo4j.service.Neo4jEvolutionService
 import com.logisima.play.neo4j.utils.{Neo4jUtils, FileUtils}
 import java.io.File
 import org.specs2.mutable._
 
-import play.api.libs.json.JsValue
 import play.api.test._
 import play.api.test.Helpers._
-import play.{Logger, Play}
+import play.Play
 import scala.io.Source
 
 /**

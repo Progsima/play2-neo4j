@@ -9,7 +9,8 @@ object ApplicationBuild extends Build {
 
   val appDependencies = Seq(
     // Default Neo4j plugin deps
-    "org.neo4j.app" % "neo4j-server" % "2.0.0" classifier "static-web" classifier "" exclude("org.slf4j", "slf4j-jdk14")
+    "org.neo4j.app" % "neo4j-server" % "2.0.0" classifier "static-web" classifier "" exclude("org.slf4j", "slf4j-jdk14"),
+    "com.wordnik" %% "swagger-play2" % "1.3.2"
   )
 
   val play2neo4jModule = RootProject(file("../../module"))
