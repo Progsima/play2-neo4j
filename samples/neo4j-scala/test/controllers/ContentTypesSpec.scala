@@ -32,9 +32,9 @@ class ContentTypesSpec extends Specification {
 
     "create a content type without description" in {
       running(FakeApplication()) {
-        val Some(result) = route(FakeRequest(PUT, "/api/types").withBody(
+        val Some(result) = route(FakeRequest(POST, "/api/types").withBody(
           Json.obj(
-            "name" -> "Faq",
+            "name" -> "test1",
             "schema" -> "{}"
           )
         ))
@@ -45,16 +45,15 @@ class ContentTypesSpec extends Specification {
 
     "create a content type with description" in {
       running(FakeApplication()) {
-        val Some(result) = route(FakeRequest(PUT, "/api/types").withBody(
+        val Some(result) = route(FakeRequest(POST, "/api/types").withBody(
           Json.obj(
-            "name" -> "Faq",
+            "name" -> "test2",
             "schema" -> "{}",
-            "description" -> "Just a FAQ type"
+            "description" -> "Just a description"
           )
         ))
         status(result) must equalTo(CREATED)
         contentType(result) must beSome("application/json")
-        charset(result) must beSome("utf-8")
       }
     }
 
