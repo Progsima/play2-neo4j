@@ -13,9 +13,7 @@ import play.Play
 import scala.io.Source
 
 /**
- * Add your spec here.
- * You can mock out a whole application including requests, plugins etc.
- * For more information, consult the wiki.
+ * Spec to test Neo4j evolution service.
  */
 class Neo4jEvolutionServiceSpec extends Specification {
 

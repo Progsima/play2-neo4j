@@ -2,14 +2,11 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET         /                                controllers.Application.index
-
 # Content type
 GET         /api/types                       controllers.ContentTypes.list
-#PUT        /api/types                       controllers.ContentTypes.create
+POST        /api/types                       controllers.ContentTypes.create
 GET         /api/types/:name                 controllers.ContentTypes.get(name :String)
-#POST       /api/types/:name                 controllers.ContentTypes.update(name :String)
+PUT         /api/types/:name                 controllers.ContentTypes.update(name :String)
 DELETE      /api/types/:name                 controllers.ContentTypes.delete(name :String)
 
 # Swagger

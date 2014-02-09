@@ -7,6 +7,8 @@ import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.functional.syntax._
 
 import scala.concurrent.Future
+import com.wordnik.swagger.annotations._
+import scala.annotation.target.field
 
 /**
  * Definition of a ContentType object.
@@ -14,7 +16,12 @@ import scala.concurrent.Future
  * @param name
  * @param schema
  */
-case class ContentType(name :String, schema :String)
+@ApiModel("ContentType")
+case class ContentType(
+  @(ApiModelProperty @field)(position=1, required=true) name :String,
+  @(ApiModelProperty @field)(position=2, required=true)schema :String,
+  @(ApiModelProperty @field)(position=3) description :Option[String]
+)
 
 /**
  * Helper for model ContentType.
@@ -27,8 +34,8 @@ object ContentType {
    * List of cypher queries
    */
   private val getQuery :String = "MATCH (n:Content_Type { name: {name} }) RETURN n;"
-  private val createQuery :String = "CREATE (n:Content_Type {params}) RETURN n;"
-  private val updateQuery :String = "MATCH (n:Content_Type { name: {name} }) SET n = {params} RETURN n"
+  private val createQuery :String = "CREATE (n:Content_Type {name:{name}, schema:{schema}, description:{description} }) RETURN n;"
+  private val updateQuery :String = "MATCH (n:Content_Type { name: {id} }) SET n.schema={name}, n.schema={schema}, n.description={description} RETURN n"
   private val deleteQuery :String = "MATCH (n:Content_Type { name: {name} }) DELETE n; "
   private val listQuery :String = "MATCH (n:Content_Type) RETURN n SKIP {skip} LIMIT {limit}"
 
@@ -57,7 +64,15 @@ object ContentType {
    * @param json
    */
   def create( json :JsValue) :Future[Option[ContentType]] = {
-    for ( jsonResultSet <- Neo4j.cypher(createQuery, Map("name" -> json \ "name", "schema" -> json \ "schema"))) yield {
+    for (
+      jsonResultSet <- Neo4j.cypher(
+        createQuery,
+        Map(
+          "name" -> (json \ "name").as[String],
+          "schema" -> (json \ "schema").as[String],
+          "description" -> (json \ "description").asOpt[String].getOrElse("")
+      ))) yield {
+
       if(jsonResultSet.size > 0) {
         Some(jsonResultSet(0).as[ContentType])
       }
@@ -71,8 +86,16 @@ object ContentType {
    *
    * @param json
    */
-  def update( json :JsValue ) {
-    for ( jsonResultSet <- Neo4j.cypher(updateQuery, Map("name" -> json \ "name", "schema" -> json \ "schema"))) yield {
+  def update( name: String, json :JsValue ) :Future[Option[ContentType]] = {
+    for (
+      jsonResultSet <- Neo4j.cypher(
+        updateQuery,
+        Map(
+          "id" -> name,
+          "name" -> (json \ "name").as[String],
+          "schema" -> (json \ "schema").as[String],
+          "description" -> (json \ "description").asOpt[String].getOrElse("")
+        ))) yield {
       if(jsonResultSet.size > 0) {
         Some(jsonResultSet(0).as[ContentType])
       }
