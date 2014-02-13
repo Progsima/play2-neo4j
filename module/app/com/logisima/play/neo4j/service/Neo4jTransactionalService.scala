@@ -64,6 +64,7 @@ class Neo4jTransactionalService(rootUrl: String) {
             case d: Double => key -> JsNumber(d)
             case c: Char => key -> JsNumber(c)
             case s: String => key -> JsString(s)
+            case jsObj :JsObject => key -> jsObj
             case bs: Seq[_] if (bs.forall(_.isInstanceOf[Boolean])) =>
               key -> JsArray(bs.map(b => JsBoolean(b.asInstanceOf[Boolean])))
             case bs: Seq[_] if (bs.forall(_.isInstanceOf[Byte])) =>
