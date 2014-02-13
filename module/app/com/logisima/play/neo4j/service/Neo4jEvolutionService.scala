@@ -145,8 +145,8 @@ object Neo4jEvolutionService {
                   cypherEvolutionQuery(
                     evolution.revision,
                     // here we escape quote for up & down script and replace ; to ;; for the statement function
-                    evolution.cypher_down.replace("\"", "\\\"") replace(";", ";;"),
-                    evolution.cypher_up.replace("\"", "\\\"").replace(";", ";;")
+                    evolution.cypher_down.replace("\\\"", "\"").replace("\"", "\\\"").replace(";", ";;"),
+                    evolution.cypher_up.replace("\\\"", "\"").replace("\"", "\\\"").replace(";", ";;")
                   )
               )
           }
