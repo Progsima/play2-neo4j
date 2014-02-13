@@ -1,2 +1,2 @@
-create (tag:Content_Type {name:"Tag", schema:"my schema"}),
-       (Category:Content_Type {name:"Category", schema:"my schema"});
+create (tag:Content_Type {name:"Tag", schema:"{ \"title\": \"Tag Content Type\", \"type\": \"object\",\"properties\": {\"name\": {\"type\": \"string\"},\"description\": {\"type\": \"string\"}},\"required\": [\"name\"] }"}),
+       (Category:Content_Type {name:"Category", schema:"{ \"title\": \"Category Content Type\", \"type\": \"object\",\"properties\": {\"name\": {\"type\": \"string\"},\"description\": {\"type\": \"string\"}},\"required\": [\"name\"] }"});

@@ -38,12 +38,13 @@ object ContentType {
   private val updateQuery :String = "MATCH (n:Content_Type { name: {id} }) SET n.schema={name}, n.schema={schema}, n.description={description} RETURN n"
   private val deleteQuery :String = "MATCH (n:Content_Type { name: {name} }) DELETE n; "
   private val listQuery :String = "MATCH (n:Content_Type) RETURN n SKIP {skip} LIMIT {limit}"
+  private val schemaQuery :String = "MATCH (n:Content_Type { name: {name} }) RETURN n.schema;"
 
   implicit val contentTypeReads = Json.reads[ContentType]
   implicit val contentTypeWrites = Json.writes[ContentType]
 
   /**
-   * Retrieve a contentType by its name.
+   * Method to retrieve a contentType by its name.
    *
    * @param name
    */
@@ -83,6 +84,7 @@ object ContentType {
   }
 
   /**
+   * Method to update a ContentType.
    *
    * @param json
    */
@@ -117,7 +119,7 @@ object ContentType {
   }
 
   /**
-   *
+   * Method to get all ContentType.
    * @param skip
    * @param limit
    */
@@ -126,6 +128,23 @@ object ContentType {
       jsonResultSet.map {
         jsValue =>
           jsValue.as[ContentType]
+      }
+    }
+  }
+
+  /**
+   * Method to retrieve the json schema of the content Type.
+   *
+   * @param name
+   * @return
+   */
+  def schema(name :String) :Future[Option[String]] = {
+    for ( jsonResultSet <- Neo4j.cypher(getQuery, Map("name" -> name))) yield {
+      if(jsonResultSet.size > 0) {
+        Some(jsonResultSet(0).toString)
+      }
+      else{
+        None
       }
     }
   }
