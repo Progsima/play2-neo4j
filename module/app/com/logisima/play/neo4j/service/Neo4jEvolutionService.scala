@@ -6,7 +6,7 @@ import com.logisima.play.neo4j.evolution.EvolutionFeatureMode.EvolutionFeatureMo
 import com.logisima.play.neo4j.utils.FileUtils
 import com.logisima.play.neo4j.Neo4j
 import play.{Logger, Play}
-import play.api.libs.Collections
+import play.api.libs.{Codecs, Collections}
 import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.json._
 import java.io.File
@@ -37,7 +37,7 @@ object Neo4jEvolutionService {
    * @param revision
    * @return
    */
-  private def cypherEvolutionQuery(revision: Int, cypher_down: String, cypher_up: String): String = s"""CREATE (n:Play_Evolutions { revision:${revision}, cypher_down:"${cypher_down}", cypher_up:"${cypher_up}" });"""
+  private def cypherEvolutionQuery(revision: Int, cypher_down: String, cypher_up: String, hash :String): String = s"""CREATE (n:Play_Evolutions { revision:${revision}, cypher_down:"${cypher_down}", cypher_up:"${cypher_up}", hash:"${hash}" });"""
 
   /**
    * Retrieve evolutions from neo4j database that have been apply.
@@ -76,7 +76,7 @@ object Neo4jEvolutionService {
               case Some(file: File) => Source.fromFile(file).getLines() mkString "\n"
               case _ => ""
             }
-            Option((revision + 1, Evolution(revision, upScript, downScript)))
+            Option((revision + 1, Evolution(revision, upScript, downScript, hash(downScript, upScript))))
           }
           case None => None
         }
@@ -121,8 +121,26 @@ object Neo4jEvolutionService {
     val appEvol = applicationEvolutions()
     val neo4jEvol = Await result(neo4jEvolutions(),  Duration.Inf)
 
-    val downEvolution: Seq[Evolution] = neo4jEvol.diff(appEvol)
-    val upEvolution: Seq[Evolution] = appEvol.diff(neo4jEvol)
+    val downEvolution: Seq[Evolution] = neo4jEvol.filter(
+      evolution => {
+        var res = true
+        for(evol <- appEvol) {
+          if(evol.hash == evolution.hash)
+            res = false
+        }
+        res
+      }
+    )
+    val upEvolution: Seq[Evolution] = appEvol.filter(
+      evolution => {
+        var res = true
+        for(evol <- neo4jEvol) {
+          if(evol.hash == evolution.hash)
+            res = false
+        }
+        res
+      }
+    )
     Logger.debug("[Evolution]: down evolutions are " + downEvolution)
     Logger.debug("[Evolution]: up evolutions are " + upEvolution)
 
@@ -146,7 +164,8 @@ object Neo4jEvolutionService {
                     evolution.revision,
                     // here we escape quote for up & down script and replace ; to ;; for the statement function
                     evolution.cypher_down.replace("\\\"", "\"").replace("\"", "\\\"").replace(";", ";;"),
-                    evolution.cypher_up.replace("\\\"", "\"").replace("\"", "\\\"").replace(";", ";;")
+                    evolution.cypher_up.replace("\\\"", "\"").replace("\"", "\\\"").replace(";", ";;"),
+                    evolution.hash
                   )
               )
           }
@@ -166,6 +185,10 @@ object Neo4jEvolutionService {
       }
 
     }
+  }
+
+  private def hash(cypher_down :String, cypher_up :String) :String = {
+    Codecs.sha1(cypher_down.trim + cypher_up.trim)
   }
 
 }
