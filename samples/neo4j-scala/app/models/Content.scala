@@ -2,9 +2,11 @@ package models
 
 import scala.concurrent.Future
 import com.logisima.play.neo4j.Neo4j
-import play.api.libs.json.{JsObject, JsValue}
+import play.api.libs.json.{Json, JsObject, JsValue}
 import play.api.libs.concurrent.Execution.Implicits._
 import tools.JsonTools
+import play.api.libs.Codecs
+import java.util.UUID
 
 /**
  * Helper for model Content.
@@ -17,8 +19,8 @@ object Content {
    * List of cypher queries
    */
   private def getQuery(contentType :String) = s"MATCH (n:${contentType} { uuid:{uuid} }) RETURN n;"
-  private def createQuery(contentType :String) = s"CREATE (n:${contentType} {params}) RETURN n;"
-  private def updateQuery(contentType :String) = s"MATCH (n:${contentType} { uuid:{uuid} }) SET {params} RETURN n"
+  private def createQuery(contentType :String) = s"CREATE (n:${contentType}  {params}) RETURN n;"
+  private def updateQuery(contentType :String) = s"MATCH (n:${contentType} { uuid:{uuid} }) SET n = {params} RETURN n"
   private def deleteQuery(contentType :String) = s"MATCH (n:${contentType} { uuid:{uuid} }) DELETE n; "
   private def listQuery(contentType :String) = s"MATCH (n:${contentType}) RETURN n SKIP {skip} LIMIT {limit}"
 
@@ -67,11 +69,12 @@ object Content {
           JsonTools.validate(schema, json.toString) match {
             case Some(errors) => Future { None }// TODO Exception or Either ?
             case None => {
+              val params :JsObject = json.as[JsObject].+( ("uuid", Json.toJson(UUID.randomUUID().toString)))
               for (
                 jsonResultSet <- Neo4j.cypher(
                   createQuery(contentType),
                   Map(
-                    "params" -> json.as[JsObject]
+                    "params" -> params
                   ))) yield {
 
                 if (jsonResultSet.size > 0) {
@@ -103,12 +106,13 @@ object Content {
           JsonTools.validate(schema, json.toString) match {
             case Some(errors) => Future { None }// TODO Exception or Either ?
             case None => {
+              val params :JsObject = json.as[JsObject].+( ("uuid", Json.toJson(uuid)) )
               for (
                 jsonResultSet <- Neo4j.cypher(
                   updateQuery(contentType),
                   Map(
                     "uuid" -> uuid,
-                    "params" -> json.as[JsObject]
+                    "params" -> params
                   ))) yield {
 
                 if (jsonResultSet.size > 0) {

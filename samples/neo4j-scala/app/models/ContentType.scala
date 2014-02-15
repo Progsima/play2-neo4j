@@ -141,7 +141,8 @@ object ContentType {
   def schema(name :String) :Future[Option[String]] = {
     for ( jsonResultSet <- Neo4j.cypher(getQuery, Map("name" -> name))) yield {
       if(jsonResultSet.size > 0) {
-        Some(jsonResultSet(0).toString)
+        val schema = jsonResultSet(0).\("schema").toString.replace("\\\"", "\"")
+        Some(schema.substring(1, schema.length -1))
       }
       else{
         None
