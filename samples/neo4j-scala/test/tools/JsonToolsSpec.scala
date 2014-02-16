@@ -1,6 +1,5 @@
 package tools
 
-import com.logisima.play.neo4j.utils.Neo4jUtils
 import org.specs2.mutable._
 
 /**
