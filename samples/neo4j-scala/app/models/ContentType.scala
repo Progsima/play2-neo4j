@@ -4,22 +4,22 @@ import com.logisima.play.neo4j.Neo4j
 
 import play.api.libs.json._
 import play.api.libs.concurrent.Execution.Implicits._
-import play.api.libs.functional.syntax._
 
 import scala.concurrent.Future
 import com.wordnik.swagger.annotations._
-import scala.annotation.target.field
+import scala.annotation.meta.field
 
 /**
  * Definition of a ContentType object.
  *
- * @param name
- * @param schema
+ * @param name Name of the content type
+ * @param schema Json schema of the content type
+ * @param description Description of the content type
  */
 @ApiModel("ContentType")
 case class ContentType(
   @(ApiModelProperty @field)(position=1, required=true) name :String,
-  @(ApiModelProperty @field)(position=2, required=true)schema :String,
+  @(ApiModelProperty @field)(position=2, required=true) schema :String,
   @(ApiModelProperty @field)(position=3) description :Option[String]
 )
 
@@ -38,7 +38,6 @@ object ContentType {
   private val updateQuery :String = "MATCH (n:Content_Type { name: {id} }) SET n.schema={name}, n.schema={schema}, n.description={description} RETURN n"
   private val deleteQuery :String = "MATCH (n:Content_Type { name: {name} }) DELETE n; "
   private val listQuery :String = "MATCH (n:Content_Type) RETURN n SKIP {skip} LIMIT {limit}"
-  private val schemaQuery :String = "MATCH (n:Content_Type { name: {name} }) RETURN n.schema;"
 
   implicit val contentTypeReads = Json.reads[ContentType]
   implicit val contentTypeWrites = Json.writes[ContentType]
@@ -46,7 +45,7 @@ object ContentType {
   /**
    * Method to retrieve a contentType by its name.
    *
-   * @param name
+   * @param name Name of the content type
    */
   def get( name :String) :Future[Option[ContentType]] = {
     for ( jsonResultSet <- Neo4j.cypher(getQuery, Map("name" -> name))) yield {
@@ -62,7 +61,7 @@ object ContentType {
   /**
    * Method to create a contentType.
    *
-   * @param json
+   * @param json Json data of the content type
    */
   def create( json :JsValue) :Future[Option[ContentType]] = {
     for (
@@ -86,7 +85,7 @@ object ContentType {
   /**
    * Method to update a ContentType.
    *
-   * @param json
+   * @param json Json data of the content type
    */
   def update( name: String, json :JsValue ) :Future[Option[ContentType]] = {
     for (
@@ -110,7 +109,7 @@ object ContentType {
   /**
    * Method to delete a contentType by its name.
    *
-   * @param name
+   * @param name Name of the content type
    */
   def delete(name :String) :Future[Boolean] = {
      for ( jsonResultSet <- Neo4j.cypher(deleteQuery, Map("name" -> name))) yield {
@@ -120,8 +119,8 @@ object ContentType {
 
   /**
    * Method to get all ContentType.
-   * @param skip
-   * @param limit
+   * @param skip The starting position at wich we retrieve data
+   * @param limit Number of data to return
    */
   def list(skip :Int = 0, limit :Int = 10) :Future[Seq[ContentType]] = {
     for ( jsonResultSet <- Neo4j.cypher(listQuery, Map("skip" -> skip, "limit" -> limit)) ) yield {
@@ -135,13 +134,13 @@ object ContentType {
   /**
    * Method to retrieve the json schema of the content Type.
    *
-   * @param name
+   * @param name Name of the content type
    * @return
    */
   def schema(name :String) :Future[Option[String]] = {
     for ( jsonResultSet <- Neo4j.cypher(getQuery, Map("name" -> name))) yield {
       if(jsonResultSet.size > 0) {
-        val schema = jsonResultSet(0).\("schema").toString.replace("\\\"", "\"")
+        val schema = jsonResultSet(0).\("schema").toString().replace("\\\"", "\"")
         Some(schema.substring(1, schema.length -1))
       }
       else{

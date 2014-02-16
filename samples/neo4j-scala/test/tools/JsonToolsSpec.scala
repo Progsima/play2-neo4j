@@ -1,16 +1,7 @@
 package tools
 
-import com.logisima.play.neo4j.evolution.{EvolutionFeatureMode, Evolution}
-import com.logisima.play.neo4j.Neo4j
-import com.logisima.play.neo4j.service.Neo4jEvolutionService
-import com.logisima.play.neo4j.utils.{Neo4jUtils, FileUtils}
-import java.io.File
+import com.logisima.play.neo4j.utils.Neo4jUtils
 import org.specs2.mutable._
-
-import play.api.test._
-import play.api.test.Helpers._
-import play.Play
-import scala.io.Source
 
 /**
  * Spec to test Json tools.

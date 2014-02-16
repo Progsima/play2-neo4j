@@ -15,7 +15,6 @@ import com.logisima.play.neo4j.utils.FileUtils
 import java.io.File
 import com.logisima.play.neo4j.service.Neo4jTransactionalService
 import scala.concurrent.Future
-import com.logisima.play.neo4j.exception.Neo4jException
 import play.api.libs.json.JsValue
 
 /**
@@ -56,31 +55,29 @@ object Neo4j {
 
     // Create the neo4j database
     val graphdb = FileUtils.getFile(neo4jPropertiesPath) match {
-      case Some(f: File) => {
+      case Some(f: File) =>
         new GraphDatabaseFactory()
           .newEmbeddedDatabaseBuilder(DBPath)
           .loadPropertiesFromFile(neo4jPropertiesPath)
           .newGraphDatabase()
           .asInstanceOf[GraphDatabaseAPI]
-      }
-      case None => {
+      case None =>
         new GraphDatabaseFactory()
           .newEmbeddedDatabaseBuilder(DBPath)
           .setConfig(ShellSettings.remote_shell_enabled, Settings.TRUE)
           .newGraphDatabase()
           .asInstanceOf[GraphDatabaseAPI]
-      }
     }
 
     // create the neo4j server
-    val config = new ServerConfigurator(graphdb);
+    val config = new ServerConfigurator(graphdb)
     // let the server endpoint be on a custom port
     config.configuration().setProperty(
       Configurator.WEBSERVER_PORT_PROPERTY_KEY,
       Play.configuration.getInt("neo4j.embedded.port").getOrElse(7575)
     )
 
-    val srv = new WrappingNeoServerBootstrapper(graphdb, config);
+    val srv = new WrappingNeoServerBootstrapper(graphdb, config)
 
     (graphdb, srv)
   }
@@ -106,19 +103,16 @@ object Neo4j {
     Play.configuration.getString("neo4j.url") match {
 
       // Configure for a distant neo4j server
-      case Some(url: String) => {
-        serverUrl = url
-      }
+      case Some(url: String) => serverUrl = url
 
       // Configure and start an embedded server
-      case None => {
+      case None =>
         Some(startDb()).map {
           case (x, y) =>
             graphdb = Some(x)
             webadmin = Some(y)
         }
         startAdmin()
-      }
     }
   }
 
@@ -144,6 +138,7 @@ object Neo4j {
   /**
    * Commit a transaction by its id.
    *
+   * @param transId Identifier of the transaction to commit
    * @return
    */
   def commit(transId :Int) :Future[Boolean] = {
@@ -153,7 +148,7 @@ object Neo4j {
   /**
    * Rollback a transaction by its id.
    *
-   * @param transId
+   * @param transId Identifier of the transaction to rollback
    * @return
    */
   def rollback(transId :Int) :Future[Boolean] = {
@@ -163,7 +158,7 @@ object Neo4j {
   /**
    * Execute a single cypher query and commit it.
    *
-   * @param query
+   * @param query Cypher query
    * @return
    */
   def cypher(query: String) :Future[Seq[JsValue]] = {
@@ -173,8 +168,8 @@ object Neo4j {
   /**
    * Execute a single cypher query with params and commit it.
    *
-   * @param query
-   * @param params
+   * @param query Cypher query
+   * @param params Parameters of the cypher query
    * @return
    */
   def cypher(query: String,  params: Map[String, _]) :Future[Seq[JsValue]] = {
@@ -184,7 +179,7 @@ object Neo4j {
   /**
    * Exceute a set of cypher query with params into the same transaction, and commit it.
    *
-   * @param queries
+   * @param queries Array of cypher query with their parameters
    * @return
    */
   def cypher(queries: Array[(String, Map[String, _])]): Future[Array[Seq[JsValue]]] = {
@@ -194,8 +189,8 @@ object Neo4j {
   /**
    * Execute a single cypher query into the specified transaction.
    *
-   * @param query
-   * @param transactionId
+   * @param query Cypher query
+   * @param transactionId Identifier of transaction that will handle the cypher query
    * @return
    */
   def cypher(query: String, transactionId :Int) :Future[Seq[JsValue]] = {
@@ -205,8 +200,9 @@ object Neo4j {
   /**
    * Execute a single cypher query with params into the specified transaction.
    *
-   * @param query
-   * @param params
+   * @param query  Cypher query
+   * @param params Parameters of the cypher query
+   * @param transactionId Identifier of transaction that will handle the cypher query
    * @return
    */
   def cypher(query: String, params: Map[String, _], transactionId :Int) :Future[Seq[JsValue]] = {
@@ -214,9 +210,10 @@ object Neo4j {
   }
 
   /**
-   * Exceute a set of cypher query with params into the specified transaction.
+   * Execute a set of cypher query with params into the specified transaction.
    *
-   * @param queries
+   * @param queries Array of cypher query with their parameters
+   * @param transactionId Identifier of transaction that will handle the cypher query
    * @return
    */
   def cypher(queries: Array[(String, Map[String, Any])], transactionId :Int): Future[Array[Seq[JsValue]]] = {

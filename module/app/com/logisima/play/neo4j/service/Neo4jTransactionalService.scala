@@ -29,18 +29,18 @@ class Neo4jTransactionalService(rootUrl: String) {
 
   /**
    * Play JSON format for read/write Map[String Any] that represent cypher params.
-   * @see anmorcypher source code : https://github.com/AnormCypher/AnormCypher/blob/master/src/main/scala/org/anormcypher/Neo4jREST.scala
+   * @see anormcypher source code : https://github.com/AnormCypher/AnormCypher/blob/master/src/main/scala/org/anormcypher/Neo4jREST.scala
    */
   implicit val mapFormat = new Format[Map[String, _]] {
     def read(xs: Seq[(String, JsValue)]): Map[String, _] = (xs map {
       case (k, JsBoolean(b)) => k -> b
       case (k, JsNumber(n)) => k -> n
       case (k, JsString(s)) => k -> s
-      case (k, JsArray(bs)) if (bs.forall(_.isInstanceOf[JsBoolean])) =>
+      case (k, JsArray(bs)) if bs.forall(_.isInstanceOf[JsBoolean]) =>
         k -> bs.asInstanceOf[Seq[JsBoolean]].map(_.value)
-      case (k, JsArray(ns)) if (ns.forall(_.isInstanceOf[JsNumber])) =>
+      case (k, JsArray(ns)) if ns.forall(_.isInstanceOf[JsNumber]) =>
         k -> ns.asInstanceOf[Seq[JsNumber]].map(_.value)
-      case (k, JsArray(ss)) if (ss.forall(_.isInstanceOf[JsString])) =>
+      case (k, JsArray(ss)) if ss.forall(_.isInstanceOf[JsString]) =>
         k -> ss.asInstanceOf[Seq[JsString]].map(_.value)
       case (k, JsObject(o)) => k -> read(o)
       case _ => throw new RuntimeException(s"unsupported type")
@@ -53,7 +53,7 @@ class Neo4jTransactionalService(rootUrl: String) {
 
     def writes(map: Map[String, _]) =
       Json.obj(map.map {
-        case (key, value) => {
+        case (key, value) =>
           val ret: (String, JsValueWrapper) = value match {
             case b: Boolean => key -> JsBoolean(b)
             case b: Byte => key -> JsNumber(b)
@@ -65,40 +65,39 @@ class Neo4jTransactionalService(rootUrl: String) {
             case c: Char => key -> JsNumber(c)
             case s: String => key -> JsString(s)
             case jsObj :JsObject => key -> jsObj
-            case bs: Seq[_] if (bs.forall(_.isInstanceOf[Boolean])) =>
+            case bs: Seq[_] if bs.forall(_.isInstanceOf[Boolean]) =>
               key -> JsArray(bs.map(b => JsBoolean(b.asInstanceOf[Boolean])))
-            case bs: Seq[_] if (bs.forall(_.isInstanceOf[Byte])) =>
+            case bs: Seq[_] if bs.forall(_.isInstanceOf[Byte]) =>
               key -> JsArray(bs.map(b => JsNumber(b.asInstanceOf[Byte])))
-            case ss: Seq[_] if (ss.forall(_.isInstanceOf[Short])) =>
+            case ss: Seq[_] if ss.forall(_.isInstanceOf[Short]) =>
               key -> JsArray(ss.map(s => JsNumber(s.asInstanceOf[Short])))
-            case is: Seq[_] if (is.forall(_.isInstanceOf[Int])) =>
+            case is: Seq[_] if is.forall(_.isInstanceOf[Int]) =>
               key -> JsArray(is.map(i => JsNumber(i.asInstanceOf[Int])))
-            case ls: Seq[_] if (ls.forall(_.isInstanceOf[Long])) =>
+            case ls: Seq[_] if ls.forall(_.isInstanceOf[Long]) =>
               key -> JsArray(ls.map(l => JsNumber(l.asInstanceOf[Long])))
-            case fs: Seq[_] if (fs.forall(_.isInstanceOf[Float])) =>
+            case fs: Seq[_] if fs.forall(_.isInstanceOf[Float]) =>
               key -> JsArray(fs.map(f => JsNumber(f.asInstanceOf[Float])))
-            case ds: Seq[_] if (ds.forall(_.isInstanceOf[Double])) =>
+            case ds: Seq[_] if ds.forall(_.isInstanceOf[Double]) =>
               key -> JsArray(ds.map(d => JsNumber(d.asInstanceOf[Double])))
-            case cs: Seq[_] if (cs.forall(_.isInstanceOf[Char])) =>
+            case cs: Seq[_] if cs.forall(_.isInstanceOf[Char]) =>
               key -> JsArray(cs.map(c => JsNumber(c.asInstanceOf[Char])))
-            case ss: Seq[_] if (ss.forall(_.isInstanceOf[String])) =>
+            case ss: Seq[_] if ss.forall(_.isInstanceOf[String]) =>
               key -> JsArray(ss.map(s => JsString(s.asInstanceOf[String])))
-            case sam: Map[_, _] if (sam.keys.forall(_.isInstanceOf[String])) =>
+            case sam: Map[_, _] if sam.keys.forall(_.isInstanceOf[String]) =>
               key -> writes(sam.asInstanceOf[Map[String, Any]])
             case xs: Seq[_] => throw new RuntimeException(s"unsupported Neo4j array type: $xs (mixed types?)")
             case x => throw new RuntimeException(s"unsupported Neo4j type: $x")
           }
           ret
-        }
       }.toSeq: _*)
   }
 
   /**
-   * Execute a unique cypher with its params (It's better to user params for perfomance).
-   * This method return a list of json that represent datas, or a neo4jExeption.
+   * Execute a unique cypher with its params (It's better to user params for performance).
+   * This method return a list of json that represent data, or a neo4jException.
    *
-   * @param query
-   * @param params
+   * @param query A cypher query
+   * @param params Parameters of the cypher query
    * @return
    */
   def doSingleCypherQuery(query: String, params: Map[String, _] = Map[String, Any](), transactionId: Option[Int] = None): Future[Seq[JsValue]] = {
@@ -115,10 +114,10 @@ class Neo4jTransactionalService(rootUrl: String) {
 
   /**
    * Execute a list of cypher query (with theirs params) into the specified transaction.
-   * This method return a list of json that represent datas, or a neo4jExeption.
+   * This method return a list of json that represent data, or a neo4jException.
    *
-   * @param queries
-   * @param transactionId
+   * @param queries All we need to generate cypher queries
+   * @param transactionId The identifier of a transaction. If None, then we auto commit
    * @return
    */
   def doCypherQuery(queries: Array[(String, Map[String, _])], transactionId: Option[Int]): Future[Array[Seq[JsValue]]] = {
@@ -132,7 +131,7 @@ class Neo4jTransactionalService(rootUrl: String) {
         // Checking errors
         parseErrors(response.json) match {
           case Some(exception: Neo4jException) => throw exception
-          case _ => {
+          case _ =>
             val results = response.json.\("results").as[JsArray].value
             results.map {
               result :JsValue => {
@@ -141,7 +140,6 @@ class Neo4jTransactionalService(rootUrl: String) {
                 }
               }
             }.toArray
-          }
         }
       }
       // Status is not 200 (or 201) : this shouldn't happen with transaction endpoint...
@@ -154,8 +152,8 @@ class Neo4jTransactionalService(rootUrl: String) {
   /**
    * Helper that create the query and send it to neo4j.
    *
-   * @param queries
-   * @param transactionId : if None => /commit
+   * @param queries All we need to generate cypher queries
+   * @param transactionId The identifier of a transaction. If None, then we auto commit
    * @return
    */
   private def constructAndSend(queries: Array[(String, Map[String, _])], transactionId: Option[Int]): Future[Response] = {
@@ -168,14 +166,13 @@ class Neo4jTransactionalService(rootUrl: String) {
     val statements = queries.foldLeft(JsArray()) {
       (json, query) =>
         query match {
-          case (cypher: String, params: Map[String, Any]) => {
+          case (cypher: String, params: Map[String, Any]) =>
             json.append(
               Json.obj(
                 "statement" -> cypher,
                 "parameters" -> Json.toJson(params)
               )
             )
-          }
         }
     }
     val body = Json.obj("statements" -> statements)
@@ -203,17 +200,15 @@ class Neo4jTransactionalService(rootUrl: String) {
     for (response <- result) yield {
       parseErrors(response.json) match {
         case Some(e) => throw e
-        case None => {
+        case None =>
           response.header("Location") match {
-            case Some(location: String) => {
+            case Some(location: String) =>
               location match {
                 case transactionLocation(url: String, transId: String) => transId.toInt
                 case _ => throw new Neo4jException("Neo4j REST Transactional API error", "Location header is not parsable")
               }
-            }
             case _ => throw new Neo4jException("Neo4j REST Transactional API error", "Location header is not present")
           }
-        }
       }
     }
   }
@@ -221,7 +216,7 @@ class Neo4jTransactionalService(rootUrl: String) {
   /**
    * Commit the specified transaction.
    *
-   * @param transId
+   * @param transId The identifier of tha transaction to commit
    * @return
    */
   def commit(transId: Int) :Future[Boolean] = {
@@ -241,7 +236,7 @@ class Neo4jTransactionalService(rootUrl: String) {
   /**
    * Rollback the specified transaction.
    *
-   * @param transId
+   * @param transId The identifier of tha transaction to rollback
    */
   def rollBack(transId: Int) :Future[Boolean] =  {
     val url = rootUrl + "/db/data/transaction/" + transId
@@ -260,7 +255,7 @@ class Neo4jTransactionalService(rootUrl: String) {
   /**
    * Parse errors rom the Neo4j response.
    *
-   * @param response
+   * @param response The neo4j REST transaction response as Json
    * @return
    */
   private def parseErrors(response: JsValue): Option[Neo4jException] = {
@@ -269,8 +264,8 @@ class Neo4jTransactionalService(rootUrl: String) {
       errors = response.\\("errors").map {
         error =>
           Logger.debug("" + error(0))
-          val code: Option[String] = (error(0) \ ("code")).asOpt[String]
-          val message: Option[String] = (error(0) \ ("message")).asOpt[String]
+          val code: Option[String] = (error(0) \ "code").asOpt[String]
+          val message: Option[String] = (error(0) \ "message").asOpt[String]
           Logger.debug("[Transaction]: Neo4jError is " + code + " " + message)
           code.getOrElse("") + " : " + message.getOrElse("")
       }

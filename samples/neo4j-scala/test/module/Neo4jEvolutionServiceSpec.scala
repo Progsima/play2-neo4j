@@ -1,9 +1,8 @@
 package module
 
-import com.logisima.play.neo4j.evolution.{EvolutionFeatureMode, Evolution}
 import com.logisima.play.neo4j.Neo4j
 import com.logisima.play.neo4j.service.Neo4jEvolutionService
-import com.logisima.play.neo4j.utils.{Neo4jUtils, FileUtils}
+import com.logisima.play.neo4j.utils._
 import java.io.File
 import org.specs2.mutable._
 
@@ -11,6 +10,7 @@ import play.api.test._
 import play.api.test.Helpers._
 import play.Play
 import scala.io.Source
+import com.logisima.play.neo4j.item.{EvolutionFeatureMode, Evolution}
 
 /**
  * Spec to test Neo4j evolution service.

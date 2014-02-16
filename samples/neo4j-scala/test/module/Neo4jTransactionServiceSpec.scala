@@ -1,6 +1,5 @@
 package module
 
-import com.logisima.play.neo4j.evolution.EvolutionFeatureMode
 import com.logisima.play.neo4j.exception._
 import com.logisima.play.neo4j.Neo4j
 import com.logisima.play.neo4j.service.{Neo4jEvolutionService, Neo4jTransactionalService}
@@ -12,6 +11,7 @@ import play.api.test._
 import play.api.test.Helpers._
 
 import play.Logger
+import com.logisima.play.neo4j.item.EvolutionFeatureMode
 
 /**
  * Spec to test Neo4j transaction service.

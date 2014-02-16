@@ -23,20 +23,18 @@ object JsonTools {
   /**
    * Validate a json with the specified json schema.
    *
-   * @param schema
-   * @param json
+   * @param schema Json schema that will be used to validate
+   * @param json Json data that will be validate
    * @return
    */
   def validate(schema: String, json :String) :Option[Seq[String]]= {
     val validator :JsonSchema = schemaFactory.getJsonSchema(JsonLoader.fromString(schema))
     val result :ProcessingReport = validator.validate(JsonLoader.fromString(json))
     val errors :Seq[String] = result.iterator().foldLeft(Seq[String]())( (errors, message) =>errors :+ message.getMessage )
-
     if(errors.size == 0) {
       None
     }
     else {
-
       Some(errors)
     }
   }
@@ -44,7 +42,7 @@ object JsonTools {
   /**
    * Validate a JSON schema with json schema draft v4 specification.
    *
-   * @param json
+   * @param json Json data of  an expected Json schema
    * @return
    */
   def validateSchema(json :String) :Option[Seq[String]]= {

@@ -1,8 +1,5 @@
 package com.logisima.play.neo4j.service
 
-import com.logisima.play.neo4j.evolution._
-import com.logisima.play.neo4j.evolution.CypherScriptType.CypherScriptType
-import com.logisima.play.neo4j.evolution.EvolutionFeatureMode.EvolutionFeatureMode
 import com.logisima.play.neo4j.utils.FileUtils
 import com.logisima.play.neo4j.Neo4j
 import play.{Logger, Play}
@@ -15,6 +12,9 @@ import scala.concurrent.duration.Duration
 import scala.io.Source
 import scala.Some
 import com.logisima.play.neo4j.exception.Neo4jInvalidRevision
+import com.logisima.play.neo4j.item._
+import com.logisima.play.neo4j.item.CypherScriptType._
+import com.logisima.play.neo4j.item.EvolutionFeatureMode._
 
 /**
  * Neo4j service that handle evolution script.
@@ -26,7 +26,9 @@ object Neo4jEvolutionService {
   /**
    * String interpolation to construct evolution script relative path.
    *
-   * @param revision
+   * @param path The file system path of the application
+   * @param revision Number of the revision
+   * @param style Type of the script. Up or down ?
    * @return
    */
   private def evolutionsFilename(path: String, revision: Int, style: CypherScriptType): String = s"${path}/conf/evolutions/neo4j/${revision}_${style}.cql"
@@ -34,7 +36,10 @@ object Neo4jEvolutionService {
   /**
    * String interpolation to construct cypher create query for evolution
    *
-   * @param revision
+   * @param revision Number of the revision
+   * @param cypher_down Cypher down script
+   * @param cypher_up Cypher up script
+   * @param hash The compute sha1 of down & up cypher script
    * @return
    */
   private def cypherEvolutionQuery(revision: Int, cypher_down: String, cypher_up: String, hash :String): String = s"""CREATE (n:Play_Evolutions { revision:${revision}, cypher_down:"${cypher_down}", cypher_up:"${cypher_up}", hash:"${hash}" });"""
@@ -70,14 +75,13 @@ object Neo4jEvolutionService {
     Collections.unfoldLeft(1) {
       revision => {
         FileUtils.getFile(evolutionsFilename(Play.application().path().getPath, revision, CypherScriptType.up)) match {
-          case Some(file: File) => {
+          case Some(file: File) =>
             val upScript: String = Source.fromFile(file).getLines() mkString "\n"
             val downScript: String = FileUtils.getFile(evolutionsFilename(Play.application().path().getPath, revision, CypherScriptType.down)) match {
               case Some(file: File) => Source.fromFile(file).getLines() mkString "\n"
               case _ => ""
             }
             Option((revision + 1, Evolution(revision, upScript, downScript, hash(downScript, upScript))))
-          }
           case None => None
         }
       }
@@ -87,7 +91,7 @@ object Neo4jEvolutionService {
   /**
    * Apply the given cypher evolution script.
    *
-   * @param script
+   * @param script The cypher script to apply
    */
   def applyScript(script: String)  = {
     // create list of queries for the evolution
@@ -97,7 +101,7 @@ object Neo4jEvolutionService {
       query =>
         (query, Map[String, Any]())
     }.toArray
-    (Await result(Neo4j.cypher(params), Duration.Inf))
+    Await result(Neo4j.cypher(params), Duration.Inf)
   }
 
   /**
@@ -148,7 +152,7 @@ object Neo4jEvolutionService {
 
       // render / action of the check
       mode match {
-        case EvolutionFeatureMode.auto => {
+        case EvolutionFeatureMode.auto =>
           // let's go to send all up script one by one to neo4j.
           // each apply is a transaction, so a script can handle schema modification
           downEvolution.map {
@@ -169,9 +173,7 @@ object Neo4jEvolutionService {
                   )
               )
           }
-
-        }
-        case _ => {
+        case _ =>
           // we throw an exception to ask the user
           val down = downEvolution.foldLeft("Down \n\n") {
             (message, evolution) => message + evolution.cypher_down + "\n\n"
@@ -179,14 +181,19 @@ object Neo4jEvolutionService {
           val up  = upEvolution.foldLeft("Up \n\n") {
             (message, evolution) => message + evolution.cypher_up + "\n\n"
           }
-          val message =
           throw new Neo4jInvalidRevision(down + up)
-        }
       }
 
     }
   }
 
+  /**
+   * Compute a hash from cypher down & up script.
+   *
+   * @param cypher_down Cypher down script
+   * @param cypher_up Cypher up script
+   * @return
+   */
   private def hash(cypher_down :String, cypher_up :String) :String = {
     Codecs.sha1(cypher_down.trim + cypher_up.trim)
   }

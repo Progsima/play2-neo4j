@@ -6,7 +6,6 @@ import play.api.libs.json._
 import play.api.mvc._
 import com.wordnik.swagger.annotations._
 import javax.ws.rs.PathParam
-import scala.concurrent.Future
 
 /**
  * REST API endpoint for Content.

@@ -3,8 +3,9 @@ package com.logisima.play.neo4j.exception
 import play.api.PlayException
 
 /**
+ * Play Neo4j exception to handle evolution.
  *
- * @param script
+ * @param script The cypher script that should be execute (and will be display to the user)
  */
 class Neo4jInvalidRevision(script :String) extends PlayException.RichDescription (
   "Your Neo4j database needs evolution!",

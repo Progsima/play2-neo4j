@@ -3,7 +3,7 @@ package controllers
 import org.specs2.mutable.Specification
 import play.api.test.Helpers._
 import play.api.test.{FakeRequest, FakeApplication}
-import play.api.libs.json.{Json, JsObject}
+import play.api.libs.json._
 
 /**
  * Spec to test Content Type controller of the sample application.
