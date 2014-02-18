@@ -34,13 +34,29 @@ object ContentType {
    * List of cypher queries
    */
   private val getQuery :String = "MATCH (n:Content_Type { name: {name} }) RETURN n;"
-  private val createQuery :String = "CREATE (n:Content_Type {name:{name}, schema:{schema}, description:{description} }) RETURN n;"
+  private val createQuery :String = "CREATE (n:Content_Type) SET n.name={name}, n.schema={schema}, n.description={description} RETURN n;"
   private val updateQuery :String = "MATCH (n:Content_Type { name: {id} }) SET n.schema={name}, n.schema={schema}, n.description={description} RETURN n"
   private val deleteQuery :String = "MATCH (n:Content_Type { name: {name} }) DELETE n; "
+  private def deleteAllContentQuery(contentType :String) = s"MATCH (n:$contentType) DELETE n;"
   private val listQuery :String = "MATCH (n:Content_Type) RETURN n SKIP {skip} LIMIT {limit}"
 
   implicit val contentTypeReads = Json.reads[ContentType]
   implicit val contentTypeWrites = Json.writes[ContentType]
+
+  /**
+   * Method to get all ContentType.
+   *
+   * @param skip The starting position at wich we retrieve data
+   * @param limit Number of data to return
+   */
+  def list(skip :Int = 0, limit :Int = 10) :Future[Seq[ContentType]] = {
+    for ( jsonResultSet <- Neo4j.cypher(listQuery, Map("skip" -> skip, "limit" -> limit)) ) yield {
+      jsonResultSet.map {
+        jsValue =>
+          jsValue.as[ContentType]
+      }
+    }
+  }
 
   /**
    * Method to retrieve a contentType by its name.
@@ -70,8 +86,9 @@ object ContentType {
         Map(
           "name" -> (json \ "name").as[String],
           "schema" -> (json \ "schema").as[String],
-          "description" -> (json \ "description").asOpt[String].getOrElse("")
-      ))) yield {
+          "description" -> (json \ "description").asOpt[String].getOrElse(JsNull)
+        )
+      )) yield {
 
       if(jsonResultSet.size > 0) {
         Some(jsonResultSet(0).as[ContentType])
@@ -108,27 +125,15 @@ object ContentType {
 
   /**
    * Method to delete a contentType by its name.
+   * /!\ We also delete all content of the type.
    *
    * @param name Name of the content type
    */
   def delete(name :String) :Future[Boolean] = {
-     for ( jsonResultSet <- Neo4j.cypher(deleteQuery, Map("name" -> name))) yield {
+    val queries :Array[(String, Map[String, _])] = Array((deleteQuery, Map("name" -> name)), (deleteAllContentQuery(name),Map[String, Any]()))
+     for ( jsonResultSet <- Neo4j.cypher(queries)) yield {
        true
      }
-  }
-
-  /**
-   * Method to get all ContentType.
-   * @param skip The starting position at wich we retrieve data
-   * @param limit Number of data to return
-   */
-  def list(skip :Int = 0, limit :Int = 10) :Future[Seq[ContentType]] = {
-    for ( jsonResultSet <- Neo4j.cypher(listQuery, Map("skip" -> skip, "limit" -> limit)) ) yield {
-      jsonResultSet.map {
-        jsValue =>
-          jsValue.as[ContentType]
-      }
-    }
   }
 
   /**

@@ -19,9 +19,9 @@ object Content {
    * List of cypher queries
    */
   private def getQuery(contentType :String) = s"MATCH (n:$contentType { uuid:{uuid} }) RETURN n;"
-  private def createQuery(contentType :String) = s"CREATE (n:$contentType  {params}) RETURN n;"
+  private def createQuery(contentType :String) = s"CREATE (n:$contentType) SET n= {params} RETURN n;"
   private def updateQuery(contentType :String) = s"MATCH (n:$contentType { uuid:{uuid} }) SET n = {params} RETURN n"
-  private def deleteQuery(contentType :String) = s"MATCH (n:$contentType { uuid:{uuid} }) DELETE n; "
+  private def deleteQuery(contentType :String) = s"MATCH (n:$contentType { uuid:{uuid} }) DELETE n;"
   private def listQuery(contentType :String) = s"MATCH (n:$contentType) RETURN n SKIP {skip} LIMIT {limit}"
 
   /**

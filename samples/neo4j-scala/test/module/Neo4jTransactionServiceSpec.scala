@@ -23,7 +23,7 @@ class Neo4jTransactionServiceSpec extends Specification {
     "execute multiple cypher create query" in {
       running(FakeApplication()) {
         // delete the entire database
-        Neo4jUtils.reset()
+        Neo4jUtils.deleteAll()
 
         val queries = Array(
           ("CREATE (n:Pays {name: {name}, pop:{pop}})", Map("name" -> "FRANCE", "pop" -> 100)),
@@ -38,6 +38,8 @@ class Neo4jTransactionServiceSpec extends Specification {
 
     "execute multiple cypher select query" in {
       running(FakeApplication()) {
+        // delete the entire database
+        Neo4jUtils.reset()
 
         val queries = Array(
           ("MATCH (n:Country) RETURN n LIMIT 100", Map[String, Any]()),
@@ -56,7 +58,7 @@ class Neo4jTransactionServiceSpec extends Specification {
     "execute single cypher create query" in {
       running(FakeApplication()) {
         // delete the entire database
-        Neo4jUtils.reset()
+        Neo4jUtils.deleteAll()
 
         val result = Helpers.await(Neo4j.cypher("CREATE (n:Pays {props})", Map("props" -> Map("name" -> "ALLEMAGNE", "pop" -> 100))))
         Logger.debug("Result is :" + result.toString)
@@ -66,10 +68,8 @@ class Neo4jTransactionServiceSpec extends Specification {
 
     "execute cypher select query without params" in {
       running(FakeApplication()) {
-        // delete the entire database
+        // Reset the entire database
         Neo4jUtils.reset()
-        // populate the database by running evolution script
-        Neo4jEvolutionService.checkEvolutionState(EvolutionFeatureMode.auto)
 
         Helpers.await(Neo4j.cypher("MATCH (n:Country) RETURN n LIMIT 100")).size must beEqualTo(6)
       }
@@ -92,6 +92,9 @@ class Neo4jTransactionServiceSpec extends Specification {
 
     "can start a transaction & commit" in {
       running(FakeApplication()) {
+        // delete the entire database
+        Neo4jUtils.deleteAll()
+
         val transId = Helpers.await(Neo4j.beginTx())
 
         Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("props" -> Map("name" -> "Neo4j", "Type" -> "Graph")), transId))
@@ -107,7 +110,7 @@ class Neo4jTransactionServiceSpec extends Specification {
     "can start a transaction & rollback" in {
       running(FakeApplication()) {
         // delete the entire database
-        Neo4jUtils.reset()
+        Neo4jUtils.deleteAll()
 
         val transId = Helpers.await(Neo4j.beginTx())
         Helpers.await(Neo4j.cypher("CREATE (n:DB {props})", Map("props" -> Map("name" -> "Neo4j", "Type" -> "Graph")), transId))

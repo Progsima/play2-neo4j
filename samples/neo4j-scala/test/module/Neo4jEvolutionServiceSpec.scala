@@ -48,7 +48,7 @@ class Neo4jEvolutionServiceSpec extends Specification {
 
         Neo4jEvolutionService.checkEvolutionState(EvolutionFeatureMode.auto)
 
-        Helpers.await(Neo4j.cypher("MATCH (n:Country) RETURN n LIMIT 100")).size must beGreaterThan(0)
+        Helpers.await(Neo4j.cypher("MATCH (n:Country) RETURN n LIMIT 100")).size must beEqualTo(6)
       }
     }
   }
