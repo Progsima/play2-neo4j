@@ -12,6 +12,8 @@ samples/neo4j-scala/project/target
 samples/neo4j-scala/target
 samples/neo4j-scala/neo4j
 samples/neo4j-scala/.idea
+samples/neo4j-scala/data/
+samples/neo4j-scala/neo_store_IS_UNDEFINED/
 .history
 dist
 *.idea
