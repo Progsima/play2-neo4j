@@ -1,0 +1,10 @@
+{
+    "name": "neocms",
+    "version": "1.0.0",
+    "dependencies": {
+        "angular": "~1.2.0-rc.2",
+        "bootstrap" : "~3.1.1"
+    },
+    "devDependencies": {
+    }
+}
