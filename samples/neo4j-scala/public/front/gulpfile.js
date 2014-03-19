@@ -29,9 +29,6 @@ gulp.task("update", function(){
  */
 gulp.task('jshint', function() {
     gulp.src('./app/js/*.js')
-        .pipe(concat("main.js"))
-        .pipe(uglify())
-        .pipe(gulp.dest('./app/js'))
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
@@ -64,6 +61,6 @@ gulp.task('watch', function() {
     // watch change files into dest files
     gulp.watch('./app/**').on('change', function(file) {
         server.changed(file.path);
-        gulp.run('compile')
+        gulp.run('compile');
     });
 });

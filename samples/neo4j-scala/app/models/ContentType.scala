@@ -19,8 +19,8 @@ import scala.annotation.meta.field
 @ApiModel("ContentType")
 case class ContentType(
   @(ApiModelProperty @field)(position=1, required=true) name :String,
-  @(ApiModelProperty @field)(position=2, required=true) schema :String,
-  @(ApiModelProperty @field)(position=3) description :Option[String]
+  @(ApiModelProperty @field)(position=2) description :Option[String],
+  @(ApiModelProperty @field)(position=3, required=true) schema :String
 )
 
 /**
