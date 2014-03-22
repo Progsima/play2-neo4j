@@ -26,15 +26,13 @@ object ContentTypes extends Controller {
     notes = "Returns a list of content type",
     httpMethod = "GET"
   )
-  def list = Action.async { implicit request =>
+  def list(page :Int, row :Int, sort :String, order :String, filter :String) = Action.async { implicit request =>
 
-      ContentType.list().map(
-        seqContentType =>
-          Ok(
-            Json.toJson(seqContentType)
-          ).as("application/json")
-      )
-
+    for ( (total, data) <- ContentType.list(page, row, sort, order, filter)) yield {
+      Ok(Json.toJson(data))
+        .as("application/json")
+        .withHeaders(("X-Total-Row" -> total.toString))
+    }
   }
 
   /**

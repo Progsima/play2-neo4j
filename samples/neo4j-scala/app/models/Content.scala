@@ -23,6 +23,7 @@ object Content {
   private def updateQuery(contentType :String) = s"MATCH (n:$contentType { uuid:{uuid} }) SET n = {params} RETURN n"
   private def deleteQuery(contentType :String) = s"MATCH (n:$contentType { uuid:{uuid} }) DELETE n;"
   private def listQuery(contentType :String) = s"MATCH (n:$contentType) RETURN n SKIP {skip} LIMIT {limit}"
+  private def countAllQuery(contentType :String) = s"MATCH (n:$contentType) RETURN count(*)"
 
   /**
    * List all content of a type.
@@ -31,6 +32,12 @@ object Content {
    * @param limit Number of data to return
    */
   def list(contentType: String, skip: Int = 0, limit: Int = 10): Future[Seq[ContentType]] = {
+
+    val queries = Array(
+      (listQuery(contentType), Map("skip" -> skip, "limit" -> limit)),
+      (countAllQuery(contentType), Map[String, Any]())
+    )
+
     for (jsonResultSet <- Neo4j.cypher(listQuery(contentType), Map("skip" -> skip, "limit" -> limit))) yield {
       jsonResultSet.map {
         jsValue =>

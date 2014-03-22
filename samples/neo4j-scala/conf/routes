@@ -3,7 +3,7 @@
 # ~~~~
 
 # Type
-GET         /api/types                                      controllers.ContentTypes.list
+GET         /api/types                                      controllers.ContentTypes.list(page :Int ?= 1, row :Int ?= 10, sort ?= "name", order ?= "asc", filter ?= "")
 POST        /api/types                                      controllers.ContentTypes.create
 GET         /api/types/:name                                controllers.ContentTypes.get(name :String)
 PUT         /api/types/:name                                controllers.ContentTypes.update(name :String)

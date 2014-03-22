@@ -38,7 +38,8 @@ object ContentType {
   private val updateQuery :String = "MATCH (n:Content_Type { name: {id} }) SET n.schema={name}, n.schema={schema}, n.description={description} RETURN n"
   private val deleteQuery :String = "MATCH (n:Content_Type { name: {name} }) DELETE n; "
   private def deleteAllContentQuery(contentType :String) = s"MATCH (n:$contentType) DELETE n;"
-  private val listQuery :String = "MATCH (n:Content_Type) RETURN n SKIP {skip} LIMIT {limit}"
+  private def listQuery(sorting :String) = s"MATCH (n:Content_Type) RETURN n ORDER BY $sorting SKIP {skip} LIMIT {limit};"
+  private val countAllQuery :String = "MATCH (n:Content_Type) RETURN count(*)"
 
   implicit val contentTypeReads = Json.reads[ContentType]
   implicit val contentTypeWrites = Json.writes[ContentType]
@@ -49,12 +50,22 @@ object ContentType {
    * @param skip The starting position at wich we retrieve data
    * @param limit Number of data to return
    */
-  def list(skip :Int = 0, limit :Int = 10) :Future[Seq[ContentType]] = {
-    for ( jsonResultSet <- Neo4j.cypher(listQuery, Map("skip" -> skip, "limit" -> limit)) ) yield {
-      jsonResultSet.map {
+  def list(page :Int, row :Int, sort :String, order :String, filter :String) :Future[(Int, Seq[ContentType])] = {
+
+    val skip :Int = (page-1) * row;
+
+    val queries = Array(
+      (countAllQuery, Map[String, Any]()),
+      (listQuery("n." + sort + " " + order), Map("skip" -> skip, "limit" -> row))
+    )
+
+    for ( neoResultSet <- Neo4j.cypher(queries) ) yield {
+      val datas = neoResultSet.apply(1).map {
         jsValue =>
           jsValue.as[ContentType]
       }
+      val totalRows = neoResultSet.apply(0).apply(0).as[Int]
+      (totalRows, datas)
     }
   }
 
