@@ -41,7 +41,7 @@ class ContentTypesSpec extends Specification {
         contentType(result) must beSome("application/json")
 
         // testing response body
-        contentAsString(result) must beEqualTo("""{"name":"Tag","schema":"{ \"title\": \"Tag Content Type\", \"type\": \"object\",\"properties\": {\"name\": {\"type\": \"string\"},\"description\": {\"type\": \"string\"}},\"required\": [\"name\"] }"}""")
+        contentAsString(result) must beEqualTo("""{"name":"Tag","description":"Type that represent tag","schema":"{ \"title\": \"Tag Content Type\", \"type\": \"object\",\"properties\": {\"name\": {\"type\": \"string\"},\"description\": {\"type\": \"string\"}},\"required\": [\"name\"] }"}""")
       }
     }
 
@@ -84,7 +84,7 @@ class ContentTypesSpec extends Specification {
         contentType(result) must beSome("application/json")
 
         // testing response body
-        contentAsString(result) must beEqualTo("""{"name":"MyNewType","schema":"{}","description":"Just a description"}""")
+        contentAsString(result) must beEqualTo("""{"name":"MyNewType","description":"Just a description","schema":"{}"}""")
       }
     }
 
@@ -103,7 +103,7 @@ class ContentTypesSpec extends Specification {
         contentType(result) must beSome("application/json")
 
         // testing response body
-        contentAsString(result) must beEqualTo("""{"name":"Tag","schema":"{}","description":"Just a Tag type"}""")
+        contentAsString(result) must beEqualTo("""{"name":"Tag","description":"Just a Tag type","schema":"{}"}""")
       }
     }
 
