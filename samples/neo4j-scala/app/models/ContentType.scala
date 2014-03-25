@@ -16,11 +16,10 @@ import scala.annotation.meta.field
  * @param schema Json schema of the content type
  * @param description Description of the content type
  */
-@ApiModel("ContentType")
 case class ContentType(
-  @(ApiModelProperty @field)(position=1, required=true) name :String,
-  @(ApiModelProperty @field)(position=2) description :Option[String],
-  @(ApiModelProperty @field)(position=3, required=true) schema :String
+  name :String,
+  description :Option[String],
+  schema :String
 )
 
 /**
@@ -46,13 +45,10 @@ object ContentType {
 
   /**
    * Method to get all ContentType.
-   *
-   * @param skip The starting position at wich we retrieve data
-   * @param limit Number of data to return
    */
   def list(page :Int, row :Int, sort :String, order :String, filter :String) :Future[(Int, Seq[ContentType])] = {
 
-    val skip :Int = (page-1) * row;
+    val skip :Int = (page-1) * row
 
     val queries = Array(
       (countAllQuery, Map[String, Any]()),
@@ -60,13 +56,16 @@ object ContentType {
     )
 
     for ( neoResultSet <- Neo4j.cypher(queries) ) yield {
-      val datas = neoResultSet.apply(1).map {
-        jsValue =>
-          jsValue.as[ContentType]
-      }
+
       val totalRows = neoResultSet.apply(0).apply(0).as[Int]
+      val datas = neoResultSet.apply(1).map {
+        jsValue => jsValue.as[ContentType]
+      }
+
       (totalRows, datas)
+
     }
+
   }
 
   /**
@@ -75,14 +74,18 @@ object ContentType {
    * @param name Name of the content type
    */
   def get( name :String) :Future[Option[ContentType]] = {
+
     for ( jsonResultSet <- Neo4j.cypher(getQuery, Map("name" -> name))) yield {
+
       if(jsonResultSet.size > 0) {
         Some(jsonResultSet(0).as[ContentType])
       }
       else{
         None
       }
+
     }
+
   }
 
   /**
@@ -91,6 +94,7 @@ object ContentType {
    * @param json Json data of the content type
    */
   def create( json :JsValue) :Future[Option[ContentType]] = {
+
     for (
       jsonResultSet <- Neo4j.cypher(
         createQuery,
@@ -99,7 +103,8 @@ object ContentType {
           "schema" -> (json \ "schema").as[String],
           "description" -> (json \ "description").asOpt[String].getOrElse(JsNull)
         )
-      )) yield {
+      )
+    ) yield {
 
       if(jsonResultSet.size > 0) {
         Some(jsonResultSet(0).as[ContentType])
@@ -107,7 +112,9 @@ object ContentType {
       else{
         None
       }
+
     }
+
   }
 
   /**
@@ -116,6 +123,7 @@ object ContentType {
    * @param json Json data of the content type
    */
   def update( name: String, json :JsValue ) :Future[Option[ContentType]] = {
+
     for (
       jsonResultSet <- Neo4j.cypher(
         updateQuery,
@@ -124,14 +132,19 @@ object ContentType {
           "name" -> (json \ "name").as[String],
           "schema" -> (json \ "schema").as[String],
           "description" -> (json \ "description").asOpt[String].getOrElse("")
-        ))) yield {
+        )
+      )
+    ) yield {
+
       if(jsonResultSet.size > 0) {
         Some(jsonResultSet(0).as[ContentType])
       }
       else{
         None
       }
+
     }
+
   }
 
   /**
@@ -141,10 +154,16 @@ object ContentType {
    * @param name Name of the content type
    */
   def delete(name :String) :Future[Boolean] = {
-    val queries :Array[(String, Map[String, _])] = Array((deleteQuery, Map("name" -> name)), (deleteAllContentQuery(name),Map[String, Any]()))
-     for ( jsonResultSet <- Neo4j.cypher(queries)) yield {
+
+    val queries :Array[(String, Map[String, _])] = Array(
+      ( deleteQuery, Map( "name" -> name ) ),
+      ( deleteAllContentQuery( name ), Map[String, Any]() )
+    )
+
+    for ( jsonResultSet <- Neo4j.cypher(queries)) yield {
        true
      }
+
   }
 
   /**
@@ -154,7 +173,9 @@ object ContentType {
    * @return
    */
   def schema(name :String) :Future[Option[String]] = {
+
     for ( jsonResultSet <- Neo4j.cypher(getQuery, Map("name" -> name))) yield {
+
       if(jsonResultSet.size > 0) {
         val schema = jsonResultSet(0).\("schema").toString().replace("\\\"", "\"")
         Some(schema.substring(1, schema.length -1))
@@ -162,7 +183,9 @@ object ContentType {
       else{
         None
       }
+
     }
+
   }
 
 }

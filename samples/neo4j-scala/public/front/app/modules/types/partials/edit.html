@@ -1,3 +1,76 @@
 <h1>Content Type List</h1>
 
 <h2>Edit {{type.name}}</h2>
+
+<form class="form-horizontal" name="typeForm"  novalidate>
+
+    <fieldset>
+        <legend>Metadata</legend>
+
+        <div class="form-group" ng-class="{ 'has-error' : typeForm.name.$invalid && !typeForm.name.$pristine }">
+            <label class="col-sm-2 control-label" for="name">Name</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text"  id="name" name="name" placeholder="Name of the content" ng-model="type.name" required>
+                <p ng-show="typeForm.name.$invalid && !typeForm.name.$pristine" class="help-block">Name is required.</p>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : typeForm.title.$invalid && !typeForm.title.$pristine }">
+            <label class="col-sm-2 control-label" for="title">Title</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text"  id="title" name="title" placeholder="Title of the content" ng-model="type.title" required>
+                <p ng-show="typeForm.title.$invalid && !typeForm.title.$pristine" class="help-block">Title is required.</p>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : typeForm.description.$invalid && !typeForm.description.$pristine }">
+            <label class="col-sm-2 control-label" for="description">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="3" id="description" name="description" placeholder="Description of the content" ng-model="type.description">
+                </textarea>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            Fields
+            <button class="btn btn-info pull-right" ng-click="type.fields.$add(type)">Add a field</button>
+        </legend>
+
+        <fieldset ng-repeat="field in type.fields">
+            <legend>Field {{field.name}}</legend>
+
+            <div class="form-group" >
+                <label class="col-sm-2 control-label" for="fieldName$i">Name</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text"  id="fieldName$i" name="fieldName$i" placeholder="Name of the content" ng-model="name" value="type.name" required>
+                    <p ng-show="typeForm.fieldName$i.$invalid && !typeForm.fieldName$i.$pristine" class="help-block">Name is required.</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="fieldTitle$i">Title</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text"  id="fieldTitle$i" name="fieldTitle$i" placeholder="Title of the fields" ng-model="title" required>
+                    <p ng-show="typeForm.fieldTitle$i.$invalid && !typeForm.fieldTitle$i.$pristine" class="help-block">Title is required.</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="fieldDescription$i">Description</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="fieldDescription$i" name="fieldDescription$i" ng-model="description">
+                        Description of the field
+                    </textarea>
+                </div>
+            </div>
+        </fieldset>
+
+    </fieldset>
+
+    <!-- SUBMIT BUTTON -->
+    <button type="submit" class="btn btn-primary" ng-disabled="typeForm.$invalid">Submit</button>
+
+</form>

@@ -7,6 +7,7 @@ import play.api.libs.concurrent.Execution.Implicits._
 import tools.JsonTools
 import java.util.UUID
 import com.logisima.play.neo4j.exception.Neo4jException
+import play.Logger
 
 /**
  * Helper for model Content.
@@ -22,28 +23,27 @@ object Content {
   private def createQuery(contentType :String) = s"CREATE (n:$contentType) SET n= {params} RETURN n;"
   private def updateQuery(contentType :String) = s"MATCH (n:$contentType { uuid:{uuid} }) SET n = {params} RETURN n"
   private def deleteQuery(contentType :String) = s"MATCH (n:$contentType { uuid:{uuid} }) DELETE n;"
-  private def listQuery(contentType :String) = s"MATCH (n:$contentType) RETURN n SKIP {skip} LIMIT {limit}"
+  private def listQuery(contentType :String, sorting :String) = s"MATCH (n:$contentType) RETURN n ORDER BY $sorting SKIP {skip} LIMIT {limit};"
   private def countAllQuery(contentType :String) = s"MATCH (n:$contentType) RETURN count(*)"
 
   /**
    * List all content of a type.
-   *
-   * @param skip The starting position at wich we retrieve data
-   * @param limit Number of data to return
    */
-  def list(contentType: String, skip: Int = 0, limit: Int = 10): Future[Seq[ContentType]] = {
+  def list(contentType :String, page :Int, row :Int, sort :String, order :String, filter :String) :Future[(Int, Seq[JsValue])] = {
+
+    val skip :Int = (page-1) * row;
 
     val queries = Array(
-      (listQuery(contentType), Map("skip" -> skip, "limit" -> limit)),
-      (countAllQuery(contentType), Map[String, Any]())
+        ( countAllQuery( contentType ), Map[String, Any]() ),
+        ( listQuery( contentType, "n." + sort + " " + order ), Map( "skip" -> skip, "limit" -> row ) )
     )
 
-    for (jsonResultSet <- Neo4j.cypher(listQuery(contentType), Map("skip" -> skip, "limit" -> limit))) yield {
-      jsonResultSet.map {
-        jsValue =>
-          jsValue.as[ContentType]
-      }
+    for ( neoResultSet <- Neo4j.cypher(queries) ) yield {
+      val totalRows = neoResultSet.apply(0).apply(0).as[Int]
+      val datas = neoResultSet.apply(1)
+      (totalRows, datas)
     }
+
   }
 
   /**

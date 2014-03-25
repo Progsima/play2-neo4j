@@ -1,4 +1,6 @@
-<h1>Content Type List</h1>
+<h1>Content Type</h1>
+
+<h2>List of all type</h2>
 
 <table ng-table="tableParams" class="table">
     <tr ng-repeat="type in $data">
@@ -7,8 +9,8 @@
         </td>
         <td data-title="'Description'">{{type.description}}</td>
         <td data-title="Action">
-            <a ng-click="edit(type.name)">Edit</a>
-            <a ng-click="delete(type.name)">Delete</a>
+            <a ng-click="fnEdit(type.name)">Edit</a>
+            <a ng-click="fnDelete(type.name)">Delete</a>
         </td>
     </tr>
 </table>

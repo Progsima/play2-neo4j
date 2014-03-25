@@ -10,7 +10,7 @@ PUT         /api/types/:name                                controllers.ContentT
 DELETE      /api/types/:name                                controllers.ContentTypes.delete(name :String)
 
 # Contents
-GET         /api/contents/:contentType                      controllers.Contents.list(contentType :String)
+GET         /api/contents/:contentType                      controllers.Contents.list(contentType :String, page :Int ?= 1, row :Int ?= 10, sort ?= "name", order ?= "asc", filter ?= "")
 POST        /api/contents/:contentType                      controllers.Contents.create(contentType :String)
 GET         /api/contents/:contentType/:uuid                controllers.Contents.get(contentType :String, uuid :String)
 PUT         /api/contents/:contentType/:uuid                controllers.Contents.update(contentType :String, uuid :String)
