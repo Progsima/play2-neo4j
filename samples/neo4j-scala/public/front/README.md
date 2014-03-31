@@ -13,3 +13,33 @@
     * ...
 * Update application dependencies with bower : `bower install`
 
+## Json Schema
+
+### Field
+
+#### Common definition
+
+* required  : true / false
+* uniqueItems true / false => will create a unique index on the field
+
+#### Field type / enum
+
+##### Type : string
+ * minLength : integer
+ * maxLength : integer
+ * pattern : regex
+ * format :
+     * date-time
+     * email
+     * uri
+     * rte
+
+##### Type : Integer  / number
+ * required  : true / false
+ * minimum : integer
+ * maximum : integer
+
+##### Type : Boolean
+
+##### Enum
+

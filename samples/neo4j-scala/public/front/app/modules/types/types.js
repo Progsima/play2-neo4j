@@ -1,7 +1,9 @@
 'use strict';
 
+// Define type module
 var types = angular.module('types', ['typesControllers']);
 
+// Some module route
 types.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
