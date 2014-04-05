@@ -18,6 +18,7 @@ application = {
     js : {
         src : [
             "./app/js/app.js",
+            "./app/js/error.js",
             "./app/modules/types/main.js",
             "./app/modules/types/controllers.js",
             "./app/modules/types/service.js",
