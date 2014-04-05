@@ -69,7 +69,7 @@ types.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'typeValue', 
         });
 
         // init controller with data
-        if($routeParams.name !== null) {
+        if($routeParams.name != null) {
             // retreive the element from database
             Restangular.one('types', $routeParams.name).get().then(function(neo4jType){
                 $scope.neo4jType = neo4jType;
@@ -77,7 +77,8 @@ types.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'typeValue', 
             });
         }
         else {
-            $scope.neo4jType = Restangular.all('types');
+            $scope.neo4jType = {};
+            $scope.type = {};
         }
 
         // adding all available type
@@ -87,7 +88,7 @@ types.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'typeValue', 
         // function to add a field
         //
         $scope.fnAddField = function() {
-            if( $scope.type.fields === null ) {
+            if( $scope.type['fields'] == null ) {
                 $scope.type.fields = [];
             }
             $scope.type.fields.push({
@@ -110,8 +111,17 @@ types.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'typeValue', 
         // function to save the type
         //
         $scope.fnSaveType = function() {
+            var isNew = false;
+            if($scope.neo4jType === null) {
+                isNew = true;
+            }
             typeService.updateNeo4jTypeWithForm($scope.neo4jType, $scope.type);
-            $scope.neo4jType.put();
+            if (isNew) {
+                $scope.neo4jType.post();
+            }
+            else {
+                Restangular.all('types').post($scope.neo4jType);
+            }
         };
     }
 ]);
