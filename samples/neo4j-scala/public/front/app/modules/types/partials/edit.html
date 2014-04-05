@@ -74,7 +74,7 @@
                 <div class="form-group" ng-class="{ 'has-error' : fieldForm.fieldType.$invalid }">
                     <label class="col-sm-2 control-label" for="fieldType{{$index}}">Type</label>
                     <div class="col-sm-10">
-                        <select id="fieldType{{$index}}" class="form-control" name="fieldType" ng-model="type.fields[$index].type" ng-options="type.name for type in typeDefinition" required></select>
+                        <select id="fieldType{{$index}}" class="form-control" name="fieldType" ng-model="type.fields[$index].type" ng-options="value.name for (key, value) in types" required></select>
                     </div>
                 </div>
 
@@ -90,5 +90,7 @@
     <button type="submit" class="btn btn-primary" ng-disabled="typeForm.$invalid" ng-click="fnSaveType()">Submit</button>
 
 </form>
-{{type}}
-{{schema|json}}
+
+<pre>{{type|json}}</pre>
+
+<pre>{{schema|json}}</pre>
