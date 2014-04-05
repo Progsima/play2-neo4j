@@ -1,0 +1,23 @@
+<!-- Field is required ? -->
+<div class="form-group" >
+    <label class="col-sm-2 control-label" for="fieldStringRequire{{$index}}">Is require ?</label>
+    <div class="col-sm-10">
+        <input id="fieldStringRequire{{$index}}" type="checkbox" ng-model="fieldStringRequire{{$index}}" value="true">
+    </div>
+</div>
+
+<!-- Min length of the field -->
+<div class="form-group" >
+    <label class="col-sm-2 control-label" for="fieldStringMinLenght{{$index}}">Min. length</label>
+    <div class="col-sm-10">
+        <input id="fieldStringMinLenght{{$index}}" type="number" ng-model="fieldStringMinLenght{{$index}}" value="0">
+    </div>
+</div>
+
+<!-- Max length of the field -->
+<div class="form-group" >
+    <label class="col-sm-2 control-label" for="fieldStringMaxLenght{{$index}}">Max. length</label>
+    <div class="col-sm-10">
+        <input id="fieldStringMaxLenght{{$index}}" type="number" ng-model="fieldStringMinLenght{{$index}}" value="255">
+    </div>
+</div>

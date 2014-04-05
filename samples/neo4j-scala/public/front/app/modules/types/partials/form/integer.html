@@ -1,0 +1,25 @@
+<!-- Field is required ? -->
+<div class="form-group" >
+    <label class="col-sm-2 control-label" for="fieldIntegerRequire{{$index}}">Is require ?</label>
+    <div class="col-sm-10">
+        <input id="fieldIntegerRequire{{$index}}" name="fieldIntegerRequire{{$index}}" type="checkbox" ng-model="type.fields[$index].require" value="true">
+    </div>
+</div>
+
+<!-- Min length of the field -->
+<div class="form-group" ng-class="{ 'has-error' : fieldForm.fieldIntegerMin.$invalid }">
+    <label class="col-sm-2 control-label" for="fieldIntegerMin{{$index}}">Minimum</label>
+    <div class="col-sm-10">
+        <input id="fieldIntegerMin{{$index}}" class="form-control" name="fieldIntegerMin" type="number" ng-model="type.fields[$index].minimum" value="">
+        <p ng-show="fieldForm.fieldIntegerMin.$invalid" class="help-block">Minimum must be a number.</p>
+    </div>
+</div>
+
+<!-- Max length of the field -->
+<div class="form-group" ng-class="{ 'has-error' : fieldForm.fieldIntegerMax.$invalid }">
+    <label class="col-sm-2 control-label" for="fieldIntegerMax{{$index}}">Maximum</label>
+    <div class="col-sm-10">
+        <input id="fieldIntegerMax{{$index}}" class="form-control" name="fieldIntegerMax" type="number" ng-model="type.fields[$index].maximum" value="">
+        <p ng-show="fieldForm.fieldIntegerMax.$invalid" class="help-block">Maximum must be a number.</p>
+    </div>
+</div>

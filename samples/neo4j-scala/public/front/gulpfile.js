@@ -7,60 +7,121 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     watch = require('gulp-watch'),
     concat = require('gulp-concat'),
-    less = require('gulp-less');
+    less = require('gulp-less'),
+    clean = require('gulp-clean');
+
+application = {
+    less : {
+        src : ['./app/less/**/*.less'],
+        dest: "./app/build/css"
+    },
+    js : {
+        src : [
+            "./app/js/app.js",
+            "./app/modules/types/main.js",
+            "./app/modules/types/controllers.js",
+            "./app/modules/types/service.js",
+            "./app/modules/types/config.js"
+        ],
+        dest : {
+            folder : "./app/build/js",
+            name : "main.js"
+        }
+    },
+    lib : {
+        src : [
+            "./bower_components/angular/angular.js",
+            "./bower_components/angular-route/angular-route.js",
+            "./bower_components/lodash/dist/lodash.js",
+            "./bower_components/restangular/dist/restangular.js",
+            "./bower_components/ng-table/ng-table.js"
+        ],
+        dest : {
+            folder : "./app/build/js",
+            name : "lib.js"
+        }
+    }
+}
 
 
 /**
  * Default task
  */
-gulp.task("default", ["build"]);
-
+gulp.task("default", ["watch"]);
 
 /**
- * Update : Run bower update cmd.
+ * Build all project source.
  */
-gulp.task("update", function(){
-    bower()
-        .pipe(gulp.dest('./app/lib/'));
+gulp.task("build", ["clean", "bower", "less", "js"]);
+
+/**
+ * Bower : update lib dependencies, concat & minify them.
+ */
+gulp.task("bower", function(){
+    bower();
+    gulp.src(application.lib.src)
+        .pipe(concat(application.lib.dest.name))
+        .pipe(uglify())
+        .pipe(gulp.dest(application.lib.dest.folder));
 });
 
 /**
- * Compile : JS Hint task
+ * JS Hint task.
  */
 gulp.task('jshint', function() {
-    gulp.src('./app/js/*.js')
+    gulp.src(application.js.src)
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
 
 /**
- * Compile : LESS compilation
+ * LESS compilation.
  */
 gulp.task('less', function() {
-    gulp.src('./app/less/**/*.less')
+    gulp.src(application.less.src)
         .pipe(less())
         .pipe(minifyCSS())
-        .pipe(gulp.dest('./app/css'))
+        .pipe(gulp.dest(application.less.dest));
 });
 
 /**
- * Compile task.
+ * Concat & minify JS application files.
  */
-gulp.task('compile', ['jshint', 'less']);
+gulp.task('js', function(){
+    gulp.src(application.js.src)
+        .pipe(concat(application.js.dest.name))
+        .pipe(uglify())
+        .pipe(gulp.dest(application.js.dest.folder));
+});
 
 /**
- * Build task  : update & compile
+ * Clean task
  */
-gulp.task("build", ['update', 'compile']);
+gulp.task('clean', function() {
+    gulp.src('app/build', {read: false}).pipe(clean());
+    gulp.src('app/bowser_components', {read: false}).pipe(clean());
+});
 
 /**
- * Gulp watch : on each change file, run compile task
+ * Gulp watch : on each change file.
  */
 gulp.task('watch', function() {
-    var server = livereload();
-    // watch change files into dest files
-    gulp.watch('./app/**').on('change', function(file) {
-        server.changed(file.path);
-        gulp.run('compile');
-    });
+
+    gulp.run("bower");
+
+    gulp.src(application.js.src, { read: false})
+        .pipe(watch({ emit: 'all' }, function(files) {
+            gulp.run("js");
+            files
+                .pipe(livereload())
+                .pipe(jshint())
+                .pipe(jshint.reporter('default'));
+
+        }));
+
+    gulp.src(application.less.src, { read: false})
+        .pipe(watch({ emit: 'all' }, function(files) {
+            gulp.run("less");
+            files.pipe(livereload());
+        }));
 });

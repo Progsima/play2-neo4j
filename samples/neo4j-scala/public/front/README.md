@@ -11,7 +11,7 @@
     * npm install --save-dev gulp-concat
     * npm install --save-dev gulp-livereload
     * ...
-* Update application dependencies with bower : `bower install`
+* Update application dependencies with bower : `bower install` or just run `gulp build`
 
 ## Json Schema
 

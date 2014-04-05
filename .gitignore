@@ -16,13 +16,11 @@ samples/neo4j-scala/data/
 samples/neo4j-scala/neo_store_IS_UNDEFINED/
 samples/neo4j-scala/public/front/node_modules
 samples/neo4j-scala/public/front/bower_components
-samples/neo4j-scala/public/front/dist
-samples/neo4j-scala/public/front/app/css
-samples/neo4j-scala/public/front/app/js/main.js
-samples/neo4j-scala/public/front/app/lib
+samples/neo4j-scala/public/front/app/build
 /*.iml
 /out
 /.idea_modules
+/.idea
 /.classpath
 /.project
 /RUNNING_PID
