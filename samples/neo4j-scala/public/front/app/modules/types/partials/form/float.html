@@ -1,1 +1,25 @@
-FLOAT
+<!-- Field is required ? -->
+<div class="form-group" >
+    <label class="col-sm-2 control-label" for="fieldRequire{{$index}}">Is require ?</label>
+    <div class="col-sm-10">
+        <input id="fieldRequire{{$index}}" name="fieldRequire{{$index}}" type="checkbox" ng-model="type.fields[$index].require" value="true">
+    </div>
+</div>
+
+<!-- Min for the field -->
+<div class="form-group" ng-class="{ 'has-error' : fieldForm.fieldMin.$invalid }">
+    <label class="col-sm-2 control-label" for="fieldMin{{$index}}">Minimum</label>
+    <div class="col-sm-10">
+        <input id="fieldMin{{$index}}" class="form-control" name="fieldMin" type="number" ng-model="type.fields[$index].minimum" >
+        <p ng-show="fieldForm.fieldMin.$invalid" class="help-block">Minimum must be a number.</p>
+    </div>
+</div>
+
+<!-- Max for the field -->
+<div class="form-group" ng-class="{ 'has-error' : fieldForm.fieldMax.$invalid }">
+    <label class="col-sm-2 control-label" for="fieldMax{{$index}}">Maximum</label>
+    <div class="col-sm-10">
+        <input id="fieldMax{{$index}}" class="form-control" name="fieldMax" type="number" ng-model="type.fields[$index].maximum" >
+        <p ng-show="fieldForm.fieldMax.$invalid" class="help-block">Maximum must be a number.</p>
+    </div>
+</div>

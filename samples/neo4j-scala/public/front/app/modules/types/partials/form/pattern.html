@@ -2,7 +2,7 @@
 <div class="form-group" >
     <label class="col-sm-2 control-label" for="fieldRequire{{$index}}">Is require ?</label>
     <div class="col-sm-10">
-        <input id="fieldRequire{{$index}}" name="fieldRequire{{$index}}" type="checkbox" ng-model="type.fields[$index].require" value="true">
+        <input id="fieldRequire{{$index}}" name="fieldRequire{{$index}}" type="checkbox" ng-model="type.fields[$index].require" >
     </div>
 </div>
 
@@ -21,5 +21,14 @@
     <div class="col-sm-10">
         <input id="fieldMax{{$index}}" class="form-control" name="fieldMax" type="number" ng-model="type.fields[$index].maxLength" >
         <p ng-show="fieldForm.fieldMax.$invalid" class="help-block">Maximum must be a number.</p>
+    </div>
+</div>
+
+<!-- Pattern of the field -->
+<div class="form-group" ng-class="{ 'has-error' : fieldForm.fieldPattern.$invalid }">
+    <label class="col-sm-2 control-label" for="fieldPattern{{$index}}">Regex</label>
+    <div class="col-sm-10">
+        <input id="fieldPattern{{$index}}" class="form-control" name="fieldPattern" type="string" ng-model="type.fields[$index].pattern" required>
+        <p ng-show="fieldForm.fieldPattern.$invalid" class="help-block">Pattern is required.</p>
     </div>
 </div>
