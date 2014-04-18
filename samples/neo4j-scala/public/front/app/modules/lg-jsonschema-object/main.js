@@ -1,13 +1,13 @@
 // Define type module
-var types = angular.module('lgTypesModule', ['ngRoute', 'restangular', 'ngTable']);
+var lgJsonSchemaObject = angular.module('lgJsonSchemaObject', ['ngRoute', 'restangular', 'ngTable']);
 
 // Some module route
-types.config(['$routeProvider',
+lgJsonSchemaObject.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
-            .when('/types', {templateUrl: './modules/types/partials/index.html', controller: 'List'})
-            .when('/types/new', {templateUrl: './modules/types/partials/edit.html', controller: 'Edit'})
-            .when('/types/edit/:name', {templateUrl: './modules/types/partials/edit.html', controller: 'Edit'})
-            .when('/types/delete/:name', {templateUrl: './modules/types/partials/delete.html', controller: 'Delete'});
+            .when('/objects/:type', {templateUrl: './modules/lg-jsonschema-object/partials/index.html', controller: 'List'})
+            .when('/objects/:type/new', {templateUrl: './modules/lg-jsonschema-object/partials/edit.html', controller: 'Edit'})
+            .when('/objects/:type/edit/:id', {templateUrl: './modules/lg-jsonschema-object/partials/edit.html', controller: 'Edit'})
+            .when('/objects/:types/delete/:id', {templateUrl: './modules/lg-jsonschema-object/partials/delete.html', controller: 'Delete'});
     }
 ]);

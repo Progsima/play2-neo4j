@@ -1,8 +1,11 @@
 /**
- * List all type avaible in the application.
+ * List all content of the specified type..
  */
-types.controller('List', ['$scope', '$location', 'Restangular', 'ngTableParams',
-    function($scope, $location, Restangular, ngTableParams) {
+lgJsonSchemaObject.controller('List', ['$routeParams', '$scope', '$location', 'Restangular', 'ngTableParams',
+    function($routeParams, $scope, $location, Restangular, ngTableParams) {
+
+        // TODO : what we if there is no type ?
+        $scope.type = $routeParams.type;
 
         // ng table configuration
         $scope.tableParams = new ngTableParams(
@@ -18,7 +21,7 @@ types.controller('List', ['$scope', '$location', 'Restangular', 'ngTableParams',
                 getData: function($defer, params) {
                     Restangular.withConfig(function(RestangularConfigurer) {
                         RestangularConfigurer.setFullResponse(true);
-                    }).all('types').getList(
+                    }).all('contents/' + type).getList(
                         {
                             page  : params.page(),
                             row   : params.count(),
@@ -36,15 +39,15 @@ types.controller('List', ['$scope', '$location', 'Restangular', 'ngTableParams',
         //
         // Function to go to delete page
         //
-        $scope.fnDelete = function(name) {
-            $location.path("/types/delete/" + name);
+        $scope.fnDelete = function(uuid) {
+            $location.path("/objects/" + uuid);
         };
 
         //
         // Function to go to edit page
         //
-        $scope.fnEdit = function(name) {
-            $location.path("/types/edit/" + name);
+        $scope.fnEdit = function(uuid) {
+            $location.path("/types/edit/" + uuid);
         };
 
         //
@@ -54,130 +57,31 @@ types.controller('List', ['$scope', '$location', 'Restangular', 'ngTableParams',
             $location.path("/types/new");
         };
 
-        //
-        // Function to instantiate
-        //
-        $scope.fnInstantiate = function(name) {
-            $location.path("/types/" + name + "/new");
-        };
     }
 ]);
 
 /**
  * Edit a specific type.
  */
-types.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'typeValue', 'typeService',
+lgJsonSchemaObject.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'typeValue', 'typeService',
     function($scope, Restangular, $routeParams, typeValue, typeService) {
 
         // configure Restangular
         Restangular.setRestangularFields({
-            id: "name"
+            id: "uuid"
         });
 
-        // init controller with data
-        if($routeParams.name != null) {
-            // retreive the element from database
-            Restangular.one('types', $routeParams.name).get().then(function(neo4jType){
-                $scope.neo4jType = neo4jType;
-                $scope.type = typeService.neo4j2Form($scope.neo4jType);
-            });
-        }
-        else {
-            $scope.neo4jType = {};
-            $scope.type = {};
-        }
-
-        // adding all available type
-        $scope.types = typeValue;
-
-        //
-        // function to add a field
-        //
-        $scope.fnAddField = function() {
-            if( $scope.type['fields'] == null ) {
-                $scope.type.fields = [];
-            }
-            $scope.type.fields.push({
-                "name" : "",
-                "title" : "",
-                "description" : ""
-            });
-        };
-
-        //
-        // function to remove a field
-        //
-        $scope.fnRemoveField = function(position) {
-            $scope.type.fields = $scope.type.fields.filter(function(element){
-                return position != $scope.type.fields.indexOf(element);
-            });
-        };
-
-        //
-        // function to save the type
-        //
-        $scope.fnSaveType = function() {
-            var isNew = false;
-            if($scope.neo4jType === null) {
-                isNew = true;
-            }
-            typeService.updateNeo4jTypeWithForm($scope.neo4jType, $scope.type);
-            if (isNew) {
-                $scope.neo4jType.post();
-            }
-            else {
-                Restangular.all('types').post($scope.neo4jType);
-            }
-        };
     }
 ]);
 
 /**
  * Delete a specific type.
  */
-types.controller('Delete', ['$scope', '$location', '$routeParams','Restangular', 'ngTableParams',
+lgJsonSchemaObject.controller('Delete', ['$scope', '$location', '$routeParams','Restangular', 'ngTableParams',
     function($scope, $location, $routeParams, Restangular, ngTableParams) {
 
         // retrieve current element
-        $scope.type = Restangular.one('types', $routeParams.name).get().$object;
-
-        // Get list of content of that type
-        $scope.tableParams = new ngTableParams(
-            {
-                page: 1,
-                count: 10
-            },
-            {
-                total: 0,
-                getData: function($defer, params) {
-                    Restangular.all('contents/' + $routeParams.name).getList(
-                        {
-                            page  : params.page(),
-                            row   : params.count()
-                        }
-                    ).then(function(response) {
-                            params.total(response.headers()['x-total-row']);
-                            $defer.resolve(response.data);
-                        });
-                }
-            }
-        );
-
-        //
-        // Return to home
-        //
-        $scope.fnHome = function() {
-            $location.path('/types');
-        };
-
-        //
-        // The delete function for confirmation
-        //
-        $scope.fnDelete = function(name) {
-            Restangular.one('types', name).remove().then(function(response){
-                $scope.fnHome();
-            });
-        };
+        $scope.type = Restangular.one('contents/' + type, $routeParams.uuid).get().$object;
 
     }
 ]);
@@ -185,7 +89,7 @@ types.controller('Delete', ['$scope', '$location', '$routeParams','Restangular',
 /**
  * Create a new type
  */
-types.controller('New', ['$scope', '$location', 'Restangular', 'ngTableParams',
+lgJsonSchemaObject.controller('New', ['$scope', '$location', 'Restangular', 'ngTableParams',
     function($scope, $location, Restangular, ngTableParams) {
 
     }

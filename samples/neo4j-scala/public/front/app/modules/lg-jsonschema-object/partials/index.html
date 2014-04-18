@@ -1,18 +1,16 @@
-<h1>Content Type</h1>
+<h1>Module for {{type}}</h1>
 
-<h2>List of all type</h2>
+<h2>List of all {{type}}</h2>
 
 <table ng-table="tableParams" class="table">
-    <tr ng-repeat="type in $data">
+    <tr ng-repeat="content in $data">
         <td data-title="'Name'" sortable="'name'">
-            {{type.name}}
+            {{content.name}}
         </td>
-        <td data-title="'Description'">{{type.description}}</td>
+        <td data-title="'Description'">{{content.description}}</td>
         <td data-title="Action">
-            <a ng-click="fnEdit(type.name)">Edit</a>
-            <a ng-click="fnDelete(type.name)">Delete</a>
-            <span> | </span>
-            <a ng-click="fnInstantiate(type.name)">Instanciate</a>
+            <a ng-click="fnEdit(content.uuid)">Edit</a>
+            <a ng-click="fnDelete(content.uuid)">Delete</a>
         </td>
     </tr>
 </table>

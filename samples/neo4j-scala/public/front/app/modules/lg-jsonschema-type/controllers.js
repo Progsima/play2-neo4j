@@ -57,8 +57,8 @@ lgJsonSchemaType.controller('List', ['$scope', '$location', 'Restangular', 'ngTa
         //
         // Function to instantiate
         //
-        $scope.fnInstantiate = function(name) {
-            $location.path("/types/" + name + "/new");
+        $scope.fnInstantiate = function(type) {
+            $location.path("/objects/" + type + "/new");
         };
     }
 ]);
@@ -67,7 +67,7 @@ lgJsonSchemaType.controller('List', ['$scope', '$location', 'Restangular', 'ngTa
  * Edit a specific type.
  */
 lgJsonSchemaType.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'lgJsonSchemaTypeService', 'lgJsonSchemaTypeConfig',
-    function($scope, Restangular, $routeParams, typeValue, typeService) {
+    function($scope, Restangular, $routeParams, lgJsonSchemaTypeService, lgJsonSchemaTypeConfig) {
 
         // configure Restangular
         Restangular.setRestangularFields({
@@ -79,7 +79,7 @@ lgJsonSchemaType.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'l
             // retreive the element from database
             Restangular.one('types', $routeParams.name).get().then(function(neo4jType){
                 $scope.neo4jType = neo4jType;
-                $scope.type = typeService.neo4j2Form($scope.neo4jType);
+                $scope.type = lgJsonSchemaTypeService.neo4j2Form($scope.neo4jType);
             });
         }
         else {
@@ -88,7 +88,7 @@ lgJsonSchemaType.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'l
         }
 
         // adding all available type
-        $scope.types = typeValue;
+        $scope.types =  lgJsonSchemaTypeConfig;
 
         //
         // function to add a field
@@ -121,7 +121,7 @@ lgJsonSchemaType.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'l
             if($scope.neo4jType === null) {
                 isNew = true;
             }
-            typeService.updateNeo4jTypeWithForm($scope.neo4jType, $scope.type);
+            lgJsonSchemaTypeService.updateNeo4jTypeWithForm($scope.neo4jType, $scope.type);
             if (isNew) {
                 $scope.neo4jType.post();
             }
