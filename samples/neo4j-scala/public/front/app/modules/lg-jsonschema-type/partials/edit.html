@@ -1,0 +1,92 @@
+<h1>Content Type List</h1>
+
+<h2>Edit {{type.name}}</h2>
+
+<form class="form-horizontal" name="typeForm"  novalidate>
+
+    <fieldset>
+        <legend>Metadata</legend>
+
+        <div class="form-group" ng-class="{ 'has-error' : typeForm.name.$invalid }">
+            <label class="col-sm-2 control-label" for="name">Name</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text"  id="name" name="name" placeholder="Name of the content" ng-model="type.name" required>
+                <p ng-show="typeForm.name.$invalid" class="help-block">Name is required.</p>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : typeForm.title.$invalid }">
+            <label class="col-sm-2 control-label" for="title">Title</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text"  id="title" name="title" placeholder="Title of the content" ng-model="type.title" required>
+                <p ng-show="typeForm.title.$invalid" class="help-block">Title is required.</p>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : typeForm.description.$invalid }">
+            <label class="col-sm-2 control-label" for="description">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="3" id="description" name="description" placeholder="Description of the content" ng-model="type.description">
+                </textarea>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            Fields
+            <button class="btn btn-info pull-right" ng-click="fnAddField()">Add a field</button>
+        </legend>
+
+        <fieldset ng-repeat="field in type.fields">
+
+            <ng-form name="fieldForm">
+                <legend>
+                    Field {{field.name}}
+                    <button class="btn btn-info pull-right" ng-click="fnRemoveField($index)">Removefield</button>
+                </legend>
+
+                <div class="form-group" ng-class="{ 'has-error' : fieldForm.fieldName.$invalid }">
+                    <label class="col-sm-2 control-label" for="fieldName{{$index}}">Name</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text"  id="fieldName{{$index}}" name="fieldName" placeholder="Name of the field" ng-model="type.fields[$index].name" value="type.fields[$index].name" required>
+                        <p ng-show="fieldForm.fieldName.$invalid" class="help-block">Field name is required.</p>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : fieldForm.fieldTitle.$invalid }">
+                    <label class="col-sm-2 control-label" for="fieldTitle{{$index}}">Title</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text"  id="fieldTitle{{$index}}" name="fieldTitle" placeholder="Title of the field" ng-model="type.fields[$index].title" value="type.fields[$index].title" required>
+                        <p ng-show="fieldForm.fieldTitle.$invalid" class="help-block">Field title is required.</p>
+                    </div>
+                </div>
+
+                <div class="form-group" >
+                    <label class="col-sm-2 control-label" for="fieldDescription{{$index}}">Description</label>
+                    <div class="col-sm-10">
+                        <textarea id="fieldDescription{{$index}}" class="form-control"  name="fieldDescription" placeholder="Description the field" ng-model="type.fields[$index].description" value="type.fields[$index].description">
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : fieldForm.fieldType.$invalid }">
+                    <label class="col-sm-2 control-label" for="fieldType{{$index}}">Type</label>
+                    <div class="col-sm-10">
+                        <select id="fieldType{{$index}}" class="form-control" name="fieldType" ng-model="type.fields[$index].type" ng-options="value.name for (key, value) in types" required></select>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-include="type.fields[$index].type.form"></div>
+
+            </ng-form>
+
+        </fieldset>
+
+    </fieldset>
+
+    <!-- SUBMIT BUTTON -->
+    <button type="submit" class="btn btn-primary" ng-disabled="typeForm.$invalid" ng-click="fnSaveType()">Submit</button>
+
+</form>

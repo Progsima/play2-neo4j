@@ -1,8 +1,8 @@
 /**
  * Configuration of all type available in the application.
  */
-types.value(
-    "typeValue",
+lgJsonSchemaType.value(
+    "lgJsonSchemaTypeConfig",
     {
         "http://json-schema.logisima.com/integer" : {
             name: "Integer",

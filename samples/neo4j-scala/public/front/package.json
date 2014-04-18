@@ -12,5 +12,8 @@
     "gulp-bower": "0.0.3",
     "gulp-minify-css": "^0.3.0",
     "gulp-clean": "^0.2.4"
+  },
+  "dependencies": {
+    "gulp-watch": "^0.5.4"
   }
 }

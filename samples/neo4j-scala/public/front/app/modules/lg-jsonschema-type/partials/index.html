@@ -1,0 +1,18 @@
+<h1>Content Type</h1>
+
+<h2>List of all type</h2>
+
+<table ng-table="tableParams" class="table">
+    <tr ng-repeat="type in $data">
+        <td data-title="'Name'" sortable="'name'">
+            {{type.name}}
+        </td>
+        <td data-title="'Description'">{{type.description}}</td>
+        <td data-title="Action">
+            <a ng-click="fnEdit(type.name)">Edit</a>
+            <a ng-click="fnDelete(type.name)">Delete</a>
+            <span> | </span>
+            <a ng-click="fnInstantiate(type.name)">Instanciate</a>
+        </td>
+    </tr>
+</table>

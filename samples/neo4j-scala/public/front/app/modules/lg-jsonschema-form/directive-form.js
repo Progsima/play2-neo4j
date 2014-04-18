@@ -1,3 +1,18 @@
+/**
+ * Directive that generate a form from a json schema.
+ */
+lgJsonschemaForm.directive('lgJsonschemaForm', function(){
+
+    return {
+        restrict: 'E',
+        templateUrl: './modules/lg-jsonschema-form/partials/form.html',
+        replace: true,
+        scope : {
+
+        }
+    }
+});
+
 angular.module('neocms.directives', [])
 
     /**

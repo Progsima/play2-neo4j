@@ -1,5 +1,5 @@
 // Define type module
-var types = angular.module('types', ['ngRoute', 'restangular', 'ngTable']);
+var types = angular.module('lgTypesModule', ['ngRoute', 'restangular', 'ngTable']);
 
 // Some module route
 types.config(['$routeProvider',

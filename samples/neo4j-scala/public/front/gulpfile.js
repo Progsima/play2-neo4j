@@ -19,10 +19,14 @@ application = {
         src : [
             "./app/js/app.js",
             "./app/js/error.js",
-            "./app/modules/types/main.js",
-            "./app/modules/types/controllers.js",
-            "./app/modules/types/service.js",
-            "./app/modules/types/config.js"
+            "./app/modules/lg-jsonschema-type/main.js",
+            "./app/modules/lg-jsonschema-type/controllers.js",
+            "./app/modules/lg-jsonschema-type/service.js",
+            "./app/modules/lg-jsonschema-type/config.js",
+            "./app/modules/lg-jsonschema-form/main.js",
+            "./app/modules/lg-jsonschema-form/directive-form.js",
+            "./app/modules/lg-jsonschema-object/main.js",
+            "./app/modules/lg-jsonschema-object/controllers.js"
         ],
         dest : {
             folder : "./app/build/js",
@@ -91,7 +95,7 @@ gulp.task('less', function() {
 gulp.task('js', function(){
     gulp.src(application.js.src)
         .pipe(concat(application.js.dest.name))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest(application.js.dest.folder));
 });
 
