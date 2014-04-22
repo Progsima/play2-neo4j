@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     concat = require('gulp-concat'),
     less = require('gulp-less'),
-    clean = require('gulp-clean');
+    clean = require('gulp-clean'),
+    serve = require('gulp-connect');
 
 application = {
     less : {
@@ -25,6 +26,7 @@ application = {
             "./app/modules/lg-jsonschema-type/config.js",
             "./app/modules/lg-jsonschema-form/main.js",
             "./app/modules/lg-jsonschema-form/directive-form.js",
+            "./app/modules/lg-jsonschema-form/directive-field.js",
             "./app/modules/lg-jsonschema-object/main.js",
             "./app/modules/lg-jsonschema-object/controllers.js"
         ],
@@ -107,12 +109,14 @@ gulp.task('clean', function() {
     gulp.src('app/bowser_components', {read: false}).pipe(clean());
 });
 
+
 /**
  * Gulp watch : on each change file.
  */
 gulp.task('watch', function() {
 
     gulp.run("bower");
+
 
     gulp.src(application.js.src, { read: false})
         .pipe(watch({ emit: 'all' }, function(files) {

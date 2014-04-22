@@ -7,6 +7,7 @@ lgJsonSchemaType.value(
         "http://json-schema.logisima.com/integer" : {
             name: "Integer",
             form : "./modules/lg-jsonschema-type/partials/form/integer.html",
+            field : "./modules/lg-jsonschema-form/partials/field/string.html",
             schema : "\"{{name}}\" : { id: \"http://json-schema.logisima.com/integer\", title: \"{{title}}\", description: \"{{description}}\", type : \"integer\", minimum : {{minimum}}, maximum : {{maximum}}, require : {{require}} }"
         },
         "http://json-schema.logisima.com/float" : {
@@ -22,6 +23,7 @@ lgJsonSchemaType.value(
         "http://json-schema.logisima.com/string" : {
             name: "String",
             form : "./modules/lg-jsonschema-type/partials/form/string.html",
+            field : "./modules/lg-jsonschema-form/partials/field/string.html",
             schema : "\"{{name}}\" : { id: \"http://json-schema.logisima.com/string\" ,title: \"{{title}}\" ,description: \"{{description}}\", type : \"string\", minLength : {{minLength}}, maxLength : {{maxLength}}, require : {{require}} }"
         },
         "http://json-schema.logisima.com/pattern" : {

@@ -5,8 +5,6 @@ import models.ContentType.contentTypeWrites
 import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.json._
 import play.api.mvc._
-import com.wordnik.swagger.annotations._
-import javax.ws.rs.PathParam
 import tools.JsonTools
 import scala.concurrent.Future
 
@@ -45,7 +43,9 @@ object ContentTypes extends Controller {
   /**
    * Create a content type.
    * This a POST because it's not safe & idempotent (there is a unique constraint on name).
-   * If succeed, we return a 201 with object into the body
+   * If succeed, we return a 201 with object into the body.
+   *
+   * TODO : location header
    */
   def create() = Action.async(parse.json) { implicit request =>
 

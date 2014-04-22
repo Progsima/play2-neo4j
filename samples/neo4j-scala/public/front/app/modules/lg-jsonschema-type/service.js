@@ -1,8 +1,8 @@
 /**
  * Factory for communication between Neo4j API and type model (ie. HTML forms).
  */
-lgJsonSchemaType.service('lgJsonSchemaTypeService', ['Restangular', 'lgJsonSchemaTypeConfig',
-    function(Restangular, typeValue){
+lgJsonSchemaType.service('lgJsonSchemaTypeService', ['lgJsonSchemaTypeConfig',
+    function(lgJsonSchemaTypeConfig){
 
         /**
          * Transform a model to a neo4j object.
@@ -63,7 +63,7 @@ lgJsonSchemaType.service('lgJsonSchemaTypeService', ['Restangular', 'lgJsonSchem
             for( var property in schema.properties) {
                 var field = schema.properties[ property];
                 field.name = property;
-                field.type = typeValue[field.id];
+                field.type = lgJsonSchemaTypeConfig[field.id];
                 delete field.id;
                 type.fields.push(field);
             }

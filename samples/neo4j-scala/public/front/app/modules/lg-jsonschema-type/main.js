@@ -5,9 +5,9 @@ var lgJsonSchemaType = angular.module('lgJsonSchemaType', ['ngRoute', 'restangul
 lgJsonSchemaType.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
-            .when('/types', {templateUrl: './modules/lg-jsonschema-type/partials/index.html', controller: 'List'})
-            .when('/types/new', {templateUrl: './modules/lg-jsonschema-type/partials/edit.html', controller: 'Edit'})
-            .when('/types/edit/:name', {templateUrl: './modules/lg-jsonschema-type/partials/edit.html', controller: 'Edit'})
-            .when('/types/delete/:name', {templateUrl: './modules/lg-jsonschema-type/partials/delete.html', controller: 'Delete'});
+            .when('/types', {templateUrl: './modules/lg-jsonschema-type/partials/index.html', controller: 'LgJsonSchemaTypeList'})
+            .when('/types/new', {templateUrl: './modules/lg-jsonschema-type/partials/edit.html', controller: 'LgJsonSchemaTypeEdit'})
+            .when('/types/edit/:name', {templateUrl: './modules/lg-jsonschema-type/partials/edit.html', controller: 'LgJsonSchemaTypeEdit'})
+            .when('/types/delete/:name', {templateUrl: './modules/lg-jsonschema-type/partials/delete.html', controller: 'LgJsonSchemaTypeDelete'});
     }
 ]);

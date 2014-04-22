@@ -1,3 +1,3 @@
 // Define type module
-var lgJsonschemaForm = angular.module('lgJsonSchemaForm', ['ngRoute', 'restangular', 'ngTable']);
+var lgJsonschemaForm = angular.module('lgJsonSchemaForm', ['lgJsonSchemaType', 'ngRoute', 'restangular', 'ngTable']);
 

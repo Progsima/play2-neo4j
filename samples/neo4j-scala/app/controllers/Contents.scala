@@ -41,6 +41,8 @@ object Contents extends Controller {
    * Create a content.
    * This a POST because it's not safe & idempotent (there is a unique constraint on name).
    * If succeed, we return a 201 with object into the body
+   *
+   * TODO : location header
    */
   def create( contentType :String ) = Action.async(parse.json) { implicit request =>
 

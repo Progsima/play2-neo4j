@@ -8,51 +8,35 @@ lgJsonschemaForm.directive('lgJsonschemaForm', function(){
         templateUrl: './modules/lg-jsonschema-form/partials/form.html',
         replace: true,
         scope : {
+            schema : "=schema",
+            content : "=object",
+            form : '=name'
+        },
+        controller: function ($scope) {
+            $scope.fields = [];
 
+            $scope.$watch('schema', function(newValue, oldValue) {
+                if( $scope.schema != null ) {
+                    for( var property in $scope.schema.properties) {
+                        var field = $scope.schema.properties[property];
+                        field.name = property;
+
+                        $scope.fields.push(field);
+                    }
+                }
+                console.log($scope.fields);
+                $scope.fields.reverse(); // Why I need to reverse ???
+            });
+
+        },
+        compile: function (scope, elm, attrs, ctrl) {
+            return {
+                post: function (scope, elm, attrs, ctrl) {
+                    //Post gets called after angular has created the FormController
+                    //Now pass the FormController back up to the parent scope
+                    scope.form = scope[attrs.name];
+                }
+            }
         }
     }
 });
-
-angular.module('neocms.directives', [])
-
-    /**
-    * Angular directive that display a form from a jsonSchema.
-    */
-    .directive('neocmsForm', function () {
-
-        /**
-         * The linked method of the directive.
-         *
-         * @param scope current scope of the directive
-         * @param element the HTLM element of the directive
-         * @param attrs array of attributes of the HTML element
-         */
-        function link(scope, element, attrs) {
-            var jsonSchema = attrs.schema;
-            var level = 0;
-
-            /**
-             * Parser of the JSON schema that will call in recursive mode.
-             *
-             * @param level level of the recursion
-             * @param schema JSON schema of the level
-             */
-            function parseSchema(level, schema) {
-            }
-
-            /**
-             * Retrieve the JSON schema from an URL that can be inline, locale or distante.
-             *
-             * @param url url of the json schema
-             * @return the json schema retrieve
-             */
-            function retrieveJsonSchema(url){
-            }
-        };
-
-        return {
-            restrict: 'E',
-            link: link
-        };
-
-    });

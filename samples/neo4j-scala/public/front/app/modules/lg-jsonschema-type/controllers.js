@@ -1,7 +1,7 @@
 /**
  * List all type available in the application.
  */
-lgJsonSchemaType.controller('List', ['$scope', '$location', 'Restangular', 'ngTableParams',
+lgJsonSchemaType.controller('LgJsonSchemaTypeList', ['$scope', '$location', 'Restangular', 'ngTableParams',
     function($scope, $location, Restangular, ngTableParams) {
 
         // ng table configuration
@@ -66,7 +66,7 @@ lgJsonSchemaType.controller('List', ['$scope', '$location', 'Restangular', 'ngTa
 /**
  * Edit a specific type.
  */
-lgJsonSchemaType.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'lgJsonSchemaTypeService', 'lgJsonSchemaTypeConfig',
+lgJsonSchemaType.controller('LgJsonSchemaTypeEdit', ['$scope', 'Restangular', '$routeParams', 'lgJsonSchemaTypeService', 'lgJsonSchemaTypeConfig',
     function($scope, Restangular, $routeParams, lgJsonSchemaTypeService, lgJsonSchemaTypeConfig) {
 
         // configure Restangular
@@ -122,8 +122,8 @@ lgJsonSchemaType.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'l
                 isNew = true;
             }
             lgJsonSchemaTypeService.updateNeo4jTypeWithForm($scope.neo4jType, $scope.type);
-            if (isNew) {
-                $scope.neo4jType.post();
+            if (!isNew) {
+                $scope.neo4jType.put();
             }
             else {
                 Restangular.all('types').post($scope.neo4jType);
@@ -135,7 +135,7 @@ lgJsonSchemaType.controller('Edit', ['$scope', 'Restangular', '$routeParams', 'l
 /**
  * Delete a specific type.
  */
-lgJsonSchemaType.controller('Delete', ['$scope', '$location', '$routeParams','Restangular', 'ngTableParams',
+lgJsonSchemaType.controller('LgJsonSchemaTypeDelete', ['$scope', '$location', '$routeParams','Restangular', 'ngTableParams',
     function($scope, $location, $routeParams, Restangular, ngTableParams) {
 
         // retrieve current element
@@ -178,15 +178,6 @@ lgJsonSchemaType.controller('Delete', ['$scope', '$location', '$routeParams','Re
                 $scope.fnHome();
             });
         };
-
-    }
-]);
-
-/**
- * Create a new type
- */
-lgJsonSchemaType.controller('New', ['$scope', '$location', 'Restangular', 'ngTableParams',
-    function($scope, $location, Restangular, ngTableParams) {
 
     }
 ]);
