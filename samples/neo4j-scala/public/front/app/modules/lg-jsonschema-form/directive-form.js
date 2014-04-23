@@ -9,7 +9,7 @@ lgJsonschemaForm.directive('lgJsonschemaForm', function(){
         replace: true,
         scope : {
             schema : "=schema",
-            content : "=object",
+            content : "=content",
             form : '=name'
         },
         controller: function ($scope) {
@@ -24,7 +24,6 @@ lgJsonschemaForm.directive('lgJsonschemaForm', function(){
                         $scope.fields.push(field);
                     }
                 }
-                console.log($scope.fields);
                 $scope.fields.reverse(); // Why I need to reverse ???
             });
 

@@ -7,6 +7,10 @@ lgJsonschemaForm.directive('lgJsonschemaField', function(lgJsonSchemaTypeConfig)
         restrict: 'E',
         replace: true,
         templateUrl : './modules/lg-jsonschema-form/partials/field/field.html',
+        scope : {
+            field : "=field",
+            content : "=content"
+        },
         controller: function ($scope, lgJsonSchemaTypeConfig) {
             $scope.templateField = lgJsonSchemaTypeConfig[$scope.field.id].field;
         }
