@@ -1,8 +1,7 @@
 /**
  * Factory for communication between Neo4j API and type model (ie. HTML forms).
  */
-lgJsonSchemaType.service('lgJsonSchemaTypeService', ['lgJsonSchemaTypeConfig',
-    function(lgJsonSchemaTypeConfig){
+lgJsonschema.service('lgJsonSchemaTypeService', ['lgJsonSchemaTypeConfig', function(lgJsonSchemaTypeConfig){
 
         /**
          * Transform a model to a neo4j object.

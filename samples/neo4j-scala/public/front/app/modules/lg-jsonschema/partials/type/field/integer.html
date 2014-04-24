@@ -1,0 +1,25 @@
+<ng-form name="objectFormField">
+
+    <div class="form-group" ng-class="{ 'has-error' : objectFormField.objectField.$invalid }">
+
+        <label class="col-sm-2 control-label" for="{{field.name}}">{{field.title}}</label>
+
+        <div class="col-sm-10">
+            <input  id="{{field.name}}"
+                    class="form-control"
+                    type="number"
+                    name="objectField"
+                    ng-model="content[field.name]"
+                    ng-required="{{field.require}}"
+                    min="{{field.minimum}}"
+                    max="{{field.maximum}}" >
+
+            <p ng-show="objectFormField.objectField.$error.required" class="help-block">Field is required</p>
+            <p ng-show="objectFormField.objectField.$error.min" class="help-block">Min is {{field.minimum}}</p>
+            <p ng-show="objectFormField.objectField.$error.max" class="help-block">Max is {{field.maximum}}</p>
+
+        </div>
+
+    </div>
+
+</ng-form>

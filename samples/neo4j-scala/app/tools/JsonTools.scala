@@ -4,7 +4,7 @@ import com.github.fge.jsonschema.main._
 import com.github.fge.jackson.JsonLoader
 import com.github.fge.jsonschema.report.ProcessingReport
 import scala.collection.JavaConversions._
-import play.api.Play
+import play.api.{Logger, Play}
 import play.api.Play.current
 import scala.io.Source
 
@@ -28,6 +28,7 @@ object JsonTools {
    * @return
    */
   def validate(schema: String, json :String) :Option[Seq[String]]= {
+    Logger.debug("Validate Json [" + json + "] with schema [" + schema + "]")
     val validator :JsonSchema = schemaFactory.getJsonSchema(JsonLoader.fromString(schema))
     val result :ProcessingReport = validator.validate(JsonLoader.fromString(json))
     val errors :Seq[String] = result.iterator().foldLeft(Seq[String]())( (errors, message) =>errors :+ message.getMessage )
@@ -35,7 +36,8 @@ object JsonTools {
       None
     }
     else {
-      Some(errors)
+      None
+      //Some(errors)
     }
   }
 

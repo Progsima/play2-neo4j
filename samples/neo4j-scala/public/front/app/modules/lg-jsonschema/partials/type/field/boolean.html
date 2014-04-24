@@ -1,0 +1,18 @@
+<ng-form name="objectFormField">
+
+    <div class="form-group" ng-class="{ 'has-error' : objectFormField.objectField.$invalid }">
+
+        <label class="col-sm-2 control-label" for="{{field.name}}">{{field.title}}</label>
+
+        <div class="col-sm-10">
+            <input  id="{{field.name}}"
+                    class="form-control"
+                    type="checkbox"
+                    name="objectField"
+                    ng-model="content[field.name]" >
+
+        </div>
+
+    </div>
+
+</ng-form>

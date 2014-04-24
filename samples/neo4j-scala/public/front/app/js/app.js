@@ -1,5 +1,5 @@
 /* App Module */
-var app = angular.module('neocms', ['exception', 'lgJsonSchemaType', 'lgJsonSchemaObject', 'lgJsonSchemaForm']);
+var app = angular.module('neocms', ['exception', 'lgJsonSchema']);
 
 // Configure default API endpoint for Restangular.
 app.config(['RestangularProvider',

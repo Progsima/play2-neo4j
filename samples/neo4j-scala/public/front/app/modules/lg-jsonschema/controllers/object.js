@@ -1,7 +1,7 @@
 /**
  * List all content of the specified type..
  */
-lgJsonSchemaObject.controller('LgJsonSchemaObjectList', ['$routeParams', '$scope', '$location', 'Restangular', 'ngTableParams',
+lgJsonschema.controller('LgJsonSchemaObjectList', ['$routeParams', '$scope', '$location', 'Restangular', 'ngTableParams',
     function($routeParams, $scope, $location, Restangular, ngTableParams) {
 
         // TODO : what we if there is no type ? And if the type doesn't exist in database
@@ -40,21 +40,21 @@ lgJsonSchemaObject.controller('LgJsonSchemaObjectList', ['$routeParams', '$scope
         // Function to go to delete page
         //
         $scope.fnDelete = function(uuid) {
-            $location.path("/objects/" + $scope.type + "/" + uuid);
+            $location.path("/objects/" + $scope.type + "/delete/" + uuid);
         };
 
         //
         // Function to go to edit page
         //
         $scope.fnEdit = function(uuid) {
-            $location.path("/types/edit/" + $scope.type + "/" +uuid);
+            $location.path("/objects/" + $scope.type + "/edit/" +uuid);
         };
 
         //
         // Function to go to new page
         //
         $scope.fnNew = function() {
-            $location.path("/types/" + $scope.type);
+            $location.path("/objects/" + $scope.type + "/new");
         };
 
     }
@@ -63,7 +63,7 @@ lgJsonSchemaObject.controller('LgJsonSchemaObjectList', ['$routeParams', '$scope
 /**
  * Edit a specific type.
  */
-lgJsonSchemaObject.controller('LgJsonSchemaObjectEdit', ['$scope', 'Restangular', '$routeParams',
+lgJsonschema.controller('LgJsonSchemaObjectEdit', ['$scope', 'Restangular', '$routeParams',
     function($scope, Restangular, $routeParams ) {
 
         $scope.content = {};
@@ -81,9 +81,11 @@ lgJsonSchemaObject.controller('LgJsonSchemaObjectEdit', ['$scope', 'Restangular'
                 $scope.schema = eval( "(" + type.schema + ")");
 
                 // init controller with data
+                $scope.isNew = true;
                 if ($routeParams.uuid != null) {
+                    $scope.isNew = false;
                     // retreive the element from database
-                    $scope.content = Restangular.one('content/' + $scope.type.name, $routeParams.uuid).get().$object;
+                    $scope.content = Restangular.one('contents/' + $scope.type.name, $routeParams.uuid).get().$object;
                 }
 
             });
@@ -98,7 +100,12 @@ lgJsonSchemaObject.controller('LgJsonSchemaObjectEdit', ['$scope', 'Restangular'
         // Function to save the object
         //
         $scope.fnSave = function() {
-            console.log($scope.content);
+            if (!$scope.isNew) {
+                $scope.content.put();
+            }
+            else {
+                Restangular.all('contents/' + $scope.type.name).post($scope.content);
+            }
         };
 
     }
@@ -107,7 +114,7 @@ lgJsonSchemaObject.controller('LgJsonSchemaObjectEdit', ['$scope', 'Restangular'
 /**
  * Delete a specific type.
  */
-lgJsonSchemaObject.controller('LgJsonSchemaObjectDelete', ['$scope', '$location', '$routeParams','Restangular', 'ngTableParams',
+lgJsonschema.controller('LgJsonSchemaObjectDelete', ['$scope', '$location', '$routeParams','Restangular', 'ngTableParams',
     function($scope, $location, $routeParams, Restangular, ngTableParams) {
 
         // retrieve current element

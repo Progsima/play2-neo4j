@@ -1,11 +1,11 @@
 /**
  * Directive that generate a form from a json schema.
  */
-lgJsonschemaForm.directive('lgJsonschemaForm', function(){
+lgJsonschema.directive('lgJsonschemaForm', function(){
 
     return {
         restrict: 'E',
-        templateUrl: './modules/lg-jsonschema-form/partials/form.html',
+        templateUrl: './modules/lg-jsonschema/partials/directives/form.html',
         replace: true,
         scope : {
             schema : "=schema",
@@ -20,11 +20,9 @@ lgJsonschemaForm.directive('lgJsonschemaForm', function(){
                     for( var property in $scope.schema.properties) {
                         var field = $scope.schema.properties[property];
                         field.name = property;
-
                         $scope.fields.push(field);
                     }
                 }
-                $scope.fields.reverse(); // Why I need to reverse ???
             });
 
         },

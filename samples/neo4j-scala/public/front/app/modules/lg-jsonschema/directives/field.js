@@ -1,12 +1,12 @@
 /**
  * Directive that generate a field from json schema property.
  */
-lgJsonschemaForm.directive('lgJsonschemaField', function(lgJsonSchemaTypeConfig){
+lgJsonschema.directive('lgJsonschemaField', ['lgJsonSchemaTypeConfig', function(lgJsonSchemaTypeConfig) {
 
     return {
         restrict: 'E',
         replace: true,
-        templateUrl : './modules/lg-jsonschema-form/partials/field/field.html',
+        templateUrl : './modules/lg-jsonschema/partials/directives/field.html',
         scope : {
             field : "=field",
             content : "=content"
@@ -15,4 +15,4 @@ lgJsonschemaForm.directive('lgJsonschemaField', function(lgJsonSchemaTypeConfig)
             $scope.templateField = lgJsonSchemaTypeConfig[$scope.field.id].field;
         }
     }
-});
+}]);

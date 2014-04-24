@@ -20,15 +20,13 @@ application = {
         src : [
             "./app/js/app.js",
             "./app/js/error.js",
-            "./app/modules/lg-jsonschema-type/main.js",
-            "./app/modules/lg-jsonschema-type/controllers.js",
-            "./app/modules/lg-jsonschema-type/service.js",
-            "./app/modules/lg-jsonschema-type/config.js",
-            "./app/modules/lg-jsonschema-form/main.js",
-            "./app/modules/lg-jsonschema-form/directive-form.js",
-            "./app/modules/lg-jsonschema-form/directive-field.js",
-            "./app/modules/lg-jsonschema-object/main.js",
-            "./app/modules/lg-jsonschema-object/controllers.js"
+            "./app/modules/lg-jsonschema/main.js",
+            "./app/modules/lg-jsonschema/controllers/object.js",
+            "./app/modules/lg-jsonschema/controllers/type.js",
+            "./app/modules/lg-jsonschema/directives/form.js",
+            "./app/modules/lg-jsonschema/directives/field.js",
+            "./app/modules/lg-jsonschema/services/neo4jTypeConvertor.js",
+            "./app/modules/lg-jsonschema/services/config.js"
         ],
         dest : {
             folder : "./app/build/js",

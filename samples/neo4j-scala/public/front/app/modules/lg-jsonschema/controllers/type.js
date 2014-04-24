@@ -1,7 +1,7 @@
 /**
  * List all type available in the application.
  */
-lgJsonSchemaType.controller('LgJsonSchemaTypeList', ['$scope', '$location', 'Restangular', 'ngTableParams',
+lgJsonschema.controller('LgJsonSchemaTypeList', ['$scope', '$location', 'Restangular', 'ngTableParams',
     function($scope, $location, Restangular, ngTableParams) {
 
         // ng table configuration
@@ -66,7 +66,7 @@ lgJsonSchemaType.controller('LgJsonSchemaTypeList', ['$scope', '$location', 'Res
 /**
  * Edit a specific type.
  */
-lgJsonSchemaType.controller('LgJsonSchemaTypeEdit', ['$scope', 'Restangular', '$routeParams', 'lgJsonSchemaTypeService', 'lgJsonSchemaTypeConfig',
+lgJsonschema.controller('LgJsonSchemaTypeEdit', ['$scope', 'Restangular', '$routeParams', 'lgJsonSchemaTypeService', 'lgJsonSchemaTypeConfig',
     function($scope, Restangular, $routeParams, lgJsonSchemaTypeService, lgJsonSchemaTypeConfig) {
 
         // configure Restangular
@@ -135,7 +135,7 @@ lgJsonSchemaType.controller('LgJsonSchemaTypeEdit', ['$scope', 'Restangular', '$
 /**
  * Delete a specific type.
  */
-lgJsonSchemaType.controller('LgJsonSchemaTypeDelete', ['$scope', '$location', '$routeParams','Restangular', 'ngTableParams',
+lgJsonschema.controller('LgJsonSchemaTypeDelete', ['$scope', '$location', '$routeParams','Restangular', 'ngTableParams',
     function($scope, $location, $routeParams, Restangular, ngTableParams) {
 
         // retrieve current element
