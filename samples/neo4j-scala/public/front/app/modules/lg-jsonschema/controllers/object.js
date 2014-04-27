@@ -40,21 +40,21 @@ lgJsonschema.controller('LgJsonSchemaObjectList', ['$routeParams', '$scope', '$l
         // Function to go to delete page
         //
         $scope.fnDelete = function(uuid) {
-            $location.path("/objects/" + $scope.type + "/delete/" + uuid);
+            $location.path("/contents/" + $scope.type + "/delete/" + uuid);
         };
 
         //
         // Function to go to edit page
         //
         $scope.fnEdit = function(uuid) {
-            $location.path("/objects/" + $scope.type + "/edit/" +uuid);
+            $location.path("/contents/" + $scope.type + "/edit/" +uuid);
         };
 
         //
         // Function to go to new page
         //
         $scope.fnNew = function() {
-            $location.path("/objects/" + $scope.type + "/new");
+            $location.path("/contents/" + $scope.type + "/new");
         };
 
     }
@@ -85,7 +85,10 @@ lgJsonschema.controller('LgJsonSchemaObjectEdit', ['$scope', 'Restangular', '$ro
                 if ($routeParams.uuid != null) {
                     $scope.isNew = false;
                     // retreive the element from database
-                    $scope.content = Restangular.one('contents/' + $scope.type.name, $routeParams.uuid).get().$object;
+                    Restangular.one('contents/' + $scope.type.name, $routeParams.uuid).get().then(function(result){
+                        // we dont use .$object due ti see https://github.com/mgonto/restangular/issues/579
+                        $scope.content = result;
+                    });
                 }
 
             });
@@ -117,8 +120,28 @@ lgJsonschema.controller('LgJsonSchemaObjectEdit', ['$scope', 'Restangular', '$ro
 lgJsonschema.controller('LgJsonSchemaObjectDelete', ['$scope', '$location', '$routeParams','Restangular', 'ngTableParams',
     function($scope, $location, $routeParams, Restangular, ngTableParams) {
 
-        // retrieve current element
-        $scope.type = Restangular.one('contents/' + type, $routeParams.uuid).get().$object;
+        if ( $routeParams.type != null && $routeParams.uuid != null ) {
+            $scope.type = $routeParams.type;
+            $scope.uuid = $routeParams.uuid;
 
+            // retrieve current element
+            $scope.content = Restangular.one('contents/' + $scope.type, $scope.uuid).get().$object;
+        }
+
+        //
+        // Return to home
+        //
+        $scope.fnHome = function() {
+            $location.path('/contents/' + $scope.type);
+        };
+
+        //
+        // The delete function for confirmation
+        //
+        $scope.fnDelete = function(name) {
+            Restangular.one('contents/' + $scope.type, $scope.uuid).remove().then(function(response){
+                $scope.fnHome();
+            });
+        };
     }
 ]);

@@ -13,10 +13,10 @@ lgJsonschema.config(['$routeProvider',
             .when( '/types/new',                     { templateUrl: './modules/lg-jsonschema/partials/type/edit.html',      controller: 'LgJsonSchemaTypeEdit' })
             .when( '/types/edit/:name',              { templateUrl: './modules/lg-jsonschema/partials/type/edit.html',      controller: 'LgJsonSchemaTypeEdit' })
             .when( '/types/delete/:name',            { templateUrl: './modules/lg-jsonschema/partials/type/delete.html',    controller: 'LgJsonSchemaTypeDelete' })
-            .when( '/objects/:type',                 { templateUrl: './modules/lg-jsonschema/partials/object/index.html',   controller: 'LgJsonSchemaObjectList' })
-            .when( '/objects/:type/new',             { templateUrl: './modules/lg-jsonschema/partials/object/edit.html',    controller: 'LgJsonSchemaObjectEdit' })
-            .when( '/objects/:type/edit/:uuid',      { templateUrl: './modules/lg-jsonschema/partials/object/edit.html',    controller: 'LgJsonSchemaObjectEdit' })
-            .when( '/objects/:types/delete/:uuid',   { templateUrl: './modules/lg-jsonschema/partials/object/delete.html',  controller: 'LgJsonSchemaObjectDelete' });
+            .when( '/contents/:type',                 { templateUrl: './modules/lg-jsonschema/partials/object/index.html',   controller: 'LgJsonSchemaObjectList' })
+            .when( '/contents/:type/new',             { templateUrl: './modules/lg-jsonschema/partials/object/edit.html',    controller: 'LgJsonSchemaObjectEdit' })
+            .when( '/contents/:type/edit/:uuid',      { templateUrl: './modules/lg-jsonschema/partials/object/edit.html',    controller: 'LgJsonSchemaObjectEdit' })
+            .when( '/contents/:type/delete/:uuid',   { templateUrl: './modules/lg-jsonschema/partials/object/delete.html',  controller: 'LgJsonSchemaObjectDelete' });
     }
 ]);
 

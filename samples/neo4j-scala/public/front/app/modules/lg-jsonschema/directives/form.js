@@ -33,7 +33,7 @@ lgJsonschema.directive('lgJsonschemaForm', function(){
                     //Now pass the FormController back up to the parent scope
                     scope.form = scope[attrs.name];
                 }
-            }
+            };
         }
-    }
+    };
 });

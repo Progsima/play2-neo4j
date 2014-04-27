@@ -1,17 +1,10 @@
-<h1>Content Type</h1>
+<h1>Content</h1>
 
-<h2>Delete type {{type.name}}</h2>
+<h2>Delete {{type}} {{uuid}}</h2>
 
-<p>You are going to delete the type {{type.name}}, and all content of this type as you can see above.</p>
-
-<table ng-table="tableParams" class="table">
-    <tr ng-repeat="type in $data">
-        <td data-title="'Name'" sortable="'name'">{{type.name}}</td>
-        <td data-title="'Description'">{{type.description}}</td>
-    </tr>
-</table>
+<p>You are going to delete the {{type}} {{uuid}}</p>
 
 <p>Do you want to continue ?</p>
 
-<button class="btn btn-primary" ng-click="fnDelete(type.name)">Yes</button>
+<button class="btn btn-primary" ng-click="fnDelete()">Yes</button>
 <button class="btn btn-danger" ng-click="fnHome()">No</button>
