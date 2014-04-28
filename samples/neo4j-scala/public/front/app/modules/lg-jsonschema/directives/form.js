@@ -1,7 +1,7 @@
 /**
  * Directive that generate a form from a json schema.
  */
-lgJsonschema.directive('lgJsonschemaForm', function(){
+lgJsonschema.directive('lgJsonschemaForm', ['lgJsonSchemaValidation', function( lgJsonSchemaValidation){
 
     return {
         restrict: 'E',
@@ -10,10 +10,18 @@ lgJsonschema.directive('lgJsonschemaForm', function(){
         scope : {
             schema : "=schema",
             content : "=content",
-            form : '=name'
+            form : '=name',
+            submit : '&submit'
         },
-        controller: function ($scope) {
+        controller: function ($scope, lgJsonSchemaValidation) {
             $scope.fields = [];
+
+            $scope.onSubmit = function(){
+                $scope.errors = lgJsonSchemaValidation.validate($scope.schema, $scope.content);
+                if( $scope.errors.length == 0 ) {
+                    $scope.submit();
+                }
+            }
 
             $scope.$watch('schema', function(newValue, oldValue) {
                 if( $scope.schema != null ) {
@@ -42,4 +50,4 @@ lgJsonschema.directive('lgJsonschemaForm', function(){
             };
         }
     };
-});
+}]);

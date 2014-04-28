@@ -36,8 +36,7 @@ object JsonTools {
       None
     }
     else {
-      None
-      //Some(errors)
+      Some(errors)
     }
   }
 

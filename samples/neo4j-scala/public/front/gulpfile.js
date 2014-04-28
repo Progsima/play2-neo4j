@@ -26,6 +26,7 @@ application = {
             "./app/modules/lg-jsonschema/directives/form.js",
             "./app/modules/lg-jsonschema/directives/field.js",
             "./app/modules/lg-jsonschema/services/neo4jTypeConvertor.js",
+            "./app/modules/lg-jsonschema/services/jsonschema-validation.js",
             "./app/modules/lg-jsonschema/services/config.js"
         ],
         dest : {
@@ -39,7 +40,8 @@ application = {
             "./bower_components/angular-route/angular-route.js",
             "./bower_components/lodash/dist/lodash.js",
             "./bower_components/restangular/dist/restangular.js",
-            "./bower_components/ng-table/ng-table.js"
+            "./bower_components/ng-table/ng-table.js",
+            "./bower_components/tv4/tv4.js"
         ],
         dest : {
             folder : "./app/build/js",

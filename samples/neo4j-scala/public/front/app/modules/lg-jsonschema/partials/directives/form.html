@@ -1,6 +1,15 @@
-<form class="form-horizontal"  novalidate>
+<form class="form-horizontal"  novalidate ng-submit="onSubmit()">
 
-    <lg-jsonschema-field    ng-repeat="field in fields">
+    <div class="alert alert-danger" ng-show="errors.length > 0">
+        <ul>
+            <li ng-repeat="error in errors track by $index">
+                {{error.message}}
+            </li>
+        </ul>
+    </div>
+
+    <lg-jsonschema-field  ng-repeat="field in fields">
+
     </lg-jsonschema-field>
 
     <!-- SUBMIT BUTTON -->
