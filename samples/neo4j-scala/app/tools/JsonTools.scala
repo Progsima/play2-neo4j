@@ -32,7 +32,7 @@ object JsonTools {
     val validator :JsonSchema = schemaFactory.getJsonSchema(JsonLoader.fromString(schema))
     val result :ProcessingReport = validator.validate(JsonLoader.fromString(json))
     val errors :Seq[String] = result.iterator().foldLeft(Seq[String]())( (errors, message) =>errors :+ message.getMessage )
-    if(errors.size == 0) {
+    if(result.isSuccess()) {
       None
     }
     else {
