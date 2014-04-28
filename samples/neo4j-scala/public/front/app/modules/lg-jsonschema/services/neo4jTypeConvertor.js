@@ -4,7 +4,7 @@
 lgJsonschema.service('lgJsonSchemaTypeService', ['lgJsonSchemaTypeConfig', function(lgJsonSchemaTypeConfig){
 
         /**
-         * Transform a model to a neo4j object.
+         * Transform a model to a neo4j object ie {name, title, description & schema}.
          *
          * @param neo4jType
          * @param type
@@ -23,17 +23,34 @@ lgJsonschema.service('lgJsonSchemaTypeService', ['lgJsonSchemaTypeConfig', funct
                 type: "object"
             };
 
+            // Table of required fields.
+            var required = [];
+
             // Let's work on fields to generate properties
             var properties ="{";
             for ( var i=0 ; i < type.fields.length ; i++ ) {
+
                 var field = type.fields[i];
+
+                // using template field schema
                 properties +=  this.schemaTemplate(type.fields[i].type.schema, field);
+
+                // if the field is require ?
+                if (field.require) {
+                    required.push(field.name);
+                }
+
+                // if it's not the last, we add a ","
                 if ( i < (type.fields.length  - 1) ) {
                     properties += ",";
                 }
             }
             properties += "}";
+
+            // adding properties on schema
             schema.properties = eval("(" + properties + ")");
+            // adding require field on schema
+            schema.required = required;
 
             // finally adding schema to neo4j object
             neo4jType.schema = JSON.stringify(schema);
@@ -44,7 +61,7 @@ lgJsonschema.service('lgJsonSchemaTypeService', ['lgJsonSchemaTypeConfig', funct
         /**
          * Transform a Neo4j object to a type model.
          *
-         * @param neo4jType : type object that is given the API
+         * @param neo4jType : type object that is given by the API
          * @returns the object type that will be used for the form.
          */
         this.neo4j2Form = function(neo4jType) {
@@ -64,7 +81,11 @@ lgJsonschema.service('lgJsonSchemaTypeService', ['lgJsonSchemaTypeConfig', funct
                 field.name = property;
                 field.type = lgJsonSchemaTypeConfig[field.id];
                 delete field.id;
+                if ( schema.required != null && _.contains(schema.required, property) ) {
+                    field.require = true;
+                }
                 type.fields.push(field);
+
             }
 
             return type;
