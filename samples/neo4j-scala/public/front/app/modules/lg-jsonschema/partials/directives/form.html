@@ -3,7 +3,7 @@
     <div class="alert alert-danger" ng-show="errors.length > 0">
         <ul>
             <li ng-repeat="error in errors track by $index">
-                {{error.message}}
+                <strong>{{error.field.title}}</strong> {{error.message}}
             </li>
         </ul>
     </div>
