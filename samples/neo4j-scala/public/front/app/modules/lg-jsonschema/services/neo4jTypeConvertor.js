@@ -96,7 +96,8 @@ lgJsonschema.service('lgJsonSchemaTypeService', ['lgJsonSchemaTypeConfig', funct
          * It helps to generate part of a JSON schema for a field.
          *
          * @param template : template
-         * @param obj : object with properties that we should replace to the template.
+         * @param obj : object with properties that we should replace to the template
+         *
          * @returns The string wanted
          */
         this.schemaTemplate = function(template, obj) {
@@ -107,7 +108,7 @@ lgJsonschema.service('lgJsonSchemaTypeService', ['lgJsonSchemaTypeConfig', funct
                 schema = schema.replace("{{" + property + "}}" , obj[property]);
             }
 
-            // we remove variable that haven't value uin obj.
+            // we remove variable that haven't value in obj.
             schema = schema.replace(/({{\w*}})/g, "null");  // replace {{var}} by null
             schema = schema.replace(/,[^,]*:\snull/g, ""); // we remove the entire json-schema line with no value
 

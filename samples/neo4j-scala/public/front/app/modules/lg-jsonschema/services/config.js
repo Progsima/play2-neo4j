@@ -5,7 +5,7 @@
  *   > name : will be display on the list choice of field type. It's only used to construct the schema (cf. type part of the module).
  *   > form : is the template location for the construction of the type (ie. validation rules. It's only used construct the schema (cf. type part of the module).
  *   > field : is the template location of the render of the item (ie. the input field form generated). It's only used when we render the json schema form.
- *   > schema : it's the json schema template of the field. The 'require' rule is outside. You can create your own type (for special render like date) but validation validation'srule are only json-schema one.
+ *   > schema : it's the json schema template of the field. The 'require' rule is outside. You can create your own type (for special render like date) but validation's rules are only json-schema one.
  */
 lgJsonschema.value(
     "lgJsonSchemaTypeConfig",

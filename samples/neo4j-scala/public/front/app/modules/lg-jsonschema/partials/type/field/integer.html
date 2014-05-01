@@ -12,7 +12,8 @@
                     ng-model="content[field.name]"
                     ng-required="{{field.require}}"
                     min="{{field.minimum}}"
-                    max="{{field.maximum}}" >
+                    max="{{field.maximum}}"
+                    lg-field-undefined>
 
             <p ng-show="objectFormField.objectField.$error.required" class="help-block">Field is required</p>
             <p ng-show="objectFormField.objectField.$error.min" class="help-block">Min is {{field.minimum}}</p>

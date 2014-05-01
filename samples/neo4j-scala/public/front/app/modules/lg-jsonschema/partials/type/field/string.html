@@ -10,9 +10,9 @@
                     type="text"
                     name="objectField"
                     ng-model="content[field.name]"
-                    ng-required="{{field.require}}"
                     ng-minlength="{{field.minLength}}"
-                    ng-maxlength="{{field.maxLength}}" >
+                    ng-maxlength="{{field.maxLength}}"
+                    lg-field-undefined>
 
             <p ng-show="objectFormField.objectField.$error.required" class="help-block">Field is required</p>
             <p ng-show="objectFormField.objectField.$error.minlength" class="help-block">Min length is {{field.minLength}}</p>
